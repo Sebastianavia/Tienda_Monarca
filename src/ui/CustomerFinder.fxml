@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="508.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="labelCustomerFinder" layoutX="52.0" layoutY="102.0" minHeight="16" minWidth="69" prefHeight="25.0" prefWidth="369.0">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <TextField fx:id="filterField" layoutX="106.0" layoutY="70.0" prefHeight="25.0" prefWidth="348.0" style="-fx-background-color: #E5E7E9;" />
+      <Label layoutX="22.0" layoutY="72.0" text="Buscador:" textFill="#d4af37">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Pane layoutY="2.0" prefHeight="61.0" prefWidth="975.0" style="-fx-background-color: FFF8B8;">
+         <children>
+            <Label layoutX="17.0" layoutY="8.0" text="Buscador de clientes">
+               <font>
+                  <Font name="Gabriola" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="778.0" layoutY="72.0" mnemonicParsing="false" onAction="#loadMainWindow" prefHeight="60.0" prefWidth="158.0" style="-fx-background-color: FFF8B8;" text="Exit">
+         <font>
+            <Font name="Gabriola" size="32.0" />
+         </font>
+      </Button>
+      <Button layoutX="610.0" layoutY="72.0" mnemonicParsing="false" onAction="#addOrderCustomer" prefHeight="60.0" prefWidth="158.0" style="-fx-background-color: FFF8B8;" text="Add">
+         <font>
+            <Font name="Gabriola" size="32.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tableCustomers" layoutX="215.0" layoutY="151.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 0 0 10 10;">
+         <columns>
+            <TableColumn fx:id="colCustomerFN" prefWidth="124.0" style="-fx-background-color: FFF8B8;" text="Nombre" />
+            <TableColumn fx:id="colCustomerID" prefWidth="130.0" style="-fx-background-color: FFF8B8;" text="Id" />
+            <TableColumn fx:id="colCustomerAD" maxWidth="264.0" minWidth="-1.0" prefWidth="143.0" style="-fx-background-color: FFF8B8;" text="Dirección" />
+            <TableColumn fx:id="colCustomerPH" maxWidth="469.0" minWidth="-1.0" prefWidth="110.0" style="-fx-background-color: FFF8B8;" text="Celular" />
+         </columns>
+      </TableView>
+    </children>
+</AnchorPane>

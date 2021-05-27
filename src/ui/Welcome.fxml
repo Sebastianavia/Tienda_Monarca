@@ -24,6 +24,7 @@
             </Button>
             <Label layoutX="315.0" layoutY="427.0" text="Usuario base: admin " />
             <Label layoutX="337.0" layoutY="461.0" text="Password: 123" />
+            <Label fx:id="carga" layoutX="265.0" layoutY="497.0" prefHeight="21.0" prefWidth="293.0" />
          </children>
       </AnchorPane>
    </bottom>

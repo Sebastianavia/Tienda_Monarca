@@ -1,21 +1,21 @@
 package Threads;
 
-import javafx.scene.control.Label;
 import model.ProgressGadget;
+import ui.Main;
 import ui.ProgressUI;
 
 public class ProgressGadgetThread extends Thread{
 	private ProgressGadget pg;
-	private ProgressUI psui;
+	private Main psui;
 	private long sleepTime;
 	
-	private Label carga;
 	
-	public ProgressGadgetThread(ProgressGadget p, ProgressUI ui, long st, Label carga) {
+	
+	public ProgressGadgetThread(ProgressGadget p, Main main, long st) {
 		pg = p;
-		psui = ui;
+		psui = main;
 		sleepTime = st;
-		this.carga = carga;
+		
 	}
 	
 	public void run() {

@@ -1,14 +1,18 @@
 package ui;
 
 
+import java.awt.Label;
 import java.io.IOException;
-
 import Threads.ProgressGadgetThread;
+
+import model.ProgressGadget;
+import model.SimpleProgressBar;
+
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.*; 
@@ -19,8 +23,9 @@ public class Main extends Application {
     
 	private TiendaMonarca  TiendaMonarca;
 	private TiendaMonarcaGUI TiendaMonarcaGUI;
-	private ProgressGadgetThread p;
-    
+
+    @FXML
+    private Label carga;
 
     public Main() throws ClassNotFoundException, IOException {
             TiendaMonarca = new TiendaMonarca();
@@ -31,10 +36,6 @@ public class Main extends Application {
     public static void main(String [] args) {
         launch(args);
         
-
-    	
-    		ProgressUI spsui = new ProgressUI();
-    		spsui.startProgress();
     		
     }
     @Override
@@ -51,17 +52,61 @@ public class Main extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Tienda Monarca");
+		startProgress();
 		primaryStage.show();
-		
-		ProgressGadgetThread p = new ProgressGadgetThread(carga);
-		
-		
-		
-		
-			
+				
 			
 		}
+    private ProgressGadgetThread[] threads;
+	private ProgressGadget[] progressG;
+	public static final int NUM_THREADS = 1;
+	public static final int MIN_SLEEP = 50;	
+	public static final int MAX_SLEEP = 100;	
+	
+	private void createProgressGadgets(int[] maximums) {
+		progressG = new ProgressGadget[NUM_THREADS];
+		int i = 0;
+		
+		progressG[i] = new SimpleProgressBar(maximums[i],'#');
+		i++;
+		
+		
+		threads = new ProgressGadgetThread[NUM_THREADS];
+		for(int k=0;k<NUM_THREADS;k++) {
+			threads[k] = new ProgressGadgetThread(progressG[k],this,MIN_SLEEP+(int)(Math.random()*(MAX_SLEEP-MIN_SLEEP)));
+		}		
+	}
+	
+	private int[] readInputs() {
+		//System.out.print("Please, enter the maximum values for each progress gadget: ");
+		//Scanner sc = new Scanner(System.in);
+		//String[] parts = sc.nextLine().split(" ");
+		//sc.close();
+		int[] maxs = new int[1];
+		//for(int i=0;i<parts.length;i++) {
+			maxs[0] = 1000;
+		//}
+		return maxs;
+	}
+	
+	public void startProgress() {
+		createProgressGadgets(readInputs());
+		System.out.println("entra");
+		//for(ProgressGadgetThread pgt: threads) {
+			ProgressGadgetThread pgt = threads[0];
+			pgt.start();
+		//}
+		//	carga.setText("1");
+			carga.setText("[S]    [ SIMPLE PROG BAR ]    [ LINES PROGR BAR ]    [ ROTATE PROG BAR ]    [  SPACESHIP BAR  ]    [    ARROW BAR    ]");
+	}
 
+	public void refresh() {
+		String progressState = "\r";
+		for(ProgressGadget pg: progressG) {
+			progressState += pg.getState();
+		}
+		System.out.print(progressState);
+	}
 	
 
 

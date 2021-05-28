@@ -29,7 +29,7 @@ public class ProgressUI {
 		
 		threads = new ProgressGadgetThread[NUM_THREADS];
 		for(int k=0;k<NUM_THREADS;k++) {
-			threads[k] = new ProgressGadgetThread(progressG[k],this,MIN_SLEEP+(int)(Math.random()*(MAX_SLEEP-MIN_SLEEP)));
+			//threads[k] = new ProgressGadgetThread(progressG[k],this,MIN_SLEEP+(int)(Math.random()*(MAX_SLEEP-MIN_SLEEP)));
 		}		
 	}
 	

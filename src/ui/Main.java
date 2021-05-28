@@ -52,12 +52,53 @@ public class Main extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Tienda Monarca");
-		startProgress();
 		primaryStage.show();
 				
 			
 		}
-    private ProgressGadgetThread[] threads;
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*private ProgressGadgetThread[] threads;
 	private ProgressGadget[] progressG;
 	public static final int NUM_THREADS = 1;
 	public static final int MIN_SLEEP = 50;	
@@ -106,7 +147,7 @@ public class Main extends Application {
 			progressState += pg.getState();
 		}
 		System.out.print(progressState);
-	}
+	}*/
 	
 
 

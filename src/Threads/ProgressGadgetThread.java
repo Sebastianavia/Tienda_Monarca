@@ -21,7 +21,7 @@ public class ProgressGadgetThread extends Thread{
 	public void run() {
 		while(!pg.finished()) {
 			pg.advance();
-			psui.refresh();
+			//psui.refresh();
 			
 			try {
 				Thread.sleep(sleepTime);

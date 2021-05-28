@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.TiendaMonarca;
 import threads.Loading;
+import threads.Percentage;
 
 public class TiendaMonarcaGUI {
 	
@@ -65,7 +66,9 @@ public class TiendaMonarcaGUI {
 	@FXML
 	public void InitProgram(ActionEvent event) throws IOException {
 		Loading ld = new Loading(this,jProgressbar1);
+		Percentage pc = new Percentage(prgres1);
 		ld.start();
+		pc.start();
 		/*
 		 * do { final Service thread = new Service<Integer>() {
 		 * 

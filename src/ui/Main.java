@@ -3,11 +3,10 @@ package ui;
 
 import java.awt.Label;
 import java.io.IOException;
-import Threads.ProgressGadgetThread;
 
 import model.ProgressGadget;
 import model.SimpleProgressBar;
-
+import threads.ProgressGadgetThread;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

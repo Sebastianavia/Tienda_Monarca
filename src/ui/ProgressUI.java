@@ -1,11 +1,9 @@
 package ui;
 
-//import java.util.Scanner;
-
-import Threads.ProgressGadgetThread;
 import javafx.scene.control.Label;
 import model.ProgressGadget;
 import model.SimpleProgressBar;
+import threads.ProgressGadgetThread;
 
 
 public class ProgressUI {

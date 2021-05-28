@@ -1,4 +1,4 @@
-package Threads;
+package threads;
 
 import model.ProgressGadget;
 import ui.Main;

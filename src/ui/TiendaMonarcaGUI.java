@@ -1,32 +1,32 @@
 package ui;
 
+import java.awt.TextField;
 import java.io.IOException;
-import java.sql.Time;
-import java.util.Timer;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-import javax.swing.JProgressBar;
-import javax.xml.stream.events.StartDocument;
-
-import org.omg.CORBA.ServiceInformation;
-
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.TiendaMonarca;
+import threads.Clock;
 import threads.Loading;
 import threads.Percentage;
 
 public class TiendaMonarcaGUI {
-	
+	@FXML
+	private Label clockLabel;
+
 	@FXML
 	private BorderPane pane;
 	@FXML
@@ -38,87 +38,46 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private ProgressIndicator prgres1;
+	private TiendaMonarca tiendaMonarca;
 
-	// ---------------------------------------
-	@FXML
-	private Label carga;
-
-	private Timer timer;
-	int centesimas = 0;
-	int seconds = 0;
-
-	private TiendaMonarca TiendaMonarca;
-
-	public TiendaMonarcaGUI(TiendaMonarca controller) {
-		TiendaMonarca = controller;
+	public TiendaMonarcaGUI(TiendaMonarca tiendaMonarca2) {
+		tiendaMonarca = tiendaMonarca2;
 	}
 
 	// ________________________________________________________
 
-	public int Timer() {
-		centesimas++;
-		if (centesimas == 100)
-			seconds++;
-
-		return Timer();
-	}
-
 	@FXML
-	public void InitProgram(ActionEvent event) throws IOException {
-		Loading ld = new Loading(this,jProgressbar1);
+	public void InitProgram(ActionEvent event) throws IOException, InterruptedException {
+		Loading ld = new Loading(this, jProgressbar1);
 		Percentage pc = new Percentage(prgres1);
 		ld.start();
 		pc.start();
-		/*
-		 * do { final Service thread = new Service<Integer>() {
-		 * 
-		 * @Override public Task createTask() {
-		 * 
-		 * return new Task<Integer>() {
-		 * 
-		 * @Override public Integer call() throws InterruptedException { int i; for (i =
-		 * 0; i < 100; i++) { updateProgress(i, 100); Thread.sleep(10); } return i; }
-		 * 
-		 * }; }
-		 * 
-		 * };
-		 * 
-		 * String s = "4"; Task task = taskCreator(Integer.parseInt(s));
-		 * jProgressbar1.progressProperty().bind(thread.progressProperty());
-		 * prgres1.progressProperty().unbind();
-		 * 
-		 * prgres1.progressProperty().bind(task.progressProperty()); new
-		 * Thread(task).start();
-		 * 
-		 * } while (Timer() < 5);
-		 */
-		/*
-		 * FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
-		 * fxmlLoader.setController(this); Parent login = fxmlLoader.load();
-		 * pane.getChildren().clear(); pane.setCenter(login);
-		 * 
-		 * labelUser.setText("Usuario"); labelLoginOrLogOut.setText("Login");
-		 */
+		// ld.join();
+	
 
 	}
-/*
-	private Task taskCreator(int secondss) {
-		return new Task() {
-
-			@Override
-			protected Object call() throws Exception {
-				for (int i = 0; i < secondss; i++) {
-					Thread.sleep(1000);
-					updateProgress(i + 1, secondss);
-				}
-				return true;
-			}
-
-		};
-
+	@FXML
+	private BorderPane white;
+	@FXML
+	private TextField txtUser;
+	 @FXML
+	    private Label date;
+	public void loadMenu() throws IOException {
+		
+		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+	        fxmlLoader.setController(this);
+	        Parent login = fxmlLoader.load();
+	        // pane.getChildren().clear();
+	        Clock clock = new Clock(clockLabel);
+			clock.start();
+			Calendar fecha = new GregorianCalendar();
+			String anio = fecha.get(Calendar.YEAR)+"";
+	        int mes = fecha.get(Calendar.MONTH)+1;
+	        String dia = fecha.get(Calendar.DAY_OF_MONTH)+"";
+	        String f = dia+"/"+mes+"/"+anio;
+			date.setText(f);
+	        pane.setCenter(login);
 	}
-*/
-	public void loadMenu() {
-		System.out.println("cargar menu");
-	}
+	
+
 }

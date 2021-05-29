@@ -1,5 +1,7 @@
 package threads;
 
+import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 import ui.TiendaMonarcaGUI;
@@ -23,16 +25,18 @@ public class Loading extends Thread {
 					
 			});
 			delay();
-			//Platform.runLater(new Runnable() {			
-				//@Override
-				//public void run() {
-					// TODO Auto-generated method stub					
-				//}
-			//});
+			
 		}
-		Platform.runLater(() -> {
-			referencia.loadMenu();//patron observer
+		Platform.runLater(() -> { // Para cambiar algo grafico-- desde un hilo alternativo
+			try {
+				referencia.loadMenu();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	//setprogre para el avance	
+				
 		});
+		
 		
 	}
 	private void delay() {

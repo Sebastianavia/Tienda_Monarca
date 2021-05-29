@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="196.0" prefWidth="793.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
          <children>
@@ -22,8 +22,8 @@
                   <Font name="System Italic" size="40.0" />
                </font>
             </Label>
-            <Label layoutX="697.0" layoutY="22.0" prefHeight="21.0" prefWidth="82.0" text="00.00.00" />
-            <Label layoutX="697.0" layoutY="61.0" text="dd/mm/aa" />
+            <Label fx:id="clockLabel" layoutX="697.0" layoutY="22.0" prefHeight="21.0" prefWidth="82.0" text="00.00.00" />
+            <Label fx:id="date" layoutX="697.0" layoutY="61.0" text="dd/mm/aa" />
          </children>
       </AnchorPane>
    </top>

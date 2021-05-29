@@ -4,9 +4,6 @@ package ui;
 import java.awt.Label;
 import java.io.IOException;
 
-import model.ProgressGadget;
-import model.SimpleProgressBar;
-import threads.ProgressGadgetThread;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +17,15 @@ import model.*;
 
 public class Main extends Application {
     
-	private TiendaMonarca  TiendaMonarca;
-	private TiendaMonarcaGUI TiendaMonarcaGUI;
+	private TiendaMonarca  tiendaMonarca;
+	private TiendaMonarcaGUI tiendaMonarcaGUI;
 
     @FXML
     private Label carga;
 
     public Main() throws ClassNotFoundException, IOException {
-            TiendaMonarca = new TiendaMonarca();
-           TiendaMonarcaGUI = new TiendaMonarcaGUI(TiendaMonarca);
+            tiendaMonarca = new TiendaMonarca();
+           tiendaMonarcaGUI = new TiendaMonarcaGUI(tiendaMonarca);
         
     }
 
@@ -39,9 +36,10 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Welcome.fxml"));
 
-		fxmlLoader.setController(TiendaMonarcaGUI);
+		fxmlLoader.setController(tiendaMonarcaGUI);
 		Parent root = fxmlLoader.load();
         Image icon= new Image("/img/circle-cropped.png");
         primaryStage.getIcons().add(icon);
@@ -54,6 +52,16 @@ public class Main extends Application {
 		primaryStage.show();
 				
 			
+    	/*
+    	FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("White.fxml"));
+		fxmlLoader1.setController(tiendaMonarcaGUI);
+		Parent root2= fxmlLoader1.load();
+		Scene scene=  new Scene (root2);
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Restaurant");
+		primaryStage.show();
+		tiendaMonarcaGUI.inicializedMain();
+		*/
 		}
    
     

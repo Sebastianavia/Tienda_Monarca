@@ -40,9 +40,9 @@
                   <Image url="@../icons/1.png" />
                </image>
             </ImageView>
-            <PasswordField layoutX="343.0" layoutY="210.0" promptText="Password" />
-            <TextField fx:id="txtUser" layoutX="343.0" layoutY="107.0" promptText="User" />
-            <Button layoutX="404.0" layoutY="290.0" mnemonicParsing="false" style="-fx-background-color: FFF8B8;" text="join" />
+            <Button layoutX="404.0" layoutY="290.0" mnemonicParsing="false" onAction="#buttonJoin" style="-fx-background-color: FFF8B8;" text="JOIN" />
+            <TextField fx:id="txtUser" layoutX="356.0" layoutY="110.0" promptText="Usuario" />
+            <PasswordField fx:id="txtPassword" layoutX="356.0" layoutY="213.0" promptText="Contraseña" />
          </children>
       </AnchorPane>
    </bottom>

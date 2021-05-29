@@ -21,15 +21,14 @@ public class Loading extends Thread {
 		for (int i = 0; i < 20; i++) {
 			porcentaje+=0.05;
 			Platform.runLater(() -> { // Para cambiar algo grafico-- desde un hilo alternativo
-				bar.setProgress(porcentaje);	//setprogre para el avance	
-					
+				bar.setProgress(porcentaje);	//setprogre para el avance				
 			});
 			delay();
 			
 		}
 		Platform.runLater(() -> { // Para cambiar algo grafico-- desde un hilo alternativo
 			try {
-				referencia.loadMenu();
+				referencia.loadLogin();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

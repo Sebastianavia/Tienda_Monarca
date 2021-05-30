@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -64,22 +63,22 @@
             </Button>
             <Button layoutX="271.0" layoutY="149.0" mnemonicParsing="false" onAction="#binarySearchCustomer" prefHeight="30.0" prefWidth="159.0" text="Busqueda binaria" />
             <TextField fx:id="nameCustomer" layoutX="24.0" layoutY="147.0" prefHeight="34.0" prefWidth="240.0" promptText="Nombre y apellido separado por espacio" />
-            <Text layoutX="33.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Debe pagar" wrappingWidth="137.2578125">
+            <Text layoutX="19.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Debe pagar" wrappingWidth="137.2578125">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Label fx:id="labelCustomer1" layoutX="212.0" layoutY="429.0" text="Sin asignar">
+            <Label layoutX="200.0" layoutY="316.0" text="Sin asignar">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Text layoutX="33.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pagó" wrappingWidth="137.2578125">
+            <Text layoutX="33.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abono " wrappingWidth="137.2578125">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <TextField fx:id="productAmount1" layoutX="171.0" layoutY="367.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
+            <TextField fx:id="productAmount1" layoutX="126.0" layoutY="361.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
             <Text layoutX="481.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Debe " wrappingWidth="137.2578125">
                <font>
                   <Font size="25.0" />
@@ -100,12 +99,26 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="317.0" text="modo de pago">
+            <Button layoutX="217.0" layoutY="409.0" mnemonicParsing="false" onAction="#loadMainWindow" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: FFF8B8;" text="Calcular">
+               <font>
+                  <Font name="Gabriola" size="20.0" />
+               </font>
+            </Button>
+            <Text layoutX="33.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saldo" wrappingWidth="137.2578125">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Label fx:id="labelCustomer1" layoutX="128.0" layoutY="418.0" text="Sin asignar">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="173.0" layoutY="312.0" prefHeight="31.0" prefWidth="181.0" />
+            <Button layoutX="746.0" layoutY="481.0" mnemonicParsing="false" onAction="#loadMainWindow" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: FFF8B8;" text="Calcular">
+               <font>
+                  <Font name="Gabriola" size="20.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </left>

@@ -27,7 +27,7 @@
          </children>
       </AnchorPane>
    </top>
-   <center>
+   <right>
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
             <Text layoutX="32.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente:">
@@ -53,19 +53,19 @@
                   <Font name="Bold Italic Art" size="24.0" />
                </font>
             </Text>
-            <TextField layoutX="32.0" layoutY="281.0" prefHeight="34.0" prefWidth="240.0" promptText="Cuanto va a pagar el cliente " />
-            <Button layoutX="290.0" layoutY="283.0" mnemonicParsing="false" text="Pagar" />
-            <Text layoutX="392.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ahora debes: " wrappingWidth="155.1875">
+            <TextField layoutX="32.0" layoutY="200.0" prefHeight="34.0" prefWidth="240.0" promptText="Cuanto va a pagar el cliente " />
+            <Button layoutX="290.0" layoutY="200.0" mnemonicParsing="false" text="Pagar" />
+            <Text layoutX="392.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ahora debes: " wrappingWidth="155.1875">
                <font>
                   <Font name="Bold Italic Art" size="24.0" />
                </font>
             </Text>
-            <Label fx:id="labelCustomer11" layoutX="552.0" layoutY="298.0" text="Sin asignar">
+            <Label fx:id="labelCustomer11" layoutX="560.0" layoutY="207.0" text="Sin asignar">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="labelCustomer112" layoutX="539.0" layoutY="298.0" text="\$">
+            <Label fx:id="labelCustomer112" layoutX="539.0" layoutY="207.0" text="\$">
                <font>
                   <Font size="15.0" />
                </font>
@@ -75,7 +75,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <Button layoutX="193.0" layoutY="285.0" mnemonicParsing="false" style="-fx-background-color: FFF8B8;" text="Guardar" />
+            <Button layoutX="449.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" style="-fx-background-color: FFF8B8;" text="Atras" />
          </children>
       </AnchorPane>
-   </center>
+   </right>
 </BorderPane>

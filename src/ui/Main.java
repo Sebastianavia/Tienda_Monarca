@@ -17,15 +17,15 @@ import model.*;
 
 public class Main extends Application {
     
-	private TiendaMonarca  tiendaMonarca;
+	
 	private TiendaMonarcaGUI tiendaMonarcaGUI;
 
     @FXML
     private Label carga;
 
     public Main() throws ClassNotFoundException, IOException {
-            tiendaMonarca = new TiendaMonarca();
-           tiendaMonarcaGUI = new TiendaMonarcaGUI(tiendaMonarca);
+            
+           tiendaMonarcaGUI = new TiendaMonarcaGUI();
         
     }
 

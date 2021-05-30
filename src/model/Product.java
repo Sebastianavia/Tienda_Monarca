@@ -1,5 +1,5 @@
 package model;
 
-public class Product {
+public abstract class Product {
 
 }

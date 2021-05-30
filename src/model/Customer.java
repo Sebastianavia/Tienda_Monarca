@@ -1,17 +1,20 @@
 package model;
 
-public class Customer  extends Debtors {
-	
-	
-	public Customer(String name, String documentType, String id, String address, String phone) {
-		super(name, documentType, id, address, phone);
-		//System.out.println();
-		
+public class Customer extends Clients {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private TypePaymen typ;
+
+	public Customer(String name, String documentType, String id, String phone,String ty) {
+		super(name, documentType, id, phone);
+		typ = TypePaymen.valueOf(ty);
+
 	}
 
-	private static final long serialVersionUID = 1L;
-
-
-	
+	public TypePaymen getTyp() {
+		return typ;
+	}
 
 }

@@ -1,31 +1,34 @@
 package ui;
-
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import model.Customer;
+import model.EmployeUser;
 import model.TiendaMonarca;
 import threads.Clock;
 import threads.Loading;
 import threads.Percentage;
+// CLIENTES ----- DEUDORES-->   - CLIENTES---->
+//-------------------------------------------------
 
+//EMPLEADOS----  
+//PROVEEDORES -----
+//PRODUCTOS----
 public class TiendaMonarcaGUI {
-
+	private EmployeUser first;
+	private Customer firstC;
 	@FXML
 	private Label date;
 	@FXML
@@ -48,9 +51,26 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TextField txtUser;
+	@FXML
+	private TextField createUserFN;
 
-	public TiendaMonarcaGUI(TiendaMonarca tiendaMonarca2) {
-		tiendaMonarca = tiendaMonarca2;
+	@FXML
+	private TextField createUserLN;
+
+	@FXML
+	private TextField createUserId;
+
+	@FXML
+	private TextField createUserUS;
+
+	@FXML
+	private PasswordField createUserPA;
+
+	public TiendaMonarcaGUI() {
+		tiendaMonarca = new TiendaMonarca();
+		if(first==null) {
+			first = new  EmployeUser("admin", "admin", "admin", "admin", "123");
+		}
 	}
 
 	// ________________________________________________________
@@ -71,7 +91,6 @@ public class TiendaMonarcaGUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
-		// pane.getChildren().clear();
 		pane.setCenter(login1);
 	}
 
@@ -91,9 +110,9 @@ public class TiendaMonarcaGUI {
 		date.setText(f);
 		pane.setCenter(login);
 	}
-	  @FXML
-	    private PasswordField txtPassword;
 
+	@FXML
+	private PasswordField txtPassword;
 
 	@FXML
 	void buttonJoin(ActionEvent event) {
@@ -106,4 +125,21 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
+	@FXML
+	void buttonRegister(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateUser.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+	}
+
+	@FXML
+	void addUser(ActionEvent event) {
+
+	}
+
+	@FXML
+	void loadWelcome(ActionEvent event) {
+
+	}
 }

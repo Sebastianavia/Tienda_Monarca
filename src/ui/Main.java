@@ -11,32 +11,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.*; 
+import model.*;
 
 
 
 public class Main extends Application {
-    
-	
+
+
 	private TiendaMonarcaGUI tiendaMonarcaGUI;
 
     @FXML
     private Label carga;
 
     public Main() throws ClassNotFoundException, IOException {
-            
+
            tiendaMonarcaGUI = new TiendaMonarcaGUI();
-        
+
     }
 
     public static void main(String [] args) {
         launch(args);
-        
-    		
+
+
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Welcome.fxml"));
 
 		fxmlLoader.setController(tiendaMonarcaGUI);
@@ -50,8 +50,8 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Tienda Monarca");
 		primaryStage.show();
-				
-			
+
+
     	/*
     	FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("White.fxml"));
 		fxmlLoader1.setController(tiendaMonarcaGUI);
@@ -63,68 +63,68 @@ public class Main extends Application {
 		tiendaMonarcaGUI.inicializedMain();
 		*/
 		}
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*private ProgressGadgetThread[] threads;
 	private ProgressGadget[] progressG;
 	public static final int NUM_THREADS = 1;
-	public static final int MIN_SLEEP = 50;	
-	public static final int MAX_SLEEP = 100;	
-	
+	public static final int MIN_SLEEP = 50;
+	public static final int MAX_SLEEP = 100;
+
 	private void createProgressGadgets(int[] maximums) {
 		progressG = new ProgressGadget[NUM_THREADS];
 		int i = 0;
-		
+
 		progressG[i] = new SimpleProgressBar(maximums[i],'#');
 		i++;
-		
-		
+
+
 		threads = new ProgressGadgetThread[NUM_THREADS];
 		for(int k=0;k<NUM_THREADS;k++) {
 			threads[k] = new ProgressGadgetThread(progressG[k],this,MIN_SLEEP+(int)(Math.random()*(MAX_SLEEP-MIN_SLEEP)));
-		}		
+		}
 	}
-	
+
 	private int[] readInputs() {
 		//System.out.print("Please, enter the maximum values for each progress gadget: ");
 		//Scanner sc = new Scanner(System.in);
@@ -136,7 +136,7 @@ public class Main extends Application {
 		//}
 		return maxs;
 	}
-	
+
 	public void startProgress() {
 		createProgressGadgets(readInputs());
 		System.out.println("entra");
@@ -155,7 +155,7 @@ public class Main extends Application {
 		}
 		System.out.print(progressState);
 	}*/
-	
+
 
 
 

@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="185.0" fitWidth="190.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="185.0" fitWidth="190.0" layoutX="22.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/circle-cropped.png" />
                </image>
             </ImageView>
-            <Label layoutX="360.0" layoutY="71.0" text="Añadir Proveedores">
+            <Label layoutX="332.0" layoutY="71.0" prefHeight="59.0" prefWidth="411.0" text="Añadir Proveedores de contado">
                <font>
-                  <Font name="System Italic" size="41.0" />
+                  <Font name="System Italic" size="24.0" />
                </font>
             </Label>
          </children>
@@ -34,9 +34,11 @@
             <Label layoutX="203.0" layoutY="191.0" text="Direccion " />
             <TextField layoutX="336.0" layoutY="67.0" />
             <TextField layoutX="336.0" layoutY="128.0" />
-            <TextField layoutX="336.0" layoutY="197.0" />
-            <Button layoutX="209.0" layoutY="274.0" mnemonicParsing="false" text="Añadir" />
-            <Button layoutX="485.0" layoutY="274.0" mnemonicParsing="false" text="salir" />
+            <TextField layoutX="336.0" layoutY="186.0" />
+            <Button layoutX="611.0" layoutY="307.0" mnemonicParsing="false" text="Añadir" />
+            <Button layoutX="693.0" layoutY="307.0" mnemonicParsing="false" text="salir" />
+            <Label layoutX="183.0" layoutY="239.0" text="N° de cuenta" />
+            <TextField layoutX="336.0" layoutY="234.0" />
          </children>
       </AnchorPane>
    </center>

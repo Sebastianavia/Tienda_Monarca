@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 public class Clock extends Thread {
     private Label clock;
     public Clock(Label clock) {
-        setDaemon(true);
+       // setDaemon(true);
         this.clock=clock;
     }
 

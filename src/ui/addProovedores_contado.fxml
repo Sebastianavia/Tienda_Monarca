@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
          <children>
@@ -35,8 +35,8 @@
             <TextField layoutX="336.0" layoutY="67.0" />
             <TextField layoutX="336.0" layoutY="128.0" />
             <TextField layoutX="336.0" layoutY="186.0" />
-            <Button layoutX="611.0" layoutY="307.0" mnemonicParsing="false" text="Añadir" />
-            <Button layoutX="693.0" layoutY="307.0" mnemonicParsing="false" text="salir" />
+            <Button layoutX="611.0" layoutY="307.0" mnemonicParsing="false" onAction="#addSaveProvConta" text="Añadir" />
+            <Button layoutX="693.0" layoutY="307.0" mnemonicParsing="false" onAction="#returnConta" text="salir" />
             <Label layoutX="183.0" layoutY="239.0" text="N° de cuenta" />
             <TextField layoutX="336.0" layoutY="234.0" />
          </children>

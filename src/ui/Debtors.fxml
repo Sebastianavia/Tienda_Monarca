@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="185.0" fitWidth="190.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../img/circle-cropped.png" />
+                  <Image url="@../img/circle-cropped.png" />
                </image>
             </ImageView>
             <Label layoutX="360.0" layoutY="71.0" prefHeight="59.0" prefWidth="184.0" text="Deudores">

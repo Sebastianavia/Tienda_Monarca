@@ -7,7 +7,7 @@ public class EmployeUser extends Employee {
 	
 	public EmployeUser(String n, String l, String i,String nameU,String pas) {
 		super(n, l, i);
-		setNameUser(nameU);
+		nameUser = nameU;
 		password = pas;
 	}
 	public String getPassword() {

@@ -45,7 +45,9 @@
             <PasswordField fx:id="txtPassword" layoutX="169.0" layoutY="221.0" promptText="Contraseña" />
             <Label layoutX="492.0" layoutY="151.0" prefHeight="34.0" prefWidth="242.0" text="Si no tiene un usuario o no quieres " />
             <Label layoutX="492.0" layoutY="185.0" text="entrar por el usuario principal " />
-            <Button layoutX="567.0" layoutY="229.0" mnemonicParsing="false" onAction="#buttonRegister" style="-fx-background-color: FFF8B8;" text="Registrar" />
+            <Button layoutX="567.0" layoutY="229.0" mnemonicParsing="false" onAction="#addUser" style="-fx-background-color: FFF8B8;" text="Registrar" />
+            <Label layoutX="569.0" layoutY="17.0" text="Usuario base: admin " />
+            <Label layoutX="593.0" layoutY="45.0" text="Password: 123" />
          </children>
       </AnchorPane>
    </right>

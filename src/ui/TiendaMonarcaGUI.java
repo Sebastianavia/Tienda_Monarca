@@ -2,6 +2,9 @@ package ui;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +17,6 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import model.Customer;
-import model.EmployeUser;
 import model.TiendaMonarca;
 import threads.Clock;
 import threads.Loading;
@@ -26,9 +27,10 @@ import threads.Percentage;
 //EMPLEADOS----  
 //PROVEEDORES -----
 //PRODUCTOS----
+
 public class TiendaMonarcaGUI {
-	private EmployeUser first;
-	private Customer firstC;
+	@FXML
+	private PasswordField txtPassword;
 	@FXML
 	private Label date;
 	@FXML
@@ -46,8 +48,6 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private ProgressIndicator prgres1;
 	private TiendaMonarca tiendaMonarca;
-	@FXML
-	private PasswordField txtPasw;
 
 	@FXML
 	private TextField txtUser;
@@ -68,9 +68,7 @@ public class TiendaMonarcaGUI {
 
 	public TiendaMonarcaGUI() {
 		tiendaMonarca = new TiendaMonarca();
-		if(first==null) {
-			first = new  EmployeUser("admin", "admin", "admin", "admin", "123");
-		}
+		
 	}
 
 	// ________________________________________________________
@@ -111,35 +109,112 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login);
 	}
 
-	@FXML
-	private PasswordField txtPassword;
+	
+
 
 	@FXML
-	void buttonJoin(ActionEvent event) {
+	void buttonJoin(ActionEvent event) throws IOException {
+		
 		String name = txtUser.getText();
-		String pasw = txtPasw.getText();
-		if (name != "" && pasw != "") {
-			System.out.println(name + pasw);
+		String pasw = txtPassword.getText();
+		if (txtUser.getText().equals("") && txtPassword.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
 		} else {
-			System.out.println("digite todo");
+			if(tiendaMonarca.found(name, pasw)) {
+				loadMenu();
+			}else {
+				JOptionPane.showMessageDialog(null, "Clave o usuario incorrecta", "Error",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			
 		}
 	}
 
+	
+
 	@FXML
-	void buttonRegister(ActionEvent event) throws IOException {
+	void addUser(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateUser.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
 	@FXML
-	void addUser(ActionEvent event) {
-
+	void addUsers(ActionEvent event) throws IOException {
+		String name = createUserFN.getText();
+		String lastName = createUserLN.getText();
+		String id = createUserId.getText();
+		String userName = createUserUS.getText();
+		String pass = createUserPA.getText();
+		System.out.println("entra111");
+		if(createUserFN.getText().equals("")&&createUserId.getText().equals("")&&
+				createUserLN.getText().equals("")&&createUserPA.getText().equals("")&&
+				createUserUS.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
+			
+		}else {
+			System.out.println("entra");
+			if(tiendaMonarca.foundExistUser(userName)) {
+				JOptionPane.showMessageDialog(null, "Nombre de usuario exite", "Error",
+						JOptionPane.WARNING_MESSAGE);
+			}else {
+				tiendaMonarca.creatUser(name, lastName, id, userName, pass);
+				JOptionPane.showMessageDialog(null, "Se creo el usuario", "Exitoso",
+						JOptionPane.WARNING_MESSAGE);
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+				fxmlLoader.setController(this);
+				Parent login1 = fxmlLoader.load();
+				pane.setCenter(login1);
+			}
+		}
 	}
-
 	@FXML
-	void loadWelcome(ActionEvent event) {
-
+	void loadWelcome(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
 	}
+	@FXML
+    void abonePay(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pay.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+    }
+
+    @FXML
+    void addProduct(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+    }
+
+    @FXML
+    void addProveedores(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void addSale(ActionEvent event) {
+
+    }
+
+    @FXML
+    void creatClient(ActionEvent event) {
+
+    }
+
+    @FXML
+    void debtors(ActionEvent event) {
+
+    }
+
+    @FXML
+    void viewStock(ActionEvent event) {
+
+    }
 }

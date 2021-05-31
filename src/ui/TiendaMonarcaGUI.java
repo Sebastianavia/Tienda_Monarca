@@ -367,4 +367,50 @@ public class TiendaMonarcaGUI {
     	loadMenu();
     }
 
+    @FXML
+    void addVent(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_sale.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+    }
+
+    @FXML
+    void returnVen(ActionEvent event) throws IOException {
+    	loadMenu();
+    }
+    @FXML
+    void buttonVenFia(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddVenta-credit.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+    }
+
+    @FXML
+    void buttonVentCont(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddVenta-conta.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+    }
+
+    @FXML
+    void buttonventCancel(ActionEvent event) throws IOException {
+    	loadMenu();
+    }
+    @FXML
+    private Label labelCustomer112;
+
+    @FXML
+    void returnventCred(ActionEvent event) throws IOException {
+    	loadMenu();
+    }
+
+    @FXML
+    void retunrVentCon(ActionEvent event) throws IOException {
+    	loadMenu();
+    }
+
+
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -25,7 +26,7 @@
                   <Font size="15.0" />
                </font></Label>
             <Button layoutX="24.0" layoutY="108.0" mnemonicParsing="false" text="Buscar" />
-            <TableView layoutX="493.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="512.0" style="-fx-text-color: gold;">
+            <TableView layoutX="490.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="512.0" style="-fx-text-color: gold;">
               <columns>
                 <TableColumn prefWidth="161.0" style="-fx-background-color: FFF8B8;" text="Nombre" />
                   <TableColumn prefWidth="154.0" style="-fx-background-color: FFF8B8;" text="Precios" />
@@ -56,7 +57,7 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Button layoutX="65.0" layoutY="473.0" mnemonicParsing="false" onAction="#returnventCred" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: FFF8B8;" text="Atras">
+            <Button layoutX="65.0" layoutY="473.0" mnemonicParsing="false" onAction="#retunrVentCon" prefHeight="29.0" prefWidth="94.0" style="-fx-background-color: FFF8B8;" text="Atras">
                <font>
                   <Font name="Gabriola" size="28.0" />
                </font>
@@ -69,32 +70,6 @@
                </font>
             </Text>
             <Label layoutX="200.0" layoutY="316.0" text="Sin asignar">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Text layoutX="33.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Abono " wrappingWidth="137.2578125">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <TextField layoutX="126.0" layoutY="361.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
-            <Text layoutX="481.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Debe " wrappingWidth="137.2578125">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Label layoutX="598.0" layoutY="490.0" text="Sin asignar">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="685.0" layoutY="491.0" text="Pesos">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelCustomer112" layoutX="575.0" layoutY="491.0" text="\$">
                <font>
                   <Font size="15.0" />
                </font>
@@ -114,11 +89,13 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="746.0" layoutY="481.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: FFF8B8;" text="Calcular">
+            <ChoiceBox layoutX="171.0" layoutY="369.0" prefWidth="150.0" />
+            <Label layoutX="51.0" layoutY="373.0" />
+            <Text layoutX="7.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de pago" wrappingWidth="160.2578125">
                <font>
-                  <Font name="Gabriola" size="20.0" />
+                  <Font size="25.0" />
                </font>
-            </Button>
+            </Text>
          </children>
       </AnchorPane>
    </left>

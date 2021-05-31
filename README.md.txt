@@ -26,3 +26,5 @@ add....
 4. Class Diagram of the User Interface.
 5. Design of Unit Tests.
 6. Class Diagram of Unit Tests.
+
+NOTE: The images of the diagrams are at the end of the pdf document, as well as the non-functional requirements

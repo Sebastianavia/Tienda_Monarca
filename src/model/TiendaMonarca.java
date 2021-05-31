@@ -3,6 +3,8 @@ package model;
 public class TiendaMonarca {
 	private EmployeUser first;
 	private Clients firstC;
+	private Product product;
+	private Debtors debtors;
 
 	public TiendaMonarca() {
 		if (first == null) {

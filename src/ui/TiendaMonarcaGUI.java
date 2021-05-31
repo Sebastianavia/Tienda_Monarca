@@ -18,6 +18,9 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import model.Debtors;
+import model.Product;
+import model.Provider;
 import model.TiendaMonarca;
 import threads.Clock;
 import threads.Loading;
@@ -36,7 +39,10 @@ public class TiendaMonarcaGUI {
 	private Label date;
 	@FXML
 	private Label clockLabel;
-
+	private Provider pr;
+	private Product product;
+	private Debtors debtor;
+	
 	@FXML
 	private BorderPane pane;
 	@FXML
@@ -411,6 +417,30 @@ public class TiendaMonarcaGUI {
     void retunrVentCon(ActionEvent event) throws IOException {
     	loadMenu();
     }
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Provider getPr() {
+		return pr;
+	}
+
+	public void setPr(Provider pr) {
+		this.pr = pr;
+	}
+
+	public Debtors getDebtor() {
+		return debtor;
+	}
+
+	public void setDebtor(Debtors debtor) {
+		this.debtor = debtor;
+	}
 
 
 }

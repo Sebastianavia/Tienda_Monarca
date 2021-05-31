@@ -2,7 +2,7 @@ package model;
 
 public class TiendaMonarca {
 	private EmployeUser first;
-	private Customer firstC;
+	private Clients firstC;
 
 	public TiendaMonarca() {
 		if (first == null) {
@@ -64,5 +64,24 @@ public class TiendaMonarca {
 			user1.setNext(ls);
 		}
 
+	}
+
+	public void creatClient(String nameC, String idCl, String pho, String type) {
+		if(firstC==null) {	
+			firstC =  new Clients(nameC,idCl,pho,type);
+		}else {
+			boolean found = false;
+			creatClient(firstC, nameC,idCl,pho,type,found);
+		}
+	}
+
+	private void creatClient(Clients firstC2, String nameC, String idCl, String pho, String type,boolean found) {
+		if (firstC2.getNext() != null) {
+			creatClient(firstC2.getNext(),nameC,idCl,pho,type,found);
+		} else {
+			Clients ls = new Clients(nameC, type, idCl, pho);
+			firstC2.setNext(ls);
+		}
+		
 	}
 }

@@ -3,21 +3,19 @@ package model;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
+	private int cuantity;
     private int valuepay;
     private int valuesale;
 
 
-    public Product(String name, int valuepay, int valuesale){
+    public Product(String name, int valuepay, int valuesale,int cuantity){
 
         this.name = name;
         this.valuepay = valuepay;
         this.valuesale= valuesale;
+        this.setCuantity(cuantity);
     }
 
     public String getName() {
@@ -44,6 +42,14 @@ public class Product implements Serializable {
     public int getvaluesale() {
         return this.valuesale;
         }
+
+	public int getCuantity() {
+		return cuantity;
+	}
+
+	public void setCuantity(int cuantity) {
+		this.cuantity = cuantity;
+	}
 
     
 }

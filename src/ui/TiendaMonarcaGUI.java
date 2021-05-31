@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
@@ -146,7 +147,7 @@ public class TiendaMonarcaGUI {
 		String id = createUserId.getText();
 		String userName = createUserUS.getText();
 		String pass = createUserPA.getText();
-		System.out.println("entra111");
+		
 		if(createUserFN.getText().equals("")&&createUserId.getText().equals("")&&
 				createUserLN.getText().equals("")&&createUserPA.getText().equals("")&&
 				createUserUS.getText().equals("")) {
@@ -154,7 +155,7 @@ public class TiendaMonarcaGUI {
 					JOptionPane.WARNING_MESSAGE);
 			
 		}else {
-			System.out.println("entra");
+			
 			if(tiendaMonarca.foundExistUser(userName)) {
 				JOptionPane.showMessageDialog(null, "Nombre de usuario exite", "Error",
 						JOptionPane.WARNING_MESSAGE);
@@ -183,7 +184,7 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
     }
-
+	
     @FXML
     void addProduct(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto.fxml"));
@@ -213,11 +214,26 @@ public class TiendaMonarcaGUI {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addCustumer.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
+		typeClient.getItems().addAll("Ti", "CC", "Pasaporte");
+		typeClient.setValue("Ti");
 		pane.setCenter(login1);
     }
     @FXML
-    void addClient(ActionEvent event) {
-    	//metodo para añadir cliente
+    void addClient(ActionEvent event) throws IOException {
+    	String nameC = nameClien.getText();
+    	String idCl = idClient.getText();
+    	String pho = phoneClient.getText();
+    	String type = typeClient.getValue().toString();
+    	if(nameC.equals("")||idCl.equals("")||pho.equals("")) {
+    		JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
+    		
+    	}else {
+    		JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones",
+					JOptionPane.WARNING_MESSAGE);
+    		tiendaMonarca.creatClient(nameC,idCl,pho,type);
+    		loadMenu();
+    	}
     }
 
     @FXML
@@ -308,6 +324,18 @@ public class TiendaMonarcaGUI {
 
     @FXML
     private Label labelCustomer11;
+    @FXML
+    private TextField nameClien;
+
+    @FXML
+    private TextField idClient;
+
+    @FXML
+    private TextField phoneClient;
+
+    @FXML
+    private ChoiceBox<String> typeClient;
+
 
     @FXML
     void binarySearchCustomer(ActionEvent event) {
@@ -333,6 +361,10 @@ public class TiendaMonarcaGUI {
     @FXML
     void savePay(ActionEvent event) {
 
+    }
+    @FXML
+    void returnStock(ActionEvent event) throws IOException {
+    	loadMenu();
     }
 
 }

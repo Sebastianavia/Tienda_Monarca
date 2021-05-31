@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="203.0" layoutX="29.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/circle-cropped.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="344.0" layoutY="79.0" prefHeight="62.0" prefWidth="362.0" text="Tipo de proovedor">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="484.0" prefWidth="820.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="239.0" layoutY="186.0" mnemonicParsing="false" onAction="#proovedConta" prefHeight="72.0" prefWidth="160.0" style="-fx-background-color: FFF8B8;" text=" Contado " />
+            <Button layoutX="438.0" layoutY="186.0" mnemonicParsing="false" onAction="#prooverdCred" prefHeight="75.0" prefWidth="137.0" style="-fx-background-color: FFF8B8;" text="Credito" />
+            <Button layoutX="346.0" layoutY="312.0" mnemonicParsing="false" onAction="#returnPro" prefHeight="21.0" prefWidth="128.0" style="-fx-background-color: FFF8B8;" text="Cancelar" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

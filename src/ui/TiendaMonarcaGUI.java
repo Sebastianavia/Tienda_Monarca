@@ -335,13 +335,13 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 	// metodo para añadir productos
-	@FXML
+	/*@FXML
 	void addProducts(ActionEvent event) {
 		String name = nameProd.getText();
 		String price = preciProdut.getText();
 		String id = idProovedor.getText();
 		int cuantityProdut.getText();
-	}
+	}*/
 
 	@FXML
 	void returnProduct(ActionEvent event) throws IOException {
@@ -620,8 +620,14 @@ public class TiendaMonarcaGUI {
 	}
 
 	@FXML
-	void returnClientList(ActionEvent event) {
-
+	void returnClientList(ActionEvent event)throws IOException {
+		loadMenu();
 	}
+	
+	  @FXML
+	    void cancelDebstor(ActionEvent event) throws IOException{
+		  loadMenu();
+	    }
+
 
 }

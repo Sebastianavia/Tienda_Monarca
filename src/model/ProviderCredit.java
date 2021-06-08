@@ -4,8 +4,8 @@ public class ProviderCredit extends Provider {
 	private static final long serialVersionUID = 1L;
 	private int term;
 	
-	public ProviderCredit(String name, String phone, String address,int term) {
-		super(name, phone, address);
+	public ProviderCredit(String name, String phone, String address,String id,int term) {
+		super(name, phone, address,id);
 		this.setTerm(term);
 	}
 

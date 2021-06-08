@@ -1,17 +1,78 @@
 package model;
 
+import java.util.ArrayList;
+
 public class TiendaMonarca {
 	private EmployeUser first;
 	private Clients firstC;
 	private Product product;
 	private Debtors debtors;
-
+	private SalesConta salesConta;
+	private ArrayList<Provider> providers;
+	
+	public ArrayList<Provider> getProviders() {
+		return providers;
+	}
+	public void setProviders(ArrayList<Provider> providers) {
+		this.providers = providers;
+	}
+	private ArrayList<SalesCredit> salesCredit;
+	//Listas enlazada = clients. product
+	//Arbol binrio = producto . ventas contado
 	public TiendaMonarca() {
+		providers = new ArrayList<>();
+		salesCredit = new ArrayList<>();
 		if (first == null) {
 			first = new EmployeUser("admin", "admin", "admin", "admin", "123");
 		}
 	}
-
+	public boolean  existProvider(String id) {
+		boolean out = false;
+		for(int i =0; i<providers.size();i++) {
+			if(providers.get(i).getName().equals(id)){
+				out = true;
+			}
+		}
+		return out;
+	}
+	public boolean addProovider(String name, String phone, String address,String id,String numAcount) {
+		boolean out = false;
+		Provider pro = new ProviderConta(name, phone, address,id, numAcount);
+		providers.add(pro);
+		return out;
+	}
+	public boolean addProovider(String name, String phone, String address,String id,int term) {
+		boolean out = false;
+		Provider pro = new ProviderCredit(name, phone, address,id, term);
+		providers.add(pro);
+		return out;
+	}
+	public boolean existProduct(String name) {
+		boolean out = false;
+		out=existProduct(product,out,name);
+		return out;
+	}
+	
+	private boolean existProduct(Product current,boolean out,String name) { 
+			if(current != null) {
+			if(out =! true) {
+			existProduct(current.getLeft(),out,name);
+			if(current.getName().equals(name)) {
+				out = true;
+			}
+			existProduct(current.getRight(),out,name);
+			}
+		}
+		return out;
+	}
+	public boolean addProviers() {
+		boolean out = false;
+		return out;
+	}
+	public boolean addProduct(String name, int valuepay, int valuesale,int cuantity,String p) {
+		boolean out = false;
+		return out;
+	}
 	public boolean found(String name, String pass) {
 		boolean out = false;
 		out = foundU(first, name, pass, out);
@@ -70,7 +131,9 @@ public class TiendaMonarca {
 
 	public void creatClient(String nameC, String idCl, String pho, String type) {
 		if(firstC==null) {	
+			
 			firstC =  new Clients(nameC,idCl,pho,type);
+			
 		}else {
 			boolean found = false;
 			creatClient(firstC, nameC,idCl,pho,type,found);
@@ -85,5 +148,31 @@ public class TiendaMonarca {
 			firstC2.setNext(ls);
 		}
 		
+	}
+	public ArrayList<Clients> getClients(){
+		ArrayList<Clients> p = new ArrayList<Clients>();
+		p=getClients(firstC,p);
+		return p;
+	}
+	private ArrayList<Clients> getClients(Clients firstC2,ArrayList<Clients> p ){
+		boolean run = true;
+		while(run) {
+			if(firstC2 != null) {
+				p.add(firstC2);
+				System.out.println(p.get(0).getName() + "  asada" );
+				firstC2 = firstC2.getNext();
+			}else {
+				run = false;
+			}
+		}
+		return p;
+	}
+	public boolean validClient() {
+		boolean out = false;
+		if(firstC!=null) {
+			System.out.println(firstC.getName());
+			out = true;
+		}
+		return out;
 	}
 }

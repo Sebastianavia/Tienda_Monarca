@@ -8,10 +8,11 @@ public abstract class Product implements Serializable {
 	private int cuantity;
     private int valuepay;
     private int valuesale;
-
-
-    public Product(String name, int valuepay, int valuesale,int cuantity){
-
+	private Product left;
+	private Product right;
+	private Provider pr;
+    public Product(String name, int valuepay, int valuesale,int cuantity,Provider p){
+    	pr= p;
         this.name = name;
         this.valuepay = valuepay;
         this.valuesale= valuesale;
@@ -49,6 +50,26 @@ public abstract class Product implements Serializable {
 
 	public void setCuantity(int cuantity) {
 		this.cuantity = cuantity;
+	}
+
+	public Product getLeft() {
+		return left;
+	}
+
+	public void setLeft(Product left) {
+		this.left = left;
+	}
+
+	public Product getRight() {
+		return right;
+	}
+
+	public void setRight(Product right) {
+		this.right = right;
+	}
+
+	public Provider getPr() {
+		return pr;
 	}
 
     

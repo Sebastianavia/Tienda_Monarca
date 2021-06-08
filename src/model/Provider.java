@@ -7,10 +7,12 @@ public abstract class Provider implements Serializable {
 	private String name;
 	private String phone;
 	private String address;
-	public Provider(String name,String phone,String address) {
+	private String id;
+	public Provider(String name,String phone,String address,String i) {
 		this.name = name;
 		this.phone = phone;
 		this.address = address;
+		setId(i);
 	}
 	public String getName() {
 		return name;
@@ -29,5 +31,11 @@ public abstract class Provider implements Serializable {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

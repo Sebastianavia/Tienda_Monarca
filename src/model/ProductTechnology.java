@@ -5,8 +5,8 @@ public class ProductTechnology extends Product {
 	private TypeTech typ;
 	private String brand;
 	private int capacity;
-	public ProductTechnology(String name, int valuepay, int valuesale,int cuantity,String ty,String br,int cap) {
-		super(name, valuepay, valuesale,cuantity);
+	public ProductTechnology(String name, int valuepay, int valuesale,int cuantity,Provider pr,String ty,String br,int cap) {
+		super(name, valuepay, valuesale,cuantity, pr);
 		typ = TypeTech.valueOf(ty);
 		brand = br;
 		capacity= cap;

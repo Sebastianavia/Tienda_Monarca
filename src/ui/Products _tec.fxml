@@ -19,7 +19,7 @@
                   <Image url="@../img/circle-cropped.png" />
                </image>
             </ImageView>
-            <Label layoutX="315.0" layoutY="71.0" text="Productos de comestibles">
+            <Label layoutX="256.0" layoutY="71.0" text="Productos de tecnologia">
                <font>
                   <Font name="System Italic" size="41.0" />
                </font>
@@ -33,9 +33,9 @@
             <TableView layoutX="146.0" layoutY="64.0" prefHeight="200.0" prefWidth="472.0">
               <columns>
                 <TableColumn prefWidth="142.0" text="Nombre" />
-                <TableColumn prefWidth="119.0" text="precio" />
-                  <TableColumn prefWidth="115.0" text="Diponibilidad" />
-                  <TableColumn prefWidth="93.0" text="Proveedor" />
+                <TableColumn prefWidth="113.0" text="precio" />
+                  <TableColumn prefWidth="113.0" text="Diponibilidad" />
+                  <TableColumn prefWidth="101.0" text="Proveedor" />
               </columns>
             </TableView>
             <Button layoutX="146.0" layoutY="289.0" mnemonicParsing="false" style="-fx-background-color: FFF8B8;" text="Añadir" />

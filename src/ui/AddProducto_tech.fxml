@@ -29,31 +29,35 @@
          </children>
       </AnchorPane>
    </top>
-   <center>
+   <bottom>
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="228.0" layoutY="45.0" text="Nombre" />
             <Label layoutX="209.0" layoutY="78.0" text="Precio de venta" />
-            <TextField fx:id="nameProd" layoutX="334.0" layoutY="41.0" />
-            <Button layoutX="209.0" layoutY="274.0" mnemonicParsing="false" onAction="#addProducts" text="Añadir" />
-            <Button layoutX="485.0" layoutY="274.0" mnemonicParsing="false" onAction="#returnProduct" text="salir" />
-            <TextField fx:id="preciProdut" layoutX="334.0" layoutY="74.0" promptText="por unidad" />
+            <TextField fx:id="nameProdTec" layoutX="334.0" layoutY="41.0" />
+            <Button layoutX="214.0" layoutY="312.0" mnemonicParsing="false" onAction="#addProductTecList" text="Añadir" />
+            <Button layoutX="494.0" layoutY="299.0" mnemonicParsing="false" onAction="#returnProductTec" text="salir" />
+            <TextField fx:id="preciProdutTec" layoutX="334.0" layoutY="74.0" promptText="por unidad" />
             <Label layoutX="224.0" layoutY="142.0" text="Proveedor" />
-            <TextField fx:id="cuantityProdut" layoutX="335.0" layoutY="203.0" />
+            <TextField fx:id="cuantityProdutTec" layoutX="335.0" layoutY="203.0" />
             <Label layoutX="227.0" layoutY="207.0" text="Cantidad" />
-            <TableView fx:id="tableProduct" layoutX="9.0" layoutY="14.0" prefHeight="242.0" prefWidth="194.0">
+            <TableView fx:id="tableProductTec" layoutX="9.0" layoutY="14.0" prefHeight="242.0" prefWidth="194.0">
               <columns>
-                <TableColumn fx:id="idProduct" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="proveedorProduct" prefWidth="118.0" text="PROVEEDOR" />
+                <TableColumn fx:id="idProductTec" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="proveedorProductTec" prefWidth="118.0" text="PROVEEDOR" />
               </columns>
             </TableView>
-            <TextField fx:id="idProovedor" layoutX="334.0" layoutY="138.0" promptText="id Proovedor" />
+            <TextField fx:id="idProovedortec" layoutX="334.0" layoutY="138.0" promptText="id Proovedor" />
             <Label layoutX="494.0" layoutY="142.0" text="Seleccione un proovedor" />
             <Label layoutX="204.0" layoutY="106.0" text="Precio de compra" />
-            <TextField layoutX="334.0" layoutY="102.0" />
+            <TextField fx:id="pricesProducTec" layoutX="334.0" layoutY="102.0" promptText="por unidad" />
             <Label layoutX="239.0" layoutY="172.0" text="Tipo" />
-            <ComboBox fx:id="choiseProducCos" layoutX="335.0" layoutY="168.0" prefWidth="150.0" />
+            <ComboBox fx:id="choiseProduTec" layoutX="335.0" layoutY="168.0" prefWidth="150.0" />
+            <Label layoutX="234.0" layoutY="239.0" text="Marca" />
+            <Label layoutX="222.0" layoutY="270.0" text="Capacidad" />
+            <TextField fx:id="brandTec" layoutX="336.0" layoutY="235.0" />
+            <TextField fx:id="capacityTec" layoutX="336.0" layoutY="266.0" promptText="Gigabyte" />
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>

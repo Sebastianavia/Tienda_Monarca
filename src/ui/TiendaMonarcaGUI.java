@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
@@ -40,21 +41,56 @@ import threads.Percentage;
 //PRODUCTOS----
 
 public class TiendaMonarcaGUI {
-	//-------------------------------
-	//PROVEDOR CONTADO
-	   @FXML
-	    private TextField nameProvConta;
+	// -------------------------------
+	// PRODUCTO TECNOLOGIA
+	@FXML
+	private TextField nameProdTec;
 
-	    @FXML
-	    private TextField telProveConta;
+	@FXML
+	private TextField preciProdutTec;
 
-	    @FXML
-	    private TextField adressProveConta;
+	@FXML
+	private TextField cuantityProdutTec;
 
-	    @FXML
-	    private TextField numProveConta;
-	    @FXML
-	    private TextField idProveConta;
+	@FXML
+	private TableView<Provider> tableProductTec;
+
+	@FXML
+	private TableColumn<Provider, String> idProductTec;
+
+	@FXML
+	private TableColumn<Provider, String> proveedorProductTec;
+
+	@FXML
+	private TextField idProovedortec;
+
+	@FXML
+	private TextField pricesProducTec;
+
+	@FXML
+	private ComboBox<String> choiseProduTec;
+
+	@FXML
+	private TextField brandTec;
+
+	@FXML
+	private TextField capacityTec;
+
+	// -------------------------------
+	// PROVEDOR CONTADO
+	@FXML
+	private TextField nameProvConta;
+
+	@FXML
+	private TextField telProveConta;
+
+	@FXML
+	private TextField adressProveConta;
+
+	@FXML
+	private TextField numProveConta;
+	@FXML
+	private TextField idProveConta;
 
 	// ------------------------------
 	// PROVEEDOR CREDITO
@@ -89,7 +125,8 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TableColumn<Provider, String> proveedorProduct;
-
+	@FXML
+	private ComboBox<String> choiseProducCos;
 	@FXML
 	private TextField idProovedor;
 	// -----------------------------
@@ -143,8 +180,85 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private TextField userTxt;
 
-	public void loadProviers() {
+	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
+	@FXML
+	void addProductTecList(ActionEvent event) {
+		String brand = brandTec.getText();
+		
+		String type = choiseProduTec.getValue().toString();
+		
+		String id =idProovedortec.getText();
+		String name =nameProdTec.getText();
+		
+		
+		if (brandTec.getText().equals("") || capacityTec.getText().equals("")
+				|| cuantityProdutTec.getText().equals("") || idProovedortec.getText().equals("")
+				|| nameProdTec.getText().equals("")|| preciProdutTec.getText().equals("")
+				|| pricesProducTec.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
 
+		} else {
+			if(tiendaMonarca.existProvider(id)) {
+				if(tiendaMonarca.existProduct(name)== false) {
+				if(type.equals("COMPUTADOR")) {
+					type = "COMPUTER";
+				}else {
+					type = "CELL";
+				}
+				int cuantity = Integer.parseInt(cuantityProdutTec.getText());
+				int priceCom = Integer.parseInt(pricesProducTec.getText());
+				int priceVent = Integer.parseInt(preciProdutTec.getText());
+				int capacity = Integer.parseInt(capacityTec.getText());
+				tiendaMonarca.creatProductTech(name, priceCom, priceVent, cuantity, id, type, brand, capacity);
+				}else{JOptionPane.showMessageDialog(null, "El producto existe", "Error",
+						JOptionPane.WARNING_MESSAGE);
+				}
+				}else {
+				JOptionPane.showMessageDialog(null, "El proveedor no existe", "Error",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+
+	}
+
+	// RETORNAR DESDE LA PANTALLA DE CREAR PRODUCTO TECH
+	@FXML
+	void returnProductTec(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+	}
+
+	// PARA PASAR A LA CREACION DE PRODUCTO TECNOLOGIA
+	@FXML
+	void loadCreatProdTec(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto_tech.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		choiseProduTec.getItems().addAll("COMPUTADOR", "CELULAR");
+		choiseProduTec.setValue("COMPUTADOR");
+		pane.setCenter(login1);
+		printProvedProductTech();
+	}
+
+	public void printProvedProductTech() {
+		ObservableList<Provider> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getProviders());
+
+		tableProductTec.setItems(observableList);
+		idProductTec.setCellValueFactory(new PropertyValueFactory<Provider, String>("id"));
+		proveedorProductTec.setCellValueFactory(new PropertyValueFactory<Provider, String>("name"));
+	}
+
+	// RETORNAR DE LA LISTA DE TECNOLOGIA
+	@FXML
+	void returnListTec(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
 	}
 
 	@FXML
@@ -184,7 +298,7 @@ public class TiendaMonarcaGUI {
 
 		String name = txtUser.getText();
 		String pasw = txtPassword.getText();
-		if (txtUser.getText().equals("") && txtPassword.getText().equals("")) {
+		if (txtUser.getText().equals("") || txtPassword.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
 		} else {
@@ -213,8 +327,8 @@ public class TiendaMonarcaGUI {
 		String userName = createUserUS.getText();
 		String pass = createUserPA.getText();
 
-		if (createUserFN.getText().equals("") && createUserId.getText().equals("") && createUserLN.getText().equals("")
-				&& createUserPA.getText().equals("") && createUserUS.getText().equals("")) {
+		if (createUserFN.getText().equals("") || createUserId.getText().equals("") || createUserLN.getText().equals("")
+				|| createUserPA.getText().equals("") || createUserUS.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
 
@@ -251,11 +365,60 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	void addProduct(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto.fxml"));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Product.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+
+	}
+
+	// metodo para ver lista de productos comestibles
+	@FXML
+	void addProductComes(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Products.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+
+	}
+
+	@FXML
+	void addProductTec(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Products _tec.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+
+	}
+
+	@FXML
+	void addListComesti(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		choiseProducCos.getItems().addAll("BEBIDAS ALCOHOLICAS", "DULCES", "GASEOSAS", "PRODUCTOS PARA EL HOGAR");
+		choiseProducCos.setValue("DULCES");
+		pane.setCenter(login1);
 		printProvedProduct();
+
+	}
+
+	@FXML
+	void returnListComest(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+
+	}
+
+	@FXML
+	void returnProType(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+
 	}
 
 	@FXML
@@ -334,14 +497,16 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
+
 	// metodo para añadir productos
-	/*@FXML
+	@FXML
 	void addProducts(ActionEvent event) {
 		String name = nameProd.getText();
 		String price = preciProdut.getText();
 		String id = idProovedor.getText();
-		int cuantityProdut.getText();
-	}*/
+		int cuant = Integer.parseInt(cuantityProdut.getText());
+
+	}
 
 	@FXML
 	void returnProduct(ActionEvent event) throws IOException {
@@ -368,7 +533,8 @@ public class TiendaMonarcaGUI {
 	void returnPro(ActionEvent event) throws IOException {
 		loadMenu();
 	}
-	//LISTA PROVEDORES PRODUCTO
+
+	// LISTA PROVEDORES PRODUCTO
 	public void printProvedProduct() {
 		ObservableList<Provider> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getProviders());
@@ -377,8 +543,8 @@ public class TiendaMonarcaGUI {
 		idProduct.setCellValueFactory(new PropertyValueFactory<Provider, String>("id"));
 		proveedorProduct.setCellValueFactory(new PropertyValueFactory<Provider, String>("name"));
 	}
-	
-	//GUARDA PROVEDOR CONTADO
+
+	// GUARDA PROVEDOR CONTADO
 	@FXML
 	void addSaveProvConta(ActionEvent event) throws IOException {
 		String name = nameProvConta.getText();
@@ -393,11 +559,11 @@ public class TiendaMonarcaGUI {
 
 		} else {
 			if (tiendaMonarca.existProvider(id)) {
-				
+
 				JOptionPane.showMessageDialog(null, "Ya hay un proovedor con esos datos", "Error",
 						JOptionPane.WARNING_MESSAGE);
 			} else {
-				tiendaMonarca.addProovider(name, tel, adress,id, num);
+				tiendaMonarca.addProovider(name, tel, adress, id, num);
 				JOptionPane.showMessageDialog(null, "Ha creado un proovedor", "Felicitaciones",
 						JOptionPane.WARNING_MESSAGE);
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Proovedores.fxml"));
@@ -415,13 +581,10 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	  @FXML
-	    void addProducts(ActionEvent event) {
 
-	    }
+	@FXML
+	private TextField idProvedCredi;
 
-	 @FXML
-	    private TextField idProvedCredi;
 	// METODO PARA AGREGAR PROVEDOR A CREDITO
 	@FXML
 	void addProveCredi(ActionEvent event) throws IOException {
@@ -436,12 +599,12 @@ public class TiendaMonarcaGUI {
 
 		} else {
 			if (tiendaMonarca.existProvider(id)) {
-				
+
 				JOptionPane.showMessageDialog(null, "Ya hay un proovedor con esos datos", "Error",
 						JOptionPane.WARNING_MESSAGE);
 			} else {
 				int num = Integer.parseInt(numWeekCredit.getText());
-				tiendaMonarca.addProovider(name, tel, addres,id, num);
+				tiendaMonarca.addProovider(name, tel, addres, id, num);
 				JOptionPane.showMessageDialog(null, "Ha creado un proovedor", "Felicitaciones",
 						JOptionPane.WARNING_MESSAGE);
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Proovedores.fxml"));
@@ -620,14 +783,13 @@ public class TiendaMonarcaGUI {
 	}
 
 	@FXML
-	void returnClientList(ActionEvent event)throws IOException {
+	void returnClientList(ActionEvent event) throws IOException {
 		loadMenu();
 	}
-	
-	  @FXML
-	    void cancelDebstor(ActionEvent event) throws IOException{
-		  loadMenu();
-	    }
 
+	@FXML
+	void cancelDebstor(ActionEvent event) throws IOException {
+		loadMenu();
+	}
 
 }

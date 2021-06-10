@@ -182,7 +182,7 @@ public class TiendaMonarcaGUI {
 
 	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
 	@FXML
-	void addProductTecList(ActionEvent event) {
+	void addProductTecList(ActionEvent event) throws IOException {
 		String brand = brandTec.getText();
 		
 		String type = choiseProduTec.getValue().toString();
@@ -206,11 +206,28 @@ public class TiendaMonarcaGUI {
 				}else {
 					type = "CELL";
 				}
-				int cuantity = Integer.parseInt(cuantityProdutTec.getText());
-				int priceCom = Integer.parseInt(pricesProducTec.getText());
-				int priceVent = Integer.parseInt(preciProdutTec.getText());
-				int capacity = Integer.parseInt(capacityTec.getText());
-				tiendaMonarca.creatProductTech(name, priceCom, priceVent, cuantity, id, type, brand, capacity);
+				int cuantity=0;
+				int priceCom=0;
+				int priceVent=0;
+				int capacity=0;
+				int i = 0;
+				try{
+					cuantity = Integer.parseInt(cuantityProdutTec.getText());
+					 priceCom = Integer.parseInt(pricesProducTec.getText());
+					 priceVent = Integer.parseInt(preciProdutTec.getText());
+					capacity = Integer.parseInt(capacityTec.getText());
+		    	}catch(NumberFormatException ex){
+		    		i=1;
+		        	System.out.println("Las cantidades deben ser números");
+		    	}
+				
+				if(i==0) {
+					tiendaMonarca.creatProductTech(name, priceCom, priceVent, cuantity, id, type, brand, capacity);	
+					JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones",
+							JOptionPane.WARNING_MESSAGE);
+					loadMenu();
+				}
+				
 				}else{JOptionPane.showMessageDialog(null, "El producto existe", "Error",
 						JOptionPane.WARNING_MESSAGE);
 				}
@@ -460,9 +477,14 @@ public class TiendaMonarcaGUI {
 					JOptionPane.WARNING_MESSAGE);
 
 		} else {
+			if(tiendaMonarca.foundClient(idCl)==false) {
 			JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
 			tiendaMonarca.creatClient(nameC, idCl, pho, type);
 			loadMenu();
+			}else {
+				JOptionPane.showMessageDialog(null, "Ya hay un cliente con ese id", "Error", JOptionPane.WARNING_MESSAGE);
+				idClient.setText("");
+			}
 		}
 	}
 

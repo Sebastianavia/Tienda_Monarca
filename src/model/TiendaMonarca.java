@@ -21,7 +21,7 @@ public class TiendaMonarca {
 	private ArrayList<SalesCredit> salesCredit;
 
 	// Listas enlazada = clients. product
-	// Arbol binrio = producto . ventas contado
+	// Arbol binario = producto . ventas contado
 	public TiendaMonarca() {
 		providers = new ArrayList<>();
 		salesCredit = new ArrayList<>();
@@ -215,7 +215,6 @@ public class TiendaMonarca {
 		while (run) {
 			if (firstC2 != null) {
 				p.add(firstC2);
-				System.out.println(p.get(0).getName() + "  asada");
 				firstC2 = firstC2.getNext();
 			} else {
 				run = false;
@@ -227,8 +226,27 @@ public class TiendaMonarca {
 	public boolean validClient() {
 		boolean out = false;
 		if (firstC != null) {
-			System.out.println(firstC.getName());
+			
 			out = true;
+		}
+		return out;
+	}
+	public boolean foundClient(String id) {
+		boolean out = false;
+		out = foundClient(firstC, id, out);
+		return out;
+	}
+
+	private boolean foundClient(Clients em, String id, boolean out) {
+		if (out != true) {
+			if (em != null) {
+				if (em.getId().equals(id)) {
+					out = true;
+				} else {
+					out = foundClient(em.getNext(), id, out);
+
+				}
+			}
 		}
 		return out;
 	}

@@ -30,12 +30,12 @@
    <bottom>
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="146.0" layoutY="64.0" prefHeight="200.0" prefWidth="472.0">
+            <TableView fx:id="tableProdTech" layoutX="146.0" layoutY="64.0" prefHeight="200.0" prefWidth="472.0">
               <columns>
-                <TableColumn prefWidth="142.0" text="Nombre" />
-                <TableColumn prefWidth="113.0" text="precio" />
-                  <TableColumn prefWidth="113.0" text="Diponibilidad" />
-                  <TableColumn prefWidth="101.0" text="Proveedor" />
+                <TableColumn fx:id="tableProductTech" prefWidth="142.0" text="Nombre" />
+                <TableColumn fx:id="tableTechprice" prefWidth="113.0" text="Precio" />
+                  <TableColumn fx:id="cuantityTech" prefWidth="113.0" text="Cantidad" />
+                  <TableColumn fx:id="proveTech" prefWidth="103.0" text="Proveedor" />
               </columns>
             </TableView>
             <Button layoutX="146.0" layoutY="289.0" mnemonicParsing="false" onAction="#loadCreatProdTec" style="-fx-background-color: FFF8B8;" text="Añadir" />

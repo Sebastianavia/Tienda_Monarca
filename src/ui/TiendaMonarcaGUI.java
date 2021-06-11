@@ -487,6 +487,7 @@ public class TiendaMonarcaGUI {
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+		printProductComes();
 
 	}
 	
@@ -502,6 +503,7 @@ public class TiendaMonarcaGUI {
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+		printProductTech();
 
 	}
 	
@@ -679,18 +681,10 @@ public class TiendaMonarcaGUI {
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+		printInvent();
 	}
 
-	// metodo para añadir productos
-	@FXML
-	void addProducts(ActionEvent event) {
-		String name = nameProd.getText();
-		String price = preciProdut.getText();
-		String id = idProovedor.getText();
-		int cuant = Integer.parseInt(cuantityProdut.getText());
-
-	}
-
+	
 	
 	/**
 	 * open the menu window <br>
@@ -1180,5 +1174,131 @@ public class TiendaMonarcaGUI {
         tableCustomers.setItems(sortedData);
 
     }*/
+	@FXML
+	private TextField priceComp;
 
+	// metodo para añadir productos
+	@FXML
+	void addProducts(ActionEvent event) throws IOException {
+		String name = nameProd.getText();
+	
+		String id = idProovedor.getText();
+		if (nameProd.getText().equals("") || preciProdut.getText().equals("") || idProovedor.getText().equals("")
+				|| cuantityProdut.getText().equals("") || priceComp.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
+		} else {
+			int cuant = 0;
+			int priceCom = 0;
+			int i = 0;
+			int	 price = 0;
+			try {
+				cuant = Integer.parseInt(cuantityProdut.getText());
+				priceCom = Integer.parseInt(priceComp.getText());
+				price = Integer.parseInt( preciProdut.getText());
+			} catch (NumberFormatException ex) {
+				i = 1;
+				System.out.println("Las cantidades deben ser números");
+			}
+			if (i == 0) {
+				if (tiendaMonarca.existProvider(id)) {
+					String chos = choiseProducCos.getValue().toString();
+					if(tiendaMonarca.existProduct(name)) {
+						JOptionPane.showMessageDialog(null, "El producto existe", "Error", JOptionPane.WARNING_MESSAGE);
+					}else {
+						if(chos=="BEBIDAS ALCOHOLICAS") {
+							chos ="ALCOHOLIC_DRINKS";
+						}
+						if(chos == "DULCES" ) {
+							chos = "CANDYS";
+						}if(chos == "GASEOSAS") {
+							chos = "SODAS";
+						}if(chos == "PRODUCTOS PARA EL HOGAR") {
+							chos = "PRODUCTS_HOUSE";
+						}
+						tiendaMonarca.creatProductComes(name, priceCom, price, cuant, id, chos);
+						JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
+						loadMenu();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "El proveedor no existe", "Error", JOptionPane.WARNING_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Cambie los valores", "Error", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+	}
+	 @FXML
+	    private TableView<Product> tableProductComest;
+
+	    @FXML
+	    private TableColumn<Product, String> naemProductComes;
+
+	    @FXML
+	    private TableColumn<Product, String> priceProductComes;
+
+	    @FXML
+	    private TableColumn<Product, String> cuantityProdComes;
+
+	    @FXML
+	    private TableColumn<Product, String> proviserProductComes;
+	    public void printProductComes() {
+			ObservableList<Product> observableList;
+			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+			tableProductComest.setItems(observableList);
+			naemProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+			priceProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+			cuantityProdComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+			proviserProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+		}
+	    @FXML
+	    private TableView<Product> tableProdTech;
+
+	    @FXML
+	    private TableColumn<Product, String> tableProductTech;
+
+	    @FXML
+	    private TableColumn<Product, String> tableTechprice;
+
+	    @FXML
+	    private TableColumn<Product, String> cuantityTech;
+
+	    @FXML
+	    private TableColumn<Product, String> proveTech;
+	    public void printProductTech() {
+			ObservableList<Product> observableList;
+			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+			tableProdTech.setItems(observableList);
+			tableProductTech.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+			tableTechprice.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+			cuantityTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+			proveTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+		}
+
+	    @FXML
+	    private TableView<Product> inventTable;
+
+	    @FXML
+	    private TableColumn<Product, String> nameProdInvet;
+
+	    @FXML
+	    private TableColumn<Product, String> payCompInve;
+
+	    @FXML
+	    private TableColumn<Product, String> paySaleInv;
+
+	    @FXML
+	    private TableColumn<Product, String>cuantityProductInvent;
+	    public void printInvent() {
+			ObservableList<Product> observableList;
+			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+			inventTable.setItems(observableList);
+			nameProdInvet.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+			payCompInve.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+			paySaleInv.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+			cuantityProductInvent.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+		}
 }

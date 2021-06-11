@@ -25,12 +25,26 @@ public abstract class Product implements Serializable {
     	pr= p;
         this.name = name;
         this.valuepay = valuepay;
-        this.valuesale= valuesale;
-        this.setCuantity(cuantity);
+        this.setValuesale(valuesale);
+        this.cuantity=cuantity;
     }
 
-    
-    
+    public String getValuesale() {
+		String out = valuesale+"";
+		return out ;
+	}
+
+	public void setValuesale(int valuesale) {
+		this.valuesale = valuesale;
+	}
+    public String getValuepay() {
+    	String out = valuepay+"";
+		return out;
+	}
+
+	public void setValuepay(int valuepay) {
+		this.valuepay = valuepay;
+	}
     /**
      * get method <br>
 	 * <b> pre: constructor method </b> 
@@ -151,10 +165,11 @@ public abstract class Product implements Serializable {
 	/**
 	 * get method <br>
 	 * <b> pre: constructor method </b> 
-	 * @return pr
+	 * @return out
 	 */
-	public Provider getPr() {
-		return pr;
+	public String getPr() {
+		String out = pr.getName();
+		return out;
 	}
 
     

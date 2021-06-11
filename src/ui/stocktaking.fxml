@@ -30,12 +30,12 @@
    <center>
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="117.0" layoutY="60.0" prefHeight="200.0" prefWidth="530.0">
+            <TableView fx:id="inventTable" layoutX="117.0" layoutY="60.0" prefHeight="200.0" prefWidth="530.0">
               <columns>
-                <TableColumn prefWidth="145.0" text="Nombre producto" />
-                <TableColumn prefWidth="104.0" text="Valor compra" />
-                  <TableColumn prefWidth="123.0" text="Proveedor" />
-                  <TableColumn prefWidth="155.0" text="Cantidad" />
+                <TableColumn fx:id="nameProdInvet" prefWidth="145.0" text="Nombre producto" />
+                <TableColumn fx:id="payCompInve" prefWidth="104.0" text="Valor compra" />
+                  <TableColumn fx:id="paySaleInv" prefWidth="123.0" text="Valor de venta" />
+                  <TableColumn fx:id="cuantityProductInvent" prefWidth="155.0" text="Cantidad" />
               </columns>
             </TableView>
             <Button layoutX="582.0" layoutY="287.0" mnemonicParsing="false" onAction="#returnStock" style="-fx-background-color: FFF8B8;" text="Salir" />

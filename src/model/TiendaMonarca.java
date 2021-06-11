@@ -484,4 +484,60 @@ public class TiendaMonarca {
         }
 
 	 */
+	public void creatProductComes(String name, int valuepay, int valuesale, int cuantity, String pr, String ty) {
+		int pos = 0;
+
+		for (int i = 0; i < providers.size(); i++) {
+
+			if (providers.get(i).getId().equals(pr)) {
+				pos = i;
+			}
+		}
+
+		Provider pro = providers.get(pos);
+
+		Product p = new ProductEdible(name, valuepay, valuesale, cuantity, pro, ty);
+
+		if (product == null) {
+			product = p;
+
+		} else {
+
+			creatProductComes(product, p);
+		}
+	}
+
+	private void creatProductComes(Product product2, Product p) {
+		if (p.getsetvaluepay() >= product2.getsetvaluepay()) {
+			if (product2.getLeft() == null) {
+
+				product2.setLeft(p);
+			} else {
+				creatProductComes(product2.getLeft(), p);
+			}
+
+		} else {
+			if (product2.getRight() == null) {
+
+				product2.setRight(p);
+			} else {
+				creatProductComes(product2.getRight(), p);
+			}
+		}
+
+	}
+	public ArrayList<Product> getProductCom() {
+		ArrayList<Product> p = new ArrayList<>();
+		getProductCom(product, p);
+		return p;
+	}
+
+	private void getProductCom(Product current, ArrayList<Product> p) {
+
+		if (current != null) {
+			getProductCom(current.getLeft(), p);
+				p.add(current);
+			getProductCom(current.getRight(), p);
+		}
+	}
 }

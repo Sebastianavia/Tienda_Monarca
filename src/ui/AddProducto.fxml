@@ -50,7 +50,7 @@
             <TextField fx:id="idProovedor" layoutX="334.0" layoutY="138.0" promptText="id Proovedor" />
             <Label layoutX="494.0" layoutY="142.0" text="Seleccione un proovedor" />
             <Label layoutX="204.0" layoutY="106.0" text="Precio de compra" />
-            <TextField layoutX="334.0" layoutY="102.0" />
+            <TextField fx:id="priceComp" layoutX="334.0" layoutY="102.0" />
             <Label layoutX="239.0" layoutY="172.0" text="Tipo" />
             <ComboBox fx:id="choiseProducCos" layoutX="335.0" layoutY="168.0" prefWidth="150.0" />
          </children>

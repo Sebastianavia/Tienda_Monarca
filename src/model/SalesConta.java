@@ -6,6 +6,15 @@ public class SalesConta extends Sales {
 	private TypePaymen typa;
 	private SalesConta left;
 	private SalesConta right;
+	
+	
+	/**
+	 * 
+	 * @param client
+	 * @param pr
+	 * @param price
+	 * @param ty
+	 */
 	public SalesConta(Clients client,ArrayList<Product> pr, int price,String ty) {
 		super(client, pr, price);
 		setTypa(TypePaymen.valueOf(ty));

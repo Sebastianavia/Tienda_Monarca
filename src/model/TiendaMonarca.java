@@ -15,11 +15,21 @@ public class TiendaMonarca {
 	private Debtors debtors;
 	private SalesConta salesConta;
 	private ArrayList<Provider> providers;
+	
+	
 
+	/**
+	 * @return providers
+	 */
 	public ArrayList<Provider> getProviders() {
 		return providers;
 	}
+	
+	
 
+	/**
+	 * @param providers
+	 */
 	public void setProviders(ArrayList<Provider> providers) {
 		this.providers = providers;
 	}
@@ -36,6 +46,12 @@ public class TiendaMonarca {
 		}
 	}
 
+	
+	/**
+	 * check if providers exist <br>
+	 * @param id
+	 * @return
+	 */
 	public boolean existProvider(String id) {
 		boolean out = false;
 		for (int i = 0; i < providers.size(); i++) {
@@ -46,6 +62,18 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	
+	/**
+	 * create technology product <br>
+	 * @param name
+	 * @param valuepay
+	 * @param valuesale
+	 * @param cuantity
+	 * @param pr
+	 * @param ty
+	 * @param br
+	 * @param cap
+	 */
 	public void creatProductTech(String name, int valuepay, int valuesale, int cuantity, String pr, String ty,
 			String br, int cap) {
 		int pos = 0;
@@ -67,6 +95,12 @@ public class TiendaMonarca {
 		}
 	}
 
+	
+	/**
+	 * create a technological product if it is not registered <br>
+	 * @param product2
+	 * @param p
+	 */
 	private void creatProductTech(Product product2, Product p) {
 		if (p.getsetvaluepay() >= product2.getsetvaluepay()) {
 			if (product2.getLeft() == null) {
@@ -87,6 +121,16 @@ public class TiendaMonarca {
 
 	}
 
+	
+	/**
+	 * add provider <br>
+	 * @param name
+	 * @param phone
+	 * @param address
+	 * @param id
+	 * @param numAcount
+	 * @return
+	 */
 	public boolean addProovider(String name, String phone, String address, String id, String numAcount) {
 		boolean out = false;
 		Provider pro = new ProviderConta(name, phone, address, id, numAcount);
@@ -94,6 +138,16 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	
+	/**
+	 * add provider <br>
+	 * @param name
+	 * @param phone
+	 * @param address
+	 * @param id
+	 * @param term
+	 * @return
+	 */
 	public boolean addProovider(String name, String phone, String address, String id, int term) {
 		boolean out = false;
 		Provider pro = new ProviderCredit(name, phone, address, id, term);
@@ -101,12 +155,24 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	/**
+	 * returns the existing product <br>
+	 * @param name
+	 * @return
+	 */
 	public boolean existProduct(String name) {
 		boolean out = false;
 		out = existProduct(product, out, name);
 		return out;
 	}
 
+	/**
+	 * check if the product exists or not <br>
+	 * @param current
+	 * @param out
+	 * @param name
+	 * @return
+	 */
 	private boolean existProduct(Product current, boolean out, String name) {
 
 		if (current != null) {
@@ -128,17 +194,34 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	
 	public boolean addProduct(String name, int valuepay, int valuesale, int cuantity, String p) {
 		boolean out = false;
 		return out;
 	}
 
+	
+	/**
+	 * found <br>
+	 * @param name
+	 * @param pass
+	 * @return out
+	 */
 	public boolean found(String name, String pass) {
 		boolean out = false;
 		out = foundU(first, name, pass, out);
 		return out;
 	}
 
+	
+	/**
+	 * search for the user and check if it exists <br>
+	 * @param em
+	 * @param name
+	 * @param pass
+	 * @param out
+	 * @return out
+	 */
 	private boolean foundU(EmployeUser em, String name, String pass, boolean out) {
 		if (em.getNameUser().equals(name) && em.getPassword().equals(pass)) {
 
@@ -151,12 +234,25 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	/**
+	 * check if the user is created <br>
+	 * @param userN
+	 * @return out
+	 */
 	public boolean foundExistUser(String userN) {
 		boolean out = false;
 		out = foundExistUser(first, userN, out);
 		return out;
 	}
 
+	
+	/**
+	 * search the user <br>
+	 * @param em
+	 * @param userN
+	 * @param out
+	 * @return out
+	 */
 	private boolean foundExistUser(EmployeUser em, String userN, boolean out) {
 		if (out != true) {
 			if (em != null) {
@@ -171,11 +267,30 @@ public class TiendaMonarca {
 		return out;
 	}
 
+	
+	/**
+	 * verify user <br>
+	 * @param name
+	 * @param lastN
+	 * @param id
+	 * @param nameU
+	 * @param pass
+	 */
 	public void creatUser(String name, String lastN, String id, String nameU, String pass) {
 		boolean found = false;
 		creatUser(first, name, lastN, id, nameU, pass, found);
 	}
 
+	/**
+	 * create user <br>
+	 * @param user1
+	 * @param name
+	 * @param lastN
+	 * @param id
+	 * @param nameU
+	 * @param pass
+	 * @param found
+	 */
 	private void creatUser(EmployeUser user1, String name, String lastN, String id, String nameU, String pass,
 			boolean found) {
 
@@ -189,6 +304,13 @@ public class TiendaMonarca {
 
 	}
 
+	/**
+	 * verify that it is not created and to create it <br>
+	 * @param nameC
+	 * @param idCl
+	 * @param pho
+	 * @param type
+	 */
 	public void creatClient(String nameC, String idCl, String pho, String type) {
 		if (firstC == null) {
 
@@ -200,6 +322,16 @@ public class TiendaMonarca {
 		}
 	}
 
+	
+	/**
+	 * create client <br>
+	 * @param firstC2
+	 * @param nameC
+	 * @param idCl
+	 * @param pho
+	 * @param type
+	 * @param found
+	 */
 	private void creatClient(Clients firstC2, String nameC, String idCl, String pho, String type, boolean found) {
 		if (firstC2.getNext() != null) {
 			creatClient(firstC2.getNext(), nameC, idCl, pho, type, found);
@@ -210,12 +342,24 @@ public class TiendaMonarca {
 
 	}
 
+	
+	/**
+	 * look up the customer's name <br>
+	 * @return p
+	 */
 	public ArrayList<Clients> getClients() {
 		ArrayList<Clients> p = new ArrayList<Clients>();
 		p = getClients(firstC, p);
 		return p;
 	}
 
+	
+	/**
+	 * a client returns <br>
+	 * @param firstC2
+	 * @param p
+	 * @return p
+	 */
 	private ArrayList<Clients> getClients(Clients firstC2, ArrayList<Clients> p) {
 		boolean run = true;
 		while (run) {
@@ -229,6 +373,11 @@ public class TiendaMonarca {
 		return p;
 	}
 
+	
+	/**
+	 * 
+	 * @return out
+	 */
 	public boolean validClient() {
 		boolean out = false;
 		if (firstC != null) {
@@ -237,12 +386,26 @@ public class TiendaMonarca {
 		}
 		return out;
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return out
+	 */
 	public boolean foundClient(String id) {
 		boolean out = false;
 		out = foundClient(firstC, id, out);
 		return out;
 	}
 
+	
+	/**
+	 * 
+	 * @param em
+	 * @param id
+	 * @param out
+	 * @return out
+	 */
 	private boolean foundClient(Clients em, String id, boolean out) {
 		if (out != true) {
 			if (em != null) {

@@ -7,26 +7,74 @@ public abstract class Sales {
 	private int price;
 	private Clients client;
 	
+	
+	
+	/**
+	 * constructor method <br>
+	 * <b> pre: we need the atributes </b> 
+	 * @param cl
+	 * @param pr
+	 * @param price
+	 */
 	public Sales(Clients cl,ArrayList<Product> pr, int price) {
 		this.pr = pr;
 		this.price = price;
 		setClient(cl);
 	}
+	
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return pr
+	 */
 	public ArrayList<Product> getPr() {
 		return pr;
 	}
+	
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b>
+	 * @param pr
+	 */
 	public void setPr(ArrayList<Product> pr) {
 		this.pr = pr;
 	}
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return price 
+	 */
 	public int getPrice() {
 		return price;
 	}
+	
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b>
+	 * @param price
+	 */
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return client 
+	 */
 	public Clients getClient() {
 		return client;
 	}
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b>
+	 * @param client
+	 */
 	public void setClient(Clients client) {
 		this.client = client;
 	}

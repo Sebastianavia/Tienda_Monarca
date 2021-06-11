@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.function.Supplier;
 
 import javax.swing.JOptionPane;
 
@@ -179,8 +180,17 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TextField userTxt;
+	
+	
 
 	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
+	
+	/**
+	 *  create a list product <br>
+	 * <b> pre: the products  </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProductTecList(ActionEvent event) throws IOException {
 		String brand = brandTec.getText();
@@ -240,6 +250,12 @@ public class TiendaMonarcaGUI {
 	}
 
 	// RETORNAR DESDE LA PANTALLA DE CREAR PRODUCTO TECH
+	/**
+	 * return product <br>
+	 * <b> pre: the products allowed created </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnProductTec(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -249,6 +265,12 @@ public class TiendaMonarcaGUI {
 	}
 
 	// PARA PASAR A LA CREACION DE PRODUCTO TECNOLOGIA
+	/**
+	 * To go to the creation of product tecnology <br>
+	 * <b> pre: a new tecnology product </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void loadCreatProdTec(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto_tech.fxml"));
@@ -259,7 +281,11 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 		printProvedProductTech();
 	}
-
+	
+	/**
+	 * print in the screen the technology product provider <br>
+	 * <b> pre: a  tecnology product provider </b>
+	 */
 	public void printProvedProductTech() {
 		ObservableList<Provider> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getProviders());
@@ -270,6 +296,12 @@ public class TiendaMonarcaGUI {
 	}
 
 	// RETORNAR DE LA LISTA DE TECNOLOGIA
+	/**
+	 * return to the tecnological list  <br>
+	 * <b> pre: a  tecnology product provider </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnListTec(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -277,7 +309,14 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	
+	/**
+	 * is the start button, it begins to load the threads  <br>
+	 * @param event
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
 	@FXML
 	public void InitProgram(ActionEvent event) throws IOException, InterruptedException {
 		Loading ld = new Loading(this, jProgressbar1);
@@ -286,14 +325,22 @@ public class TiendaMonarcaGUI {
 		pc.start();
 
 	}
-
+	/**
+	 * open the login window  <br>
+	 * @throws IOException
+	 */
 	public void loadLogin() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	
+	/**
+	 * open the menu window <br>
+	 * @throws IOException
+	 */
 	public void loadMenu() throws IOException {
 
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -310,6 +357,13 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login);
 	}
 
+	
+	/**
+	 * if the username and password are correct the program opens menu <br>
+	 * <b> pre: check if password and user are the same </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void buttonJoin(ActionEvent event) throws IOException {
 
@@ -327,7 +381,14 @@ public class TiendaMonarcaGUI {
 
 		}
 	}
-
+	
+	
+	/**
+	 * opens the window to add users <br>
+	 * <b> pre: not have a user account </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addUser(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreateUser.fxml"));
@@ -335,7 +396,14 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	
+	/**
+	 * create the users and save them <br>
+	 * <b> pre: not have a user account </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addUsers(ActionEvent event) throws IOException {
 		String name = createUserFN.getText();
@@ -364,6 +432,12 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
+	
+	/**
+	 * open the login window  <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void loadWelcome(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
@@ -371,7 +445,13 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	
+	/**
+	 * open the pay window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void abonePay(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pay.fxml"));
@@ -379,7 +459,13 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	
+	/**
+	 * open the Type_Product window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProduct(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Product.fxml"));
@@ -390,6 +476,11 @@ public class TiendaMonarcaGUI {
 	}
 
 	// metodo para ver lista de productos comestibles
+	/**
+	 * see list of grocery products <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProductComes(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Products.fxml"));
@@ -398,7 +489,13 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 
 	}
-
+	
+	
+	/**
+	 * open technology product Window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProductTec(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Products _tec.fxml"));
@@ -407,7 +504,13 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 
 	}
-
+	
+	
+	/**
+	 * open edible products Window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addListComesti(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddProducto.fxml"));
@@ -419,7 +522,13 @@ public class TiendaMonarcaGUI {
 		printProvedProduct();
 
 	}
-
+	
+	
+	/**
+	 * open the menu window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnListComest(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -429,6 +538,12 @@ public class TiendaMonarcaGUI {
 
 	}
 
+	
+	/**
+	 * open the menu window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnProType(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -438,6 +553,12 @@ public class TiendaMonarcaGUI {
 
 	}
 
+	
+	/**
+	 * open the Type_Proovedores window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProveedores(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Proovedores.fxml"));
@@ -446,6 +567,12 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	/**
+	 * open the Sale window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addSale(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sale.fxml"));
@@ -454,6 +581,12 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	/**
+	 * open the Custumer window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void creatClient(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Custumer.fxml"));
@@ -465,7 +598,15 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 		PrintClient();
 	}
-
+	
+	
+	
+	/**
+	 * to create a new customer <br>
+	 * <b> pre: that all processes and fields are filled correctly </b>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addClient(ActionEvent event) throws IOException {
 		String nameC = nameClien.getText();
@@ -488,6 +629,13 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
+	
+	
+	/**
+	 * open the menu window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnClient(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -504,6 +652,13 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login);
 	}
 
+	
+	
+	/**
+	 * open the Debtors window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void debtors(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Debtors.fxml"));
@@ -512,6 +667,12 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	/**
+	 * open the stocktaking window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void viewStock(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("stocktaking.fxml"));
@@ -530,11 +691,24 @@ public class TiendaMonarcaGUI {
 
 	}
 
+	
+	/**
+	 * open the menu window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnProduct(ActionEvent event) throws IOException {
 		loadMenu();
 	}
 
+	
+	
+	/**
+	 * open the addProovedores_contado window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void proovedConta(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addProovedores_contado.fxml"));
@@ -543,6 +717,12 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	/**
+	 * open the addProovedores_credit window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void prooverdCred(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addProovedores_credit.fxml"));
@@ -551,12 +731,23 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	
+	/**
+	 * open the menu window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnPro(ActionEvent event) throws IOException {
 		loadMenu();
 	}
 
 	// LISTA PROVEDORES PRODUCTO
+	
+	/**
+	 *  provider product list<br>
+	 */
 	public void printProvedProduct() {
 		ObservableList<Provider> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getProviders());
@@ -567,6 +758,12 @@ public class TiendaMonarcaGUI {
 	}
 
 	// GUARDA PROVEDOR CONTADO
+	
+	/**
+	 * save  provider count <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addSaveProvConta(ActionEvent event) throws IOException {
 		String name = nameProvConta.getText();
@@ -595,7 +792,15 @@ public class TiendaMonarcaGUI {
 			}
 		}
 	}
-
+	
+	
+	
+	
+	/**
+	 * open Type_Proovedores windows <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnConta(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Proovedores.fxml"));
@@ -608,6 +813,12 @@ public class TiendaMonarcaGUI {
 	private TextField idProvedCredi;
 
 	// METODO PARA AGREGAR PROVEDOR A CREDITO
+	
+	/**
+	 * Add suppliers on credit <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProveCredi(ActionEvent event) throws IOException {
 		String name = nameProvedCredit.getText();
@@ -637,6 +848,10 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
+	
+	/**
+	 * open Type_Proovedores window <br> 
+	 */
 	@FXML
 	void returnCredit(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_Proovedores.fxml"));
@@ -667,6 +882,12 @@ public class TiendaMonarcaGUI {
 
 	}
 
+	
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void retunrPay(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
@@ -689,10 +910,23 @@ public class TiendaMonarcaGUI {
 	}
 
 	@FXML
+	
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	void returnStock(ActionEvent event) throws IOException {
 		loadMenu();
 	}
+	
+	
 
+	/**
+	 * open Type_sale window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addVent(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Type_sale.fxml"));
@@ -700,12 +934,23 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-
+	
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnVen(ActionEvent event) throws IOException {
 		loadMenu();
 	}
 
+	
+	/**
+	 * open AddVenta_credit Window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void buttonVenFia(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddVenta-credit.fxml"));
@@ -714,6 +959,12 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	
+	/**
+	 * open AddVenta_conta Window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void buttonVentCont(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddVenta-conta.fxml"));
@@ -722,6 +973,11 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void buttonventCancel(ActionEvent event) throws IOException {
 		loadMenu();
@@ -730,20 +986,40 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private Label labelCustomer112;
 
+	
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void returnventCred(ActionEvent event) throws IOException {
 		loadMenu();
 	}
 
+	
+	/**
+	 * open menu window <br> 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void retunrVentCon(ActionEvent event) throws IOException {
 		loadMenu();
 	}
 
+	
+	/**
+	 * @return product
+	 */
 	public Product getProduct() {
 		return product;
 	}
 
+	
+	/**
+	 * @param product
+	 */
 	public void setProduct(Product product) {
 		this.product = product;
 	}
@@ -778,7 +1054,13 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TableColumn<Clients, String> phoneClientTab;
-
+	
+	
+	
+	
+	/**
+	 * Print customer list <br> 
+	 */
 	public void PrintClient() {
 		if (tiendaMonarca.validClient() == true) {
 			ObservableList<Clients> observableList;
@@ -794,6 +1076,12 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
+	
+	/**
+	 * open addCustumer window <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void nextClient(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addCustumer.fxml"));

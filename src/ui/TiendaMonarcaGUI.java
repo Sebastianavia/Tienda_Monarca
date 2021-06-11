@@ -813,5 +813,84 @@ public class TiendaMonarcaGUI {
 	void cancelDebstor(ActionEvent event) throws IOException {
 		loadMenu();
 	}
+	
+	//BinarySearch Customer
+
+   /* @FXML
+    public void binarySearchCustomer(ActionEvent event) throws InterruptedException {
+
+        long init = System.currentTimeMillis();
+         
+        Thread.sleep(2000);
+         
+        String [] name=nameCustomer.getText().split(" ");
+        orderCustomer=laCasaDorada.binarySearchCustomer(name[0], name[1]);
+        long end = System.currentTimeMillis();
+         
+        double tiempo = (double) (end - init);
+
+        labelTimeBSCustomer.setText(tiempo +" Milisegundos");
+
+        if (orderCustomer!=null){
+            labelCustomer.setText(orderCustomer.toString());
+        }
+
+    }*/
+	
+	/*// Customer finder
+
+    @FXML
+    public void loadCustomerFinder(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomerFinder.fxml"));
+        fxmlLoader.setController(this);
+        Parent form = fxmlLoader.load();
+        // pane.getChildren().clear();
+        pane.setCenter(form);
+        initializeTableViewCustomers();
+
+        ObservableList<Customer> observableList;
+        observableList = FXCollections.observableArrayList(laCasaDorada.getCustomers())
+                .filtered(customer -> customer.isAvailability() == true);
+
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Customer> filteredData = new FilteredList<>(observableList, b -> true);
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(customer -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (customer.getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name.
+                } else if (customer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                } else if (customer.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches last name.
+                } else if (String.valueOf(customer.getPhone()).indexOf(lowerCaseFilter) != -1)
+                    return true;
+                else
+                    return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<Customer> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
+
+        // 5. Add sorted (and filtered) data to the table.
+        tableCustomers.setItems(sortedData);
+
+    }*/
 
 }

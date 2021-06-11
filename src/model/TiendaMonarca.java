@@ -3,6 +3,12 @@ package model;
 import java.util.ArrayList;
 
 public class TiendaMonarca {
+	
+	public static final String CUSTOMERS_FILE_NAME = "src/data/customers.bbd";
+	public static final String Debstor_FILE_NAME = "src/data/debstor.bbd";
+    public static final String PRODUCTS_TEC_FILE_NAME = "src/data/productstec.bbd";
+    public static final String PRODUCTS_HOG_FILE_NAME = "src/data/productshog.bbd";
+    public static final String PROVIDER_FILE_NAME = "src/data/orders.bbd";
 	private EmployeUser first;
 	private Clients firstC;
 	private Product product;
@@ -250,4 +256,69 @@ public class TiendaMonarca {
 		}
 		return out;
 	}
+	
+	/*public Customer binarySearchCustomer(String firstName, String lastName) {
+
+        Comparator<Customer> lastNameAndFirstName = new Comparator<Customer>() {
+            @Override
+            public int compare(Customer obj1, Customer obj2) {
+                String f1 = obj1.getFirstName().toLowerCase();
+                String l1 = obj1.getLastName().toLowerCase();
+                String f2 = obj2.getFirstName().toLowerCase();
+                String l2 = obj2.getLastName().toLowerCase();
+
+                if (l1.compareTo(l2) == 0) {
+                    return f2.compareTo(f1);
+                } else {
+                    return l2.compareTo(l1);
+                }
+            }
+        };
+
+        Customer key=new Customer(firstName,lastName, "", "", "", "", null);
+        int index=Collections.binarySearch(customers, key,lastNameAndFirstName);
+        if (index <0){
+            key=null;
+        }else{
+            key=customers.get(index);
+        }
+        return key;
+    }
+	 */
+	
+	
+	/*
+	 //SelectionSort
+        Comparator<Customer> lastNameAndFirstName = new Comparator<Customer>() {
+            @Override
+            public int compare(Customer obj1, Customer obj2) {
+                String f1 = obj1.getFirstName().toLowerCase();
+                String l1 = obj1.getLastName().toLowerCase();
+                String f2 = obj2.getFirstName().toLowerCase();
+                String l2 = obj2.getLastName().toLowerCase();
+
+                if (l1.compareTo(l2) == 0) {
+
+                    return f1.compareTo(f2);
+                } else {
+                    return l1.compareTo(l2);
+                }
+            }
+        };
+
+        for (int j = 0; j < customers.size() - 1; j++) {
+            Customer min = customers.get(j);
+            for (int i = j + 1; i < customers.size(); i++) {
+                if (lastNameAndFirstName.compare(min, customers.get(i)) < 0) {  
+                    Customer temp = customers.get(i);
+                    customers.set(i, min);
+                    min = temp;
+                }
+
+            }
+            customers.set(j,min);
+
+        }
+
+	 */
 }

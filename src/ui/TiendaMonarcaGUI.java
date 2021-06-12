@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -1321,4 +1323,60 @@ public class TiendaMonarcaGUI {
 	    void ImportData(ActionEvent event) {
 
 	    }
+	    
+	    
+	    @FXML
+	    void opengraf(ActionEvent event) throws IOException { //graff
+			
+	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graff.fxml"));
+	    	fxmlLoader.setController(this);
+			Parent login1 = fxmlLoader.load();
+			pane.setCenter(login1);
+			
+			startBarChart();
+	    	
+	    }
+	    
+	    @FXML
+	    private BarChart<Number, Number> barChart;
+	    @SuppressWarnings({ "unchecked", "rawtypes" })
+	    public void startBarChart() {
+	        final String gaseosa = "enero";
+	        final String papas = "febrero";
+	        final String dulces = "marzo";
+	        
+
+	        barChart.setTitle("Mas vendidos");
+	        barChart.getXAxis().setLabel("productos");
+	        barChart.getXAxis().setLabel("cantidad");
+
+	        XYChart.Series series1 = new XYChart.Series();
+	        series1.setName("papas");
+	        series1.getData().add(new XYChart.Data(gaseosa, 50));
+	        series1.getData().add(new XYChart.Data(papas, 20));
+	        series1.getData().add(new XYChart.Data(dulces, 10));
+	        
+
+	        XYChart.Series series2 = new XYChart.Series();
+	        series2.setName("gaseosa");
+	        series2.getData().add(new XYChart.Data(gaseosa, 57));
+	        series2.getData().add(new XYChart.Data(papas, 41));
+	        series2.getData().add(new XYChart.Data(dulces, 45));
+	        
+
+	        XYChart.Series series3 = new XYChart.Series();
+	        series3.setName("dulces");
+	        series3.getData().add(new XYChart.Data(gaseosa, 45));
+	        series3.getData().add(new XYChart.Data(papas, 44));
+	        series3.getData().add(new XYChart.Data(dulces, 18));
+	        
+
+	        barChart.getData().addAll(series1, series2, series3);
+	    }
+	    
+	    @FXML
+	    void Closegraff(ActionEvent event) throws IOException {
+	    	loadMenu();
+	    }
+	    
 }

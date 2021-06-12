@@ -10,9 +10,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <AnchorPane prefHeight="196.0" prefWidth="793.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="211.0" prefWidth="793.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="189.0" fitWidth="253.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="189.0" fitWidth="253.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/circle-cropped.png" />
                </image>
@@ -24,12 +24,11 @@
             </Label>
             <Label fx:id="clockLabel" layoutX="697.0" layoutY="22.0" prefHeight="21.0" prefWidth="82.0" text="00.00.00" />
             <Label fx:id="date" layoutX="697.0" layoutY="61.0" text="dd/mm/aa" />
-            <Button layoutX="690.0" layoutY="119.0" mnemonicParsing="false" onAction="#ImportData" text="Importar" />
          </children>
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="403.0" prefWidth="834.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="342.0" prefWidth="793.0" BorderPane.alignment="CENTER">
          <children>
             <Button layoutX="127.0" layoutY="64.0" mnemonicParsing="false" onAction="#creatClient" prefHeight="42.0" prefWidth="138.0" style="-fx-background-color: FFF8B8;" text="Clientes" />
             <Button layoutX="357.0" layoutY="65.0" mnemonicParsing="false" onAction="#debtors" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: FFF8B8;" text="Deudores" />
@@ -38,6 +37,7 @@
             <Button layoutX="133.0" layoutY="252.0" mnemonicParsing="false" onAction="#addSale" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: FFF8B8;" text="Venta" />
             <Button layoutX="571.0" layoutY="162.0" mnemonicParsing="false" onAction="#addProveedores" prefHeight="43.0" prefWidth="133.0" style="-fx-background-color: FFF8B8;" text="Proveedores " />
             <Button layoutX="360.0" layoutY="161.0" mnemonicParsing="false" onAction="#abonePay" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: FFF8B8;" text="Abonar deuda" />
+            <Button layoutX="360.0" layoutY="259.0" mnemonicParsing="false" onAction="#opengraf" prefHeight="44.0" prefWidth="127.0" style="-fx-background-color: FFF8B8;" text="Grafica" />
          </children>
       </AnchorPane>
    </bottom>

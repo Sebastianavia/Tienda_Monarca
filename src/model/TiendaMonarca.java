@@ -606,6 +606,14 @@ public class TiendaMonarca {
 		}
 	}
 	private Clients clientPro ;
+	
+	
+	/**
+	 * search for customers using binary search <br>
+	 * @param firstName
+	 * @param lastName
+	 * @return
+	 */
 	public Clients binarySearchCustomer(String firstName, String lastName) {
 
         Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
@@ -634,6 +642,19 @@ public class TiendaMonarca {
         setClientPro(key);
         return key;
     }
+	
+	
+	
+	
+	/**
+	 * add costumer <br>
+	 * @param firstName
+	 * @param lastName
+	 * @param idCl
+	 * @param pho
+	 * @param type
+	 * @throws IOException
+	 */
 	public void addClients(String firstName, String lastName, String idCl, String pho, String type) throws IOException {
 
         // Comparador por apellido y nombre
@@ -671,6 +692,13 @@ public class TiendaMonarca {
         //saveDataClients();
     }
 	
+	
+	
+	/**
+	 * save date about costumer <br>
+	 * @throws IOException
+	 */
+
 	 public void saveDataClients() throws IOException {
 	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE_NAME));
 	        oos.writeObject(clients);
@@ -686,6 +714,13 @@ public class TiendaMonarca {
 		 }
 		 
 	 }
+	 
+	 
+	 
+	 /**
+	  * calculate the price of a certain number of products <br>
+	  * @return out
+	  */
 	public int calculePrice() {
 		int out =0;
 		for(int i = 0;i<temporal.size();i++) {
@@ -699,6 +734,13 @@ public class TiendaMonarca {
 	public void setClientPro(Clients clientPro) {
 		this.clientPro = clientPro;
 	}
+	
+	/**
+	 * record sales <br>
+	 * @param type
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
 		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum,type);
 		if (salesConta == null) {
@@ -711,6 +753,13 @@ public class TiendaMonarca {
 	public void setClientp() {
 		clientPro = null;
 	}
+	
+	
+	/**
+	 * record sales <br>
+	 * @param player1
+	 * @param newPlayer
+	 */
 	private void registerSaleContac(SalesConta player1, SalesConta newPlayer) {
 
 		if (newPlayer.getPrice() >= player1.getPrice()) {
@@ -736,7 +785,11 @@ public class TiendaMonarca {
 		return p;
 	}
 	
-	
+	/**
+	 * returns sales <br>
+	 * @param current
+	 * @param p
+	 */
 	private void getVents(SalesConta current, ArrayList<SalesConta> p) {
 		
 		if(current != null) {

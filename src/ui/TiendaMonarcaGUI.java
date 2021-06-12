@@ -1379,6 +1379,14 @@ public class TiendaMonarcaGUI {
 		barChart.getData().addAll(series1, series2, series3);
 	}
 
+	
+	
+	
+	/**
+	 * open menu windowa <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void Closegraff(ActionEvent event) throws IOException {
 		loadMenu();
@@ -1391,6 +1399,13 @@ public class TiendaMonarcaGUI {
 	// customer
 	private Clients orderCustomer;
 
+	
+	
+	/**
+	 * search for a customer using binary search <br>
+	 * @param event
+	 * @throws InterruptedException
+	 */
 	@FXML
 	public void binarySearchClient(ActionEvent event) throws InterruptedException {
 		String[] name = nameCustomer.getText().split(" ");
@@ -1405,6 +1420,12 @@ public class TiendaMonarcaGUI {
     private Label labelCredit;
     @FXML
     private TextField nameClientCreidt;
+    
+    
+    /**
+     * look for a customer on credit<br>
+     * @param event
+     */
     @FXML
     void serchClientCredit(ActionEvent event) {
     	String[] name = nameClientCreidt.getText().split(" ");
@@ -1421,6 +1442,11 @@ public class TiendaMonarcaGUI {
     private TableColumn<Product, String> nameTableConta;
     @FXML
     private TableColumn<Product, String> tablePriceCont;
+    
+    
+    /**
+     * print product list<br>
+     */
     public void printProductConta() {
 		ObservableList<Product> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
@@ -1436,6 +1462,15 @@ public class TiendaMonarcaGUI {
     private TextField cuantiVentCont;
     @FXML
     private Label labelMount;
+    
+    
+    
+    
+    
+    /**
+     * add a product to the list <br>
+     * @param event
+     */
     @FXML
     void addProductListConta(ActionEvent event) {
     	String name = nameVentCont.getText();
@@ -1460,6 +1495,12 @@ public class TiendaMonarcaGUI {
 
     @FXML
     private TableColumn<Product, String> priceNewVentPr;
+    
+    
+    
+    /**
+     * print product <br>
+     */
     public void printProductnNew() {
 		ObservableList<Product> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getTemporal());
@@ -1469,6 +1510,14 @@ public class TiendaMonarcaGUI {
 		
 	} 
     
+    
+    
+    /**
+     *  create sales <br>
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void creatVentCont(ActionEvent event) throws FileNotFoundException, IOException  {
     	
@@ -1506,6 +1555,11 @@ public class TiendaMonarcaGUI {
 
     @FXML
     private TableColumn<SalesConta, String> paysVents;
+    
+    
+    /**
+     * print vents list <br>
+     */
     public void printVents() {
 		ObservableList<SalesConta> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getVents());

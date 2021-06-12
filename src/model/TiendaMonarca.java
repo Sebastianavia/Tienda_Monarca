@@ -546,8 +546,10 @@ public class TiendaMonarca {
 	 * @param cuantity
 	 * @param pr
 	 * @param ty
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public void creatProductComes(String name, int valuepay, int valuesale, int cuantity, String pr, String ty) {
+	public void creatProductComes(String name, int valuepay, int valuesale, int cuantity, String pr, String ty) throws FileNotFoundException, IOException {
 		int pos = 0;
 
 		for (int i = 0; i < providers.size(); i++) {
@@ -568,6 +570,7 @@ public class TiendaMonarca {
 
 			creatProductComes(product, p);
 		}
+		saveDataProduct();
 	}
 
 	/**
@@ -738,7 +741,7 @@ public class TiendaMonarca {
 	public int calculePrice() {
 		int out = 0;
 		for (int i = 0; i < temporal.size(); i++) {
-			out += temporal.get(i).getCuantity() * temporalNum.get(i);
+			out += temporal.get(i).getvaluesale() * temporalNum.get(i);
 		}
 		return out;
 	}
@@ -759,8 +762,11 @@ public class TiendaMonarca {
 	 * @throws IOException
 	 */
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
-		System.out.println(temporal.get(0).getName() + "  producto");
-		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum, type);
+		String out = "";
+		for(int i =0;i<temporal.size();i++) {
+			out += temporal.get(i).getName()+"\n";
+		}
+		SalesConta sl = new SalesConta(clientPro,out, temporal, temporalNum, type);
 		System.out.println(sl.getPr() + " - productos");
 		if (salesConta == null) {
 

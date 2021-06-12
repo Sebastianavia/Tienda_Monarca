@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 public class DebtorsCreate {
@@ -13,7 +15,7 @@ public class DebtorsCreate {
 	private String address;
 	private int payment;
 	
-	public void setupScenary1() {
+	public void setupScenary1() throws ClassNotFoundException, IOException {
 		td = new TiendaMonarca();
 		name= "andres";
 		documentType ="TI";
@@ -23,7 +25,7 @@ public class DebtorsCreate {
 		payment = 12200;
 	}
 	@Test
-	void test() {
+	void test() throws ClassNotFoundException, IOException {
 		setupScenary1();
 		//td.createDebtors( name,  documentType,  id,  phone, address,    payment);
 	}

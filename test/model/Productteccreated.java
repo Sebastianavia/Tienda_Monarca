@@ -1,6 +1,8 @@
 package model;
 
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -13,7 +15,7 @@ public class Productteccreated {
 	private TiendaMonarca td;
 	
 	
-	public void setupScenary1() {
+	public void setupScenary1() throws ClassNotFoundException, IOException {
 		td = new TiendaMonarca();
 		typ= TypeTech.valueOf("CEL");
 		brand = "sansung";
@@ -21,7 +23,7 @@ public class Productteccreated {
 		
 	}
 	@Test
-	void test() {
+	void test() throws ClassNotFoundException, IOException {
 		setupScenary1();
 	//	td.createProvider( typ, brand, capacity);
 	}

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 public class ProductEdiCreted {
@@ -8,12 +10,12 @@ public class ProductEdiCreted {
 	private TypeProduct typr;
 	private TiendaMonarca td;
 	
-	public void setupScenary1() {
+	public void setupScenary1() throws ClassNotFoundException, IOException {
 		td = new TiendaMonarca();
 		typr = TypeProduct.valueOf("CANDYS");
 	}
 	@Test
-	void test() {
+	void test() throws ClassNotFoundException, IOException {
 		setupScenary1();
 		//td.creatProductComes( td,  typr);
 	}

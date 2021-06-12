@@ -13,15 +13,16 @@ public class SalesConta extends Sales implements ValueTotal {
 	 * constructor method <br>
      * <b> pre: we need the atributes </b> 
 	 * @param client
+	 * @param pro 
 	 * @param pr
 	 * @param price
 	 * @param ty
 	 */
-	public SalesConta(Clients client,ArrayList<Product> pr, ArrayList<Integer> nums,String ty) {
+	public SalesConta(Clients client,String pro, ArrayList<Product> pr, ArrayList<Integer> nums,String ty) {
 		super(client, pr, nums,0);
 		setTypa(TypePaymen.valueOf(ty));
 		ganancy =0;
-		setPro("1");
+		this.pro=pro;
 		setGanancy();
 	}
 	
@@ -131,19 +132,12 @@ public class SalesConta extends Sales implements ValueTotal {
 
 
 	public String getPro() {
-		ArrayList<Product> p = getPr2();
-		for(int i =0;i<p.size();i++) {
-			pro+= p.get(i).getName()+"\n";
-		}
 		return pro;
 	}
 
 
 	public void setPro(String pro) {
-		ArrayList<Product> p = getPr2();
-		for(int i =0;i<p.size();i++) {
-			pro+= p.get(i).getName()+"\n";
-		}
+		this.pro=pro;
 		
 	}
 

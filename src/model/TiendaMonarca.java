@@ -17,6 +17,7 @@ public class TiendaMonarca {
 	public static final String Debstor_FILE_NAME = "data/debstor.bbd";
 	public static final String PRODUCTS_TEC_FILE_NAME = "data/productstec.bbd";
 	public static final String PROVIDER_FILE_NAME = "data/orders.bbd";
+	public static final String VENTS_CONTA = "data/vents.bbd";
 	// Listas enlazada = clients. product
 	// Arbol binario = producto . ventas contado
 	private EmployeUser first;
@@ -421,6 +422,7 @@ public class TiendaMonarca {
 	public ArrayList<Clients> getClients() {
 		ArrayList<Clients> p = new ArrayList<Clients>();
 		p = getClients(firstC, p);
+		clients=p;
 		return p;
 	}
 
@@ -775,6 +777,7 @@ public class TiendaMonarca {
 		} else {
 			registerSaleContac(salesConta, sl);
 		}
+		saveDataVentsCont();
 	}
 
 	public void setClientp() {
@@ -853,6 +856,11 @@ public class TiendaMonarca {
 		oos.writeObject(providers);
 		oos.close();
 	}
+	public void saveDataVentsCont() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(VENTS_CONTA));
+		oos.writeObject(salesConta);
+		oos.close();
+	}
 
 	public ArrayList<SalesCredit> getSalesCredit() {
 		return salesCredit;
@@ -880,6 +888,7 @@ public class TiendaMonarca {
 			ObjectInputStream ob = new ObjectInputStream(new FileInputStream(f));
 			firstC = (Clients) ob.readObject();
 			ob.close();
+			getClients();
 		}
 
 		f = new File(PRODUCTS_TEC_FILE_NAME);
@@ -897,6 +906,14 @@ public class TiendaMonarca {
 			ObjectInputStream prov = new ObjectInputStream(new FileInputStream(f));
 			providers = (ArrayList<Provider>) prov.readObject();
 			prov.close();
+		}
+		f = new File(VENTS_CONTA);
+
+		if (f.exists()) {
+			ObjectInputStream vents = new ObjectInputStream(new FileInputStream(f));
+			salesConta = (SalesConta) vents.readObject();
+			vents.close();
+
 		}
 
 	}

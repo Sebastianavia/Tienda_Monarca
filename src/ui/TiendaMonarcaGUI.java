@@ -1340,9 +1340,9 @@ public class TiendaMonarcaGUI {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void startBarChart() {
-		final String gaseosa = "enero";
-		final String papas = "febrero";
-		final String dulces = "marzo";
+		final String gaseosa = "junio";
+		final String papas = "julio";
+		final String dulces = "agosto";
 
 		barChart.setTitle("Mas vendidos");
 		barChart.getXAxis().setLabel("productos");
@@ -1351,20 +1351,20 @@ public class TiendaMonarcaGUI {
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("papas");
 		series1.getData().add(new XYChart.Data(gaseosa, 50));
-		series1.getData().add(new XYChart.Data(papas, 20));
-		series1.getData().add(new XYChart.Data(dulces, 10));
+		series1.getData().add(new XYChart.Data(papas, 0));
+		series1.getData().add(new XYChart.Data(dulces, 0));
 
 		XYChart.Series series2 = new XYChart.Series();
 		series2.setName("gaseosa");
 		series2.getData().add(new XYChart.Data(gaseosa, 57));
-		series2.getData().add(new XYChart.Data(papas, 41));
-		series2.getData().add(new XYChart.Data(dulces, 45));
+		series2.getData().add(new XYChart.Data(papas, 0));
+		series2.getData().add(new XYChart.Data(dulces, 0));
 
 		XYChart.Series series3 = new XYChart.Series();
 		series3.setName("dulces");
 		series3.getData().add(new XYChart.Data(gaseosa, 45));
-		series3.getData().add(new XYChart.Data(papas, 44));
-		series3.getData().add(new XYChart.Data(dulces, 18));
+		series3.getData().add(new XYChart.Data(papas, 0));
+		series3.getData().add(new XYChart.Data(dulces, 0));
 
 		barChart.getData().addAll(series1, series2, series3);
 	}

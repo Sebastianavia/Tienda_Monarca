@@ -24,6 +24,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.Clients;
@@ -1407,7 +1409,6 @@ public class TiendaMonarcaGUI {
 
     @FXML
     private TableColumn<Product, String> nameTableConta;
-
     @FXML
     private TableColumn<Product, String> tablePriceCont;
     public void printProductConta() {
@@ -1419,7 +1420,25 @@ public class TiendaMonarcaGUI {
 		tablePriceCont.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 		
 	}
+    @FXML
+    private TextField nameVentCont;
+    @FXML
+    private TextField cuantiVentCont;
 
+    @FXML
+    void addProductListConta(ActionEvent event) {
+    	String name = nameVentCont.getText();
+    	if(nameVentCont.getText().equals("")||cuantiVentCont.getText().equals("")) {
+    		JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+					JOptionPane.WARNING_MESSAGE);
+    	}else {
+    		int cuantity = Integer.parseInt(cuantiVentCont.getText());
+    		if(tiendaMonarca.existProduct(name)) {
+    			tiendaMonarca.selectProduct(name, cuantity);
+    			printProductnNew();
+    		}
+    	}
+    }
     @FXML
     private TableView<Product> newProductventCont;
 
@@ -1429,12 +1448,11 @@ public class TiendaMonarcaGUI {
     @FXML
     private TableColumn<Product, String> priceNewVentPr;
     public void printProductnNew() {
-		//ObservableList<Product> observableList;
-		//observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
-
-		//newProductventCont.setItems(observableList);
-		//nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		//priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		ObservableList<Product> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getTemporal());
+		newProductventCont.setItems(observableList);
+		nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 		
 	}
 }

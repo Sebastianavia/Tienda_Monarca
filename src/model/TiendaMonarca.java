@@ -20,6 +20,15 @@ public class TiendaMonarca {
 	private Debtors debtors;
 	private SalesConta salesConta;
 	private ArrayList<Provider> providers;
+	private ArrayList<Product> temporal ;
+
+	public ArrayList<Product> getTemporal() {
+		return temporal;
+	}
+
+	public void setTemporal(ArrayList<Product> temporal) {
+		this.temporal = temporal;
+	}
 
 	/**
 	 * @return providers
@@ -40,6 +49,7 @@ public class TiendaMonarca {
 	// Listas enlazada = clients. product
 	// Arbol binario = producto . ventas contado
 	public TiendaMonarca() {
+		temporal =  new ArrayList<>();
 		providers = new ArrayList<>();
 		salesCredit = new ArrayList<>();
 		clients = new ArrayList<>();
@@ -645,4 +655,13 @@ public class TiendaMonarca {
 	        oos.writeObject(clients);
 	        oos.close();
 	    }
+	 public void selectProduct(String name, int cuanty) {
+		 ArrayList<Product> m = getProductCom();
+		 for(int i = 0;i<m.size();i++) {
+			 if(m.get(i).getName().equals(name)) {
+				 temporal.add(m.get(i));
+			 }
+		 }
+		 
+	 }
 }

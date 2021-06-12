@@ -20,7 +20,7 @@
                   <Font name="Bold Italic Art" size="24.0" />
                </font>
             </Text>
-            <TextField layoutX="171.0" layoutY="240.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
+            <TextField fx:id="cuantiVentCont" layoutX="605.0" layoutY="262.0" prefHeight="29.0" prefWidth="145.0" promptText="Ingrese la cantidad" />
             <Label fx:id="labelCustomer" layoutX="164.0" layoutY="35.0" text="Sin asignar">
                <font>
                   <Font size="15.0" />
@@ -31,8 +31,7 @@
                   <TableColumn fx:id="tablePriceCont" prefWidth="212.0" style="-fx-background-color: FFF8B8;" text="Precios" />
               </columns>
             </TableView>
-            <Button layoutX="595.0" layoutY="229.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="151.0" text="Añadir" />
-            <Button layoutX="795.0" layoutY="229.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Eliminar" />
+            <Button layoutX="789.0" layoutY="247.0" mnemonicParsing="false" onAction="#addProductListConta" prefHeight="31.0" prefWidth="151.0" text="Añadir" />
             <TableView fx:id="newProductventCont" layoutX="490.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="118.0" prefWidth="389.0">
               <columns>
                 <TableColumn fx:id="nameNewVentPr" prefWidth="191.0" style="-fx-background-color: FFF8B8;" text="Nombre" />
@@ -49,7 +48,7 @@
                   <Font name="Gabriola" size="25.0" />
                </font>
             </Button>
-            <Text layoutX="33.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:" wrappingWidth="137.2578125">
+            <Text layoutX="490.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad:" wrappingWidth="137.2578125">
                <font>
                   <Font size="25.0" />
                </font>
@@ -93,6 +92,12 @@
                   <Font size="25.0" />
                </font>
             </Text>
+            <Text layoutX="490.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre producto" wrappingWidth="208.2578125">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <TextField fx:id="nameVentCont" layoutX="699.0" layoutY="215.0" promptText="Nombre" />
          </children>
       </AnchorPane>
    </left>

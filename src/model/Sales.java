@@ -93,11 +93,6 @@ public abstract class Sales implements ValueTotal {
 	}
 	@Override
 	public void calculeTotalPrice() {
-		int newVal =0;
-		for (int i=0;i<pr.size();i++) {
-			newVal+= pr.get(i).getsetvaluepay()*num.get(i);
-			
-		}
-		setPrice(newVal);
+		
 	}
 }

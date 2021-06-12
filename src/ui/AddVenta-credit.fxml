@@ -20,7 +20,7 @@
                </font>
             </Text>
             <TextField layoutX="171.0" layoutY="240.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
-            <Label fx:id="labelCredit" layoutX="164.0" layoutY="35.0" text="Sin asignar">
+            <Label fx:id="labelCredit" layoutX="164.0" layoutY="35.0">
                <font>
                   <Font size="15.0" />
                </font></Label>

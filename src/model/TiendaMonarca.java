@@ -1,5 +1,6 @@
 package model;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -14,6 +15,8 @@ public class TiendaMonarca {
 	public static final String PRODUCTS_TEC_FILE_NAME = "src/data/productstec.bbd";
 	public static final String PRODUCTS_HOG_FILE_NAME = "src/data/productshog.bbd";
 	public static final String PROVIDER_FILE_NAME = "src/data/orders.bbd";
+	// Listas enlazada = clients. product
+		// Arbol binario = producto . ventas contado
 	private EmployeUser first;
 	private Clients firstC;
 	private Product product;
@@ -21,7 +24,7 @@ public class TiendaMonarca {
 	private SalesConta salesConta;
 	private ArrayList<Provider> providers;
 	private ArrayList<Product> temporal ;
-
+	private ArrayList<Integer> temporalNum ;
 	public ArrayList<Product> getTemporal() {
 		return temporal;
 	}
@@ -30,6 +33,15 @@ public class TiendaMonarca {
 		while(cu>0) {
 			if(temporal.get(0)!= null) {
 				temporal.remove(0);
+				cu--;
+			}
+		}
+	}
+	public void resetTemporalNums() {
+		int cu = temporalNum.size();
+		while(cu>0) {
+			if(temporalNum.get(0)!= null) {
+				temporalNum.remove(0);
 				cu--;
 			}
 		}
@@ -54,9 +66,9 @@ public class TiendaMonarca {
 
 	private ArrayList<SalesCredit> salesCredit;
 
-	// Listas enlazada = clients. product
-	// Arbol binario = producto . ventas contado
+	
 	public TiendaMonarca() {
+		temporalNum =  new ArrayList<>();
 		temporal =  new ArrayList<>();
 		providers = new ArrayList<>();
 		salesCredit = new ArrayList<>();
@@ -593,7 +605,7 @@ public class TiendaMonarca {
 			getProductCom(current.getRight(), p);
 		}
 	}
-	
+	private Clients clientPro ;
 	public Clients binarySearchCustomer(String firstName, String lastName) {
 
         Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
@@ -619,6 +631,7 @@ public class TiendaMonarca {
         }else{
             key=clients.get(index);
         }
+        setClientPro(key);
         return key;
     }
 	public void addClients(String firstName, String lastName, String idCl, String pho, String type) throws IOException {
@@ -668,8 +681,50 @@ public class TiendaMonarca {
 		 for(int i = 0;i<m.size();i++) {
 			 if(m.get(i).getName().equals(name)) {
 				 temporal.add(m.get(i));
+				 temporalNum.add(cuanty);
 			 }
 		 }
 		 
 	 }
+	public int calculePrice() {
+		int out =0;
+		for(int i = 0;i<temporal.size();i++) {
+			out+= temporal.get(i).getCuantity()*temporalNum.get(i);
+		}
+		return out;
+	}
+	public Clients getClientPro() {
+		return clientPro;
+	}
+	public void setClientPro(Clients clientPro) {
+		this.clientPro = clientPro;
+	}
+	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
+		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum, type);
+		if (salesConta == null) {
+			salesConta = sl;
+		} else {
+			registerSaleContac(salesConta ,sl);
+		}
+	}
+	
+	private void registerSaleContac(SalesConta player1, SalesConta newPlayer) {
+
+		if (newPlayer.getPrice() >= player1.getPrice()) {
+			if (player1.getLeft() == null) {
+
+				player1.setLeft(newPlayer);
+			} else {
+				registerSaleContac(player1.getLeft(), newPlayer);
+			}
+
+		} else {
+			if (player1.getRight() == null) {
+
+				player1.setRight(newPlayer);
+			} else {
+				registerSaleContac(player1.getRight(), newPlayer);
+			}
+		}
+	}
 }

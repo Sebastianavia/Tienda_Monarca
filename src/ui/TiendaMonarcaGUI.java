@@ -180,6 +180,8 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TextField userTxt;
+	@FXML
+    private ComboBox<String> tipoPayConta;
 
 	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
 
@@ -961,10 +963,13 @@ public class TiendaMonarcaGUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddVenta-conta.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
+		tipoPayConta.getItems().addAll("EFECTIVO", "TARJETA");
+		tipoPayConta.setValue("EFECTIVO");
 		pane.setCenter(login1);
 		printProductConta();
 		
 	}
+	
 
 	/**
 	 * open menu window <br>
@@ -989,6 +994,7 @@ public class TiendaMonarcaGUI {
 	@FXML
 	void returnventCred(ActionEvent event) throws IOException {
 		tiendaMonarca.resetTemporal();
+		tiendaMonarca.resetTemporalNums();
 		loadMenu();
 	}
 
@@ -1001,6 +1007,7 @@ public class TiendaMonarcaGUI {
 	@FXML
 	void retunrVentCon(ActionEvent event) throws IOException {
 		tiendaMonarca.resetTemporal();
+		tiendaMonarca.resetTemporalNums();
 		loadMenu();
 	}
 
@@ -1424,7 +1431,8 @@ public class TiendaMonarcaGUI {
     private TextField nameVentCont;
     @FXML
     private TextField cuantiVentCont;
-
+    @FXML
+    private Label labelMount;
     @FXML
     void addProductListConta(ActionEvent event) {
     	String name = nameVentCont.getText();
@@ -1435,6 +1443,8 @@ public class TiendaMonarcaGUI {
     		int cuantity = Integer.parseInt(cuantiVentCont.getText());
     		if(tiendaMonarca.existProduct(name)) {
     			tiendaMonarca.selectProduct(name, cuantity);
+    			String out =tiendaMonarca.calculePrice()+"";
+    			labelMount.setText(out);
     			printProductnNew();
     		}
     	}
@@ -1455,4 +1465,27 @@ public class TiendaMonarcaGUI {
 		priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 		
 	} 
+    
+    @FXML
+    void creatVentCont(ActionEvent event) {
+    	
+    	if(labelMount.getText().equals("")) {
+    		JOptionPane.showMessageDialog(null, "Debe Seleccionar un PRODUCTO", "Error",
+					JOptionPane.WARNING_MESSAGE);
+    	}else {
+    		int out =Integer.parseInt(labelMount.getText()) ;
+    		String type = tipoPayConta.getValue().toString();
+        	if(tiendaMonarca.getClientPro()!=null) {
+        		if(type.equals("EFECTIVO")) {
+        			type="CASH";
+        		}
+        		if(type.equals("TARJETA")) {
+        			type="CARD";
+        		}
+        	}else{
+        		JOptionPane.showMessageDialog(null, "Debe Seleccionar un cliente", "Error",
+    					JOptionPane.WARNING_MESSAGE);
+        	}
+    	}
+    }
 }

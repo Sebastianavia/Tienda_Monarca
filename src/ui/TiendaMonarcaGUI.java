@@ -1,11 +1,9 @@
 package ui;
 
-import java.awt.print.Printable;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.function.Supplier;
-
 import javax.swing.JOptionPane;
 
 import javafx.collections.FXCollections;
@@ -259,10 +257,7 @@ public class TiendaMonarcaGUI {
 	 */
 	@FXML
 	void returnProductTec(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-		fxmlLoader.setController(this);
-		Parent login1 = fxmlLoader.load();
-		pane.setCenter(login1);
+	loadMenu();
 	}
 
 	// PARA PASAR A LA CREACION DE PRODUCTO TECNOLOGIA
@@ -305,10 +300,7 @@ public class TiendaMonarcaGUI {
 	 */
 	@FXML
 	void returnListTec(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-		fxmlLoader.setController(this);
-		Parent login1 = fxmlLoader.load();
-		pane.setCenter(login1);
+		loadMenu();
 	}
 	
 	
@@ -616,14 +608,16 @@ public class TiendaMonarcaGUI {
 		String idCl = idClient.getText();
 		String pho = phoneClient.getText();
 		String type = typeClient.getValue().toString();
-		if (nameC.equals("") || idCl.equals("") || pho.equals("")) {
+		String lastName = lastNamecli.getText();
+		if (nameC.equals("") || idCl.equals("") || pho.equals("")||lastName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
 
 		} else {
 			if(tiendaMonarca.foundClient(idCl)==false) {
 			JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
-			tiendaMonarca.creatClient(nameC, idCl, pho, type);
+			tiendaMonarca.creatClient(nameC,lastName, idCl, pho, type);
+			tiendaMonarca.addClients(nameC,lastName, idCl, pho, type);
 			loadMenu();
 			}else {
 				JOptionPane.showMessageDialog(null, "Ya hay un cliente con ese id", "Error", JOptionPane.WARNING_MESSAGE);
@@ -631,7 +625,8 @@ public class TiendaMonarcaGUI {
 			}
 		}
 	}
-
+    @FXML
+    private TextField lastNamecli;
 	
 	
 	/**
@@ -1322,4 +1317,8 @@ public class TiendaMonarcaGUI {
 			paySaleInv.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 			cuantityProductInvent.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
 		}
+	    @FXML
+	    void ImportData(ActionEvent event) {
+
+	    }
 }

@@ -9,6 +9,7 @@ public  class Clients implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String name; 
+	private String lastName;
     private String documentType;
     private String id;
     private String phone;
@@ -23,8 +24,8 @@ public  class Clients implements Serializable{
     	 * @param id
     	 * @param phone
     	 */
-		public Clients(String name, String documentType, String id, String phone) {
-		
+		public Clients(String name,String lst, String documentType, String id, String phone) {
+		setLastName(lst);
 		this.name = name;
 		this.documentType = documentType;
 		this.id = id;
@@ -84,6 +85,16 @@ public  class Clients implements Serializable{
 		 */
 		public void setNext(Clients next) {
 			this.next = next;
+		}
+
+
+		public String getLastName() {
+			return lastName;
+		}
+
+
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
 		}
 		
 }

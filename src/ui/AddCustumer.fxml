@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FFF8B8;" BorderPane.alignment="CENTER">
          <children>
@@ -31,15 +31,17 @@
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="194.0" layoutY="71.0" text="Nombre" />
-            <Label layoutX="177.0" layoutY="117.0" text="Identificacion " />
-            <Label layoutX="192.0" layoutY="158.0" text="Telefono" />
+            <Label layoutX="176.0" layoutY="141.0" text="Identificacion " />
+            <Label layoutX="191.0" layoutY="182.0" text="Telefono" />
             <TextField fx:id="nameClien" layoutX="336.0" layoutY="67.0" />
-            <TextField fx:id="idClient" layoutX="336.0" layoutY="112.0" />
-            <TextField fx:id="phoneClient" layoutX="336.0" layoutY="154.0" />
+            <TextField fx:id="idClient" layoutX="335.0" layoutY="137.0" />
+            <TextField fx:id="phoneClient" layoutX="335.0" layoutY="178.0" />
             <Button layoutX="209.0" layoutY="274.0" mnemonicParsing="false" onAction="#addClient" text="Añadir" />
             <Button layoutX="485.0" layoutY="274.0" mnemonicParsing="false" onAction="#returnClient" text="salir" />
-            <Label layoutX="159.0" layoutY="192.0" text="Tipo de identificacion" />
-            <ChoiceBox fx:id="typeClient" layoutX="336.0" layoutY="188.0" prefWidth="150.0" />
+            <Label layoutX="158.0" layoutY="216.0" text="Tipo de identificacion" />
+            <ChoiceBox fx:id="typeClient" layoutX="335.0" layoutY="212.0" prefWidth="150.0" />
+            <Label layoutX="195.0" layoutY="105.0" text="Apellido" />
+            <TextField fx:id="lastNamecli" layoutX="336.0" layoutY="101.0" />
          </children>
       </AnchorPane>
    </center>

@@ -18,7 +18,7 @@ class ClientCreat {
 	@Test
 	void test() {
 		setupScenary1();
-		td.creatClient(name, lastName, id, phone);
+		td.creatClient(name,lastName,"ti", id, phone);
 	}
 
 }

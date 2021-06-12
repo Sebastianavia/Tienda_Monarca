@@ -1,22 +1,25 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class TiendaMonarca {
-	
+
 	public static final String CUSTOMERS_FILE_NAME = "src/data/customers.bbd";
 	public static final String Debstor_FILE_NAME = "src/data/debstor.bbd";
-    public static final String PRODUCTS_TEC_FILE_NAME = "src/data/productstec.bbd";
-    public static final String PRODUCTS_HOG_FILE_NAME = "src/data/productshog.bbd";
-    public static final String PROVIDER_FILE_NAME = "src/data/orders.bbd";
+	public static final String PRODUCTS_TEC_FILE_NAME = "src/data/productstec.bbd";
+	public static final String PRODUCTS_HOG_FILE_NAME = "src/data/productshog.bbd";
+	public static final String PROVIDER_FILE_NAME = "src/data/orders.bbd";
 	private EmployeUser first;
 	private Clients firstC;
 	private Product product;
 	private Debtors debtors;
 	private SalesConta salesConta;
 	private ArrayList<Provider> providers;
-	
-	
 
 	/**
 	 * @return providers
@@ -24,8 +27,6 @@ public class TiendaMonarca {
 	public ArrayList<Provider> getProviders() {
 		return providers;
 	}
-	
-	
 
 	/**
 	 * @param providers
@@ -41,14 +42,15 @@ public class TiendaMonarca {
 	public TiendaMonarca() {
 		providers = new ArrayList<>();
 		salesCredit = new ArrayList<>();
+		clients = new ArrayList<>();
 		if (first == null) {
 			first = new EmployeUser("admin", "admin", "admin", "admin", "123");
 		}
 	}
 
-	
 	/**
 	 * check if providers exist <br>
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -62,9 +64,9 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
 	/**
 	 * create technology product <br>
+	 * 
 	 * @param name
 	 * @param valuepay
 	 * @param valuesale
@@ -95,9 +97,9 @@ public class TiendaMonarca {
 		}
 	}
 
-	
 	/**
 	 * create a technological product if it is not registered <br>
+	 * 
 	 * @param product2
 	 * @param p
 	 */
@@ -121,9 +123,9 @@ public class TiendaMonarca {
 
 	}
 
-	
 	/**
 	 * add provider <br>
+	 * 
 	 * @param name
 	 * @param phone
 	 * @param address
@@ -134,13 +136,21 @@ public class TiendaMonarca {
 	public boolean addProovider(String name, String phone, String address, String id, String numAcount) {
 		boolean out = false;
 		Provider pro = new ProviderConta(name, phone, address, id, numAcount);
-		providers.add(pro);
+		if (providers.isEmpty()) {
+			providers.add(pro);
+		} else {
+			int i = 0;
+			while (i < providers.size() && providers.get(i).getName().compareToIgnoreCase(pro.getName()) < 0) {
+				i++;
+			}
+			providers.add(i, pro);
+		}
 		return out;
 	}
 
-	
 	/**
 	 * add provider <br>
+	 * 
 	 * @param name
 	 * @param phone
 	 * @param address
@@ -151,12 +161,21 @@ public class TiendaMonarca {
 	public boolean addProovider(String name, String phone, String address, String id, int term) {
 		boolean out = false;
 		Provider pro = new ProviderCredit(name, phone, address, id, term);
-		providers.add(pro);
+		if (providers.isEmpty()) {
+			providers.add(pro);
+		} else {
+			int i = 0;
+			while (i < providers.size() && providers.get(i).getName().compareToIgnoreCase(pro.getName()) < 0) {
+				i++;
+			}
+			providers.add(i, pro);
+		}
 		return out;
 	}
 
 	/**
 	 * returns the existing product <br>
+	 * 
 	 * @param name
 	 * @return
 	 */
@@ -168,6 +187,7 @@ public class TiendaMonarca {
 
 	/**
 	 * check if the product exists or not <br>
+	 * 
 	 * @param current
 	 * @param out
 	 * @param name
@@ -194,15 +214,14 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
 	public boolean addProduct(String name, int valuepay, int valuesale, int cuantity, String p) {
 		boolean out = false;
 		return out;
 	}
 
-	
 	/**
 	 * found <br>
+	 * 
 	 * @param name
 	 * @param pass
 	 * @return out
@@ -213,9 +232,9 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
 	/**
 	 * search for the user and check if it exists <br>
+	 * 
 	 * @param em
 	 * @param name
 	 * @param pass
@@ -236,6 +255,7 @@ public class TiendaMonarca {
 
 	/**
 	 * check if the user is created <br>
+	 * 
 	 * @param userN
 	 * @return out
 	 */
@@ -245,9 +265,9 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
 	/**
 	 * search the user <br>
+	 * 
 	 * @param em
 	 * @param userN
 	 * @param out
@@ -267,9 +287,11 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
+	private ArrayList<Clients> clients;
+
 	/**
 	 * verify user <br>
+	 * 
 	 * @param name
 	 * @param lastN
 	 * @param id
@@ -283,6 +305,7 @@ public class TiendaMonarca {
 
 	/**
 	 * create user <br>
+	 * 
 	 * @param user1
 	 * @param name
 	 * @param lastN
@@ -306,25 +329,26 @@ public class TiendaMonarca {
 
 	/**
 	 * verify that it is not created and to create it <br>
+	 * 
 	 * @param nameC
 	 * @param idCl
 	 * @param pho
 	 * @param type
 	 */
-	public void creatClient(String nameC, String idCl, String pho, String type) {
+	public void creatClient(String nameC, String lst, String idCl, String pho, String type) {
 		if (firstC == null) {
 
-			firstC = new Clients(nameC, idCl, pho, type);
+			firstC = new Clients(nameC, lst, idCl, pho, type);
 
 		} else {
 			boolean found = false;
-			creatClient(firstC, nameC, idCl, pho, type, found);
+			creatClient(firstC, nameC, lst, idCl, pho, type, found);
 		}
 	}
 
-	
 	/**
 	 * create client <br>
+	 * 
 	 * @param firstC2
 	 * @param nameC
 	 * @param idCl
@@ -332,19 +356,20 @@ public class TiendaMonarca {
 	 * @param type
 	 * @param found
 	 */
-	private void creatClient(Clients firstC2, String nameC, String idCl, String pho, String type, boolean found) {
+	private void creatClient(Clients firstC2, String nameC, String sld, String idCl, String pho, String type,
+			boolean found) {
 		if (firstC2.getNext() != null) {
-			creatClient(firstC2.getNext(), nameC, idCl, pho, type, found);
+			creatClient(firstC2.getNext(), nameC, sld, idCl, pho, type, found);
 		} else {
-			Clients ls = new Clients(nameC, type, idCl, pho);
+			Clients ls = new Clients(nameC, sld, type, idCl, pho);
 			firstC2.setNext(ls);
 		}
 
 	}
 
-	
 	/**
 	 * look up the customer's name <br>
+	 * 
 	 * @return p
 	 */
 	public ArrayList<Clients> getClients() {
@@ -353,9 +378,9 @@ public class TiendaMonarca {
 		return p;
 	}
 
-	
 	/**
 	 * a client returns <br>
+	 * 
 	 * @param firstC2
 	 * @param p
 	 * @return p
@@ -373,22 +398,23 @@ public class TiendaMonarca {
 		return p;
 	}
 
-	
 	/**
 	 * validate clients <br>
+	 * 
 	 * @return out
 	 */
 	public boolean validClient() {
 		boolean out = false;
 		if (firstC != null) {
-			
+
 			out = true;
 		}
 		return out;
 	}
-	
+
 	/**
 	 * find clients <br>
+	 * 
 	 * @param id
 	 * @return out
 	 */
@@ -398,10 +424,10 @@ public class TiendaMonarca {
 		return out;
 	}
 
-	
 	/**
 	 * validate if it found the customer <br>
 	 * <b> pre: a costumer already created </b>
+	 * 
 	 * @param em
 	 * @param id
 	 * @param out
@@ -420,75 +446,54 @@ public class TiendaMonarca {
 		}
 		return out;
 	}
-	
-	/*public Customer binarySearchCustomer(String firstName, String lastName) {
 
-        Comparator<Customer> lastNameAndFirstName = new Comparator<Customer>() {
-            @Override
-            public int compare(Customer obj1, Customer obj2) {
-                String f1 = obj1.getFirstName().toLowerCase();
-                String l1 = obj1.getLastName().toLowerCase();
-                String f2 = obj2.getFirstName().toLowerCase();
-                String l2 = obj2.getLastName().toLowerCase();
-
-                if (l1.compareTo(l2) == 0) {
-                    return f2.compareTo(f1);
-                } else {
-                    return l2.compareTo(l1);
-                }
-            }
-        };
-
-        Customer key=new Customer(firstName,lastName, "", "", "", "", null);
-        int index=Collections.binarySearch(customers, key,lastNameAndFirstName);
-        if (index <0){
-            key=null;
-        }else{
-            key=customers.get(index);
-        }
-        return key;
-    }
-	 */
-	
-	
 	/*
-	 //SelectionSort
-        Comparator<Customer> lastNameAndFirstName = new Comparator<Customer>() {
-            @Override
-            public int compare(Customer obj1, Customer obj2) {
-                String f1 = obj1.getFirstName().toLowerCase();
-                String l1 = obj1.getLastName().toLowerCase();
-                String f2 = obj2.getFirstName().toLowerCase();
-                String l2 = obj2.getLastName().toLowerCase();
-
-                if (l1.compareTo(l2) == 0) {
-
-                    return f1.compareTo(f2);
-                } else {
-                    return l1.compareTo(l2);
-                }
-            }
-        };
-
-        for (int j = 0; j < customers.size() - 1; j++) {
-            Customer min = customers.get(j);
-            for (int i = j + 1; i < customers.size(); i++) {
-                if (lastNameAndFirstName.compare(min, customers.get(i)) < 0) {  
-                    Customer temp = customers.get(i);
-                    customers.set(i, min);
-                    min = temp;
-                }
-
-            }
-            customers.set(j,min);
-
-        }
-
+	 * public Customer binarySearchCustomer(String firstName, String lastName) {
+	 * 
+	 * Comparator<Customer> lastNameAndFirstName = new Comparator<Customer>() {
+	 * 
+	 * @Override public int compare(Customer obj1, Customer obj2) { String f1 =
+	 * obj1.getFirstName().toLowerCase(); String l1 =
+	 * obj1.getLastName().toLowerCase(); String f2 =
+	 * obj2.getFirstName().toLowerCase(); String l2 =
+	 * obj2.getLastName().toLowerCase();
+	 * 
+	 * if (l1.compareTo(l2) == 0) { return f2.compareTo(f1); } else { return
+	 * l2.compareTo(l1); } } };
+	 * 
+	 * Customer key=new Customer(firstName,lastName, "", "", "", "", null); int
+	 * index=Collections.binarySearch(customers, key,lastNameAndFirstName); if
+	 * (index <0){ key=null; }else{ key=customers.get(index); } return key; }
 	 */
-	
-	
+
+	/*
+	 * //SelectionSort Comparator<Customer> lastNameAndFirstName = new
+	 * Comparator<Customer>() {
+	 * 
+	 * @Override public int compare(Customer obj1, Customer obj2) { String f1 =
+	 * obj1.getFirstName().toLowerCase(); String l1 =
+	 * obj1.getLastName().toLowerCase(); String f2 =
+	 * obj2.getFirstName().toLowerCase(); String l2 =
+	 * obj2.getLastName().toLowerCase();
+	 * 
+	 * if (l1.compareTo(l2) == 0) {
+	 * 
+	 * return f1.compareTo(f2); } else { return l1.compareTo(l2); } } };
+	 * 
+	 * for (int j = 0; j < customers.size() - 1; j++) { Customer min =
+	 * customers.get(j); for (int i = j + 1; i < customers.size(); i++) { if
+	 * (lastNameAndFirstName.compare(min, customers.get(i)) < 0) { Customer temp =
+	 * customers.get(i); customers.set(i, min); min = temp; }
+	 * 
+	 * } customers.set(j,min);
+	 * 
+	 * }
+	 * 
+	 */
+
 	/**
 	 * create edible products <br>
+	 * 
 	 * @param name
 	 * @param valuepay
 	 * @param valuesale
@@ -519,11 +524,9 @@ public class TiendaMonarca {
 		}
 	}
 
-	
-	
-	
 	/**
 	 * create edible products <br>
+	 * 
 	 * @param product2
 	 * @param p
 	 */
@@ -546,11 +549,10 @@ public class TiendaMonarca {
 		}
 
 	}
-	
-	
-	
+
 	/**
 	 * return the edible products <br>
+	 * 
 	 * @return p
 	 */
 	public ArrayList<Product> getProductCom() {
@@ -559,10 +561,9 @@ public class TiendaMonarca {
 		return p;
 	}
 
-	
-	
 	/**
 	 * get the product in an array <br>
+	 * 
 	 * @param current
 	 * @param p
 	 */
@@ -570,8 +571,76 @@ public class TiendaMonarca {
 
 		if (current != null) {
 			getProductCom(current.getLeft(), p);
-				p.add(current);
+			p.add(current);
 			getProductCom(current.getRight(), p);
 		}
 	}
+	public Clients binarySearchCustomer(String firstName, String lastName) {
+
+        Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
+            @Override
+            public int compare(Clients obj1, Clients obj2) {
+                String f1 = obj1.getName().toLowerCase();
+                String l1 = obj1.getLastName().toLowerCase();
+                String f2 = obj2.getName().toLowerCase();
+                String l2 = obj2.getLastName().toLowerCase();
+
+                if (l1.compareTo(l2) == 0) {
+                    return f2.compareTo(f1);
+                } else {
+                    return l2.compareTo(l1);
+                }
+            }
+        };
+
+        Clients key=new Clients(firstName,lastName, "", "", "");
+        int index=Collections.binarySearch(clients, key,lastNameAndFirstName);
+        if (index <0){
+            key=null;
+        }else{
+            key=clients.get(index);
+        }
+        return key;
+    }
+	public void addClients(String firstName, String lastName, String idCl, String pho, String type) throws IOException {
+
+        // Comparador por apellido y nombre
+
+        Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
+            @Override
+            public int compare(Clients obj1, Clients obj2) {
+                String f1 = obj1.getName().toLowerCase();
+                String l1 = obj1.getLastName().toLowerCase();
+                String f2 = obj2.getName().toLowerCase();
+                String l2 = obj2.getLastName().toLowerCase();
+
+                if (l1.compareTo(l2) == 0) {
+
+                    return f1.compareTo(f2);
+                } else {
+                    return l1.compareTo(l2);
+                }
+            }
+        };
+
+        // Agregar de forma ordenada
+        Clients customer = new Clients(firstName, lastName, idCl, pho, type);
+
+        if (clients.isEmpty()) {
+            clients.add(customer);
+        } else {
+            int i = 0;
+            while (i < clients.size() && lastNameAndFirstName.compare(customer, clients.get(i)) < 0) {
+                i++;
+            }
+            clients.add(i, customer);
+        }
+        
+        saveDataClients();
+    }
+	 public void saveDataClients() throws IOException {
+	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE_NAME));
+	        oos.writeObject(clients);
+	        oos.close();
+	    }
 }

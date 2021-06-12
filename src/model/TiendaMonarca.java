@@ -375,7 +375,7 @@ public class TiendaMonarca {
 
 	
 	/**
-	 * 
+	 * validate clients <br>
 	 * @return out
 	 */
 	public boolean validClient() {
@@ -388,7 +388,7 @@ public class TiendaMonarca {
 	}
 	
 	/**
-	 * 
+	 * find clients <br>
 	 * @param id
 	 * @return out
 	 */
@@ -400,7 +400,8 @@ public class TiendaMonarca {
 
 	
 	/**
-	 * 
+	 * validate if it found the customer <br>
+	 * <b> pre: a costumer already created </b>
 	 * @param em
 	 * @param id
 	 * @param out
@@ -484,6 +485,17 @@ public class TiendaMonarca {
         }
 
 	 */
+	
+	
+	/**
+	 * create edible products <br>
+	 * @param name
+	 * @param valuepay
+	 * @param valuesale
+	 * @param cuantity
+	 * @param pr
+	 * @param ty
+	 */
 	public void creatProductComes(String name, int valuepay, int valuesale, int cuantity, String pr, String ty) {
 		int pos = 0;
 
@@ -507,6 +519,14 @@ public class TiendaMonarca {
 		}
 	}
 
+	
+	
+	
+	/**
+	 * create edible products <br>
+	 * @param product2
+	 * @param p
+	 */
 	private void creatProductComes(Product product2, Product p) {
 		if (p.getsetvaluepay() >= product2.getsetvaluepay()) {
 			if (product2.getLeft() == null) {
@@ -526,12 +546,26 @@ public class TiendaMonarca {
 		}
 
 	}
+	
+	
+	
+	/**
+	 * return the edible products <br>
+	 * @return p
+	 */
 	public ArrayList<Product> getProductCom() {
 		ArrayList<Product> p = new ArrayList<>();
 		getProductCom(product, p);
 		return p;
 	}
 
+	
+	
+	/**
+	 * get the product in an array <br>
+	 * @param current
+	 * @param p
+	 */
 	private void getProductCom(Product current, ArrayList<Product> p) {
 
 		if (current != null) {

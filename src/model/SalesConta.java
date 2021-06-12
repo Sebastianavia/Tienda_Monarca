@@ -9,7 +9,8 @@ public class SalesConta extends Sales {
 	
 	
 	/**
-	 * 
+	 * constructor method <br>
+     * <b> pre: we need the atributes </b> 
 	 * @param client
 	 * @param pr
 	 * @param price
@@ -19,21 +20,61 @@ public class SalesConta extends Sales {
 		super(client, pr, price);
 		setTypa(TypePaymen.valueOf(ty));
 	}
+	
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return typa
+	 */
 	public TypePaymen getTypa() {
 		return typa;
 	}
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b> 
+	 * @param typa
+	 */
 	public void setTypa(TypePaymen typa) {
 		this.typa = typa;
 	}
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return
+	 */
 	public SalesConta getLeft() {
 		return left;
 	}
+	
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b> 
+	 * @param left
+	 */
 	public void setLeft(SalesConta left) {
 		this.left = left;
 	}
+	
+	
+	/**
+	 * get method <br>
+	 * <b> pre: constructor method </b>
+	 * @return
+	 */
 	public SalesConta getRight() {
 		return right;
 	}
+	
+	
+	/**
+	 * set method <br>
+	 * <b> pre: constructor method </b> 
+	 * @param right
+	 */
 	public void setRight(SalesConta right) {
 		this.right = right;
 	}

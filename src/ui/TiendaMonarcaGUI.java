@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.print.Printable;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -1178,6 +1179,12 @@ public class TiendaMonarcaGUI {
 	private TextField priceComp;
 
 	// metodo para añadir productos
+	
+	/**
+	 * add products <br>
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void addProducts(ActionEvent event) throws IOException {
 		String name = nameProd.getText();
@@ -1242,6 +1249,11 @@ public class TiendaMonarcaGUI {
 
 	    @FXML
 	    private TableColumn<Product, String> proviserProductComes;
+	    
+	    
+	    /**
+	     * Print edible  products list <br>
+	     */
 	    public void printProductComes() {
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
@@ -1266,6 +1278,11 @@ public class TiendaMonarcaGUI {
 
 	    @FXML
 	    private TableColumn<Product, String> proveTech;
+	    
+	    
+	    /**
+	     * Print tecnology products list <br>
+	     */
 	    public void printProductTech() {
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
@@ -1291,6 +1308,10 @@ public class TiendaMonarcaGUI {
 
 	    @FXML
 	    private TableColumn<Product, String>cuantityProductInvent;
+	    
+	    /**
+	     * Print stocktaking list <br>
+	     */
 	    public void printInvent() {
 			ObservableList<Product> observableList;
 			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());

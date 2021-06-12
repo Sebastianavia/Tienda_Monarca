@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public abstract class Sales {
+public abstract class Sales implements ValueTotal {
 	private ArrayList<Product> pr  ;
 	private int price;
 	private Clients client;
 	
-	
+	private ArrayList<Integer> num;
 	
 	/**
 	 * constructor method <br>
@@ -16,9 +17,10 @@ public abstract class Sales {
 	 * @param pr
 	 * @param price
 	 */
-	public Sales(Clients cl,ArrayList<Product> pr, int price) {
+	public Sales(Clients cl,ArrayList<Product> pr,ArrayList<Integer>nums ,int price) {
 		this.pr = pr;
 		this.price = price;
+		setNum(nums);
 		setClient(cl);
 	}
 	
@@ -78,5 +80,23 @@ public abstract class Sales {
 	public void setClient(Clients client) {
 		this.client = client;
 	}
-	
+
+
+	public ArrayList<Integer> getNum() {
+		return num;
+	}
+
+
+	public void setNum(ArrayList<Integer> num) {
+		this.num = num;
+	}
+	@Override
+	public void calculeTotalPrice() {
+		int newVal =0;
+		for (int i=0;i<pr.size();i++) {
+			newVal+= pr.get(i).getsetvaluepay()*num.get(i);
+			
+		}
+		setPrice(newVal);
+	}
 }

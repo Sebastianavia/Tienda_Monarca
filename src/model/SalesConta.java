@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class SalesConta extends Sales {
+public class SalesConta extends Sales implements ValueTotal {
 	private TypePaymen typa;
 	private SalesConta left;
 	private SalesConta right;
@@ -16,8 +16,8 @@ public class SalesConta extends Sales {
 	 * @param price
 	 * @param ty
 	 */
-	public SalesConta(Clients client,ArrayList<Product> pr, int price,String ty) {
-		super(client, pr, price);
+	public SalesConta(Clients client,ArrayList<Product> pr, ArrayList<Integer> nums,String ty) {
+		super(client, pr, nums,0);
 		setTypa(TypePaymen.valueOf(ty));
 	}
 	
@@ -77,6 +77,12 @@ public class SalesConta extends Sales {
 	 */
 	public void setRight(SalesConta right) {
 		this.right = right;
+	}
+
+
+	@Override
+	public void calculeTotalPrice() {
+		
 	}
 
 }

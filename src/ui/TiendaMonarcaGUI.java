@@ -24,8 +24,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.Clients;
@@ -1002,6 +1000,7 @@ public class TiendaMonarcaGUI {
 	 */
 	@FXML
 	void retunrVentCon(ActionEvent event) throws IOException {
+		tiendaMonarca.resetTemporal();
 		loadMenu();
 	}
 
@@ -1455,8 +1454,5 @@ public class TiendaMonarcaGUI {
 		nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 		
-	} @FXML
-    void returnventCred(ActionEvent event) {
-
-    }
+	} 
 }

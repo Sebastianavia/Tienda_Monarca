@@ -26,7 +26,13 @@ public class TiendaMonarca {
 		return temporal;
 	}
 	public void resetTemporal() {
-		temporal=null;
+		int cu = temporal.size();
+		while(cu>0) {
+			if(temporal.get(0)!= null) {
+				temporal.remove(0);
+				cu--;
+			}
+		}
 	}
 	public void setTemporal(ArrayList<Product> temporal) {
 		this.temporal = temporal;

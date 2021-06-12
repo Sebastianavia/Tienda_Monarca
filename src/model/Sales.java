@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 public abstract class Sales implements ValueTotal {
 	private ArrayList<Product> pr  ;
@@ -22,6 +22,7 @@ public abstract class Sales implements ValueTotal {
 		this.price = price;
 		setNum(nums);
 		setClient(cl);
+		calculeTotalPrice();
 	}
 	
 	

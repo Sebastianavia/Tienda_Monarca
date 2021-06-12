@@ -17,8 +17,8 @@ public class SalesCredit extends Sales {
 	 * @param payment
 	 * @param should
 	 */
-	public SalesCredit(Clients client,ArrayList<Product> pr, int price,int payment,int should) {
-		super(client, pr, price);
+	public SalesCredit(Clients client,ArrayList<Product> pr,ArrayList<Integer> nums, int price,int payment,int should) {
+		super(client, pr, nums,0);
 		this.setPayment(payment);
 		this.setShould(should);
 		stat = Status.valueOf("SHOULD");

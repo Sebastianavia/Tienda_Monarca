@@ -730,4 +730,20 @@ public class TiendaMonarca {
 			}
 		}
 	}
+	public ArrayList<SalesConta> getVents() {
+		ArrayList<SalesConta> p = new ArrayList<>();
+		getVents(salesConta,p);
+		return p;
+	}
+	
+	
+	private void getVents(SalesConta current, ArrayList<SalesConta> p) {
+		
+		if(current != null) {
+			
+			getVents(current.getLeft(),p);
+			p.add(current);
+			getVents(current.getRight(),p);
+		}
+	}
 }

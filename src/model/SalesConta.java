@@ -6,7 +6,7 @@ public class SalesConta extends Sales implements ValueTotal {
 	private TypePaymen typa;
 	private SalesConta left;
 	private SalesConta right;
-	
+	private double ganancy;
 	
 	/**
 	 * constructor method <br>
@@ -19,6 +19,8 @@ public class SalesConta extends Sales implements ValueTotal {
 	public SalesConta(Clients client,ArrayList<Product> pr, ArrayList<Integer> nums,String ty) {
 		super(client, pr, nums,0);
 		setTypa(TypePaymen.valueOf(ty));
+		ganancy =0;
+		setGanancy();
 	}
 	
 	
@@ -88,7 +90,7 @@ public class SalesConta extends Sales implements ValueTotal {
 			ArrayList<Product> n = getPr();
 			ArrayList<Integer> nm = getNum();
 			for(int i=0;i<n.size();i++ ) {
-				out+= n.get(i).getCuantity()*nm.get(i);
+				out+= n.get(i).getvaluesale()*nm.get(i);
 			}
 			value = out* 0.15;
 			out = out+value;
@@ -97,10 +99,31 @@ public class SalesConta extends Sales implements ValueTotal {
 			ArrayList<Product> n = getPr();
 			ArrayList<Integer> nm = getNum();
 			for(int i=0;i<n.size();i++ ) {
-				out+= n.get(i).getCuantity()*nm.get(i);
+				out+= n.get(i).getvaluesale()*nm.get(i);
 			}
 			setPrice(out);
 		}
+	}
+
+
+	public double getGanancy() {
+		return ganancy;
+	}
+
+
+	public void setGanancy() {
+		double out =0;
+		double out2 = 0;
+		ArrayList<Product> n = getPr();
+		ArrayList<Integer> nm = getNum();
+		for(int i=0;i<n.size();i++ ) {
+			out+= n.get(i).getvaluesale()*nm.get(i);
+		}
+		for(int i=0;i<n.size();i++ ) {
+			out2+= n.get(i).getsetvaluepay()*nm.get(i);
+		}
+		out = out-out2;
+		ganancy=out;
 	}
 
 }

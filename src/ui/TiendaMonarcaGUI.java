@@ -31,6 +31,7 @@ import model.Clients;
 import model.Debtors;
 import model.Product;
 import model.Provider;
+import model.SalesConta;
 import model.TiendaMonarca;
 import threads.Clock;
 import threads.Loading;
@@ -580,6 +581,7 @@ public class TiendaMonarcaGUI {
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+		printVents();
 	}
 
 	/**
@@ -1496,4 +1498,20 @@ public class TiendaMonarcaGUI {
         	}
     	}
     }
+    @FXML
+    private TableView<SalesConta> tableVents;
+
+    @FXML
+    private TableColumn<SalesConta,String> productsTableVents;
+
+    @FXML
+    private TableColumn<SalesConta, String> paysVents;
+    public void printVents() {
+		ObservableList<SalesConta> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getVents());
+
+		tableVents.setItems(observableList);
+		productsTableVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("id"));
+		paysVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("ganancy"));
+	}
 }

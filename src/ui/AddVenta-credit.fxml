@@ -20,11 +20,10 @@
                </font>
             </Text>
             <TextField layoutX="171.0" layoutY="240.0" prefHeight="40.0" prefWidth="187.0" promptText="Ingrese la cantidad" />
-            <Label layoutX="164.0" layoutY="35.0" text="Sin asignar">
+            <Label fx:id="labelCredit" layoutX="164.0" layoutY="35.0" text="Sin asignar">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Button layoutX="24.0" layoutY="108.0" mnemonicParsing="false" text="Buscar" />
             <TableView layoutX="493.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="131.0" prefWidth="512.0" style="-fx-text-color: gold;">
               <columns>
                 <TableColumn prefWidth="161.0" style="-fx-background-color: FFF8B8;" text="Nombre" />
@@ -61,8 +60,8 @@
                   <Font name="Gabriola" size="28.0" />
                </font>
             </Button>
-            <Button layoutX="271.0" layoutY="149.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="159.0" text="Busqueda binaria" />
-            <TextField layoutX="24.0" layoutY="147.0" prefHeight="34.0" prefWidth="240.0" promptText="Nombre y apellido separado por espacio" />
+            <Button layoutX="271.0" layoutY="149.0" mnemonicParsing="false" onAction="#serchClientCredit" prefHeight="30.0" prefWidth="159.0" text="Busqueda binaria" />
+            <TextField fx:id="nameClientCreidt" layoutX="24.0" layoutY="147.0" prefHeight="34.0" prefWidth="240.0" promptText="Nombre y apellido separado por espacio" />
             <Text layoutX="19.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Debe pagar" wrappingWidth="137.2578125">
                <font>
                   <Font size="25.0" />
@@ -94,7 +93,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="labelCustomer112" layoutX="575.0" layoutY="491.0" text="\$">
+            <Label layoutX="575.0" layoutY="491.0" text="\$">
                <font>
                   <Font size="15.0" />
                </font>

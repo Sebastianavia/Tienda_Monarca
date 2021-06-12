@@ -575,6 +575,7 @@ public class TiendaMonarca {
 			getProductCom(current.getRight(), p);
 		}
 	}
+	
 	public Clients binarySearchCustomer(String firstName, String lastName) {
 
         Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
@@ -636,8 +637,9 @@ public class TiendaMonarca {
             clients.add(i, customer);
         }
         
-        saveDataClients();
+        //saveDataClients();
     }
+	
 	 public void saveDataClients() throws IOException {
 	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE_NAME));
 	        oos.writeObject(clients);

@@ -1,6 +1,5 @@
 package ui;
 
-
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -181,70 +180,66 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TextField userTxt;
-	
-	
 
 	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
-	
+
 	/**
-	 *  create a list product <br>
-	 * <b> pre: the products  </b>
+	 * create a list product <br>
+	 * <b> pre: the products </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void addProductTecList(ActionEvent event) throws IOException {
 		String brand = brandTec.getText();
-		
+
 		String type = choiseProduTec.getValue().toString();
-		
-		String id =idProovedortec.getText();
-		String name =nameProdTec.getText();
-		
-		
-		if (brandTec.getText().equals("") || capacityTec.getText().equals("")
-				|| cuantityProdutTec.getText().equals("") || idProovedortec.getText().equals("")
-				|| nameProdTec.getText().equals("")|| preciProdutTec.getText().equals("")
-				|| pricesProducTec.getText().equals("")) {
+
+		String id = idProovedortec.getText();
+		String name = nameProdTec.getText();
+
+		if (brandTec.getText().equals("") || capacityTec.getText().equals("") || cuantityProdutTec.getText().equals("")
+				|| idProovedortec.getText().equals("") || nameProdTec.getText().equals("")
+				|| preciProdutTec.getText().equals("") || pricesProducTec.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
 
 		} else {
-			if(tiendaMonarca.existProvider(id)) {
-				if(tiendaMonarca.existProduct(name)== false) {
-				if(type.equals("COMPUTADOR")) {
-					type = "COMPUTER";
-				}else {
-					type = "CELL";
+			if (tiendaMonarca.existProvider(id)) {
+				if (tiendaMonarca.existProduct(name) == false) {
+					if (type.equals("COMPUTADOR")) {
+						type = "COMPUTER";
+					} else {
+						type = "CELL";
+					}
+					int cuantity = 0;
+					int priceCom = 0;
+					int priceVent = 0;
+					int capacity = 0;
+					int i = 0;
+					try {
+						cuantity = Integer.parseInt(cuantityProdutTec.getText());
+						priceCom = Integer.parseInt(pricesProducTec.getText());
+						priceVent = Integer.parseInt(preciProdutTec.getText());
+						capacity = Integer.parseInt(capacityTec.getText());
+					} catch (NumberFormatException ex) {
+						i = 1;
+						System.out.println("Las cantidades deben ser números");
+					}
+
+					if (i == 0) {
+						tiendaMonarca.creatProductTech(name, priceCom, priceVent, cuantity, id, type, brand, capacity);
+						JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones",
+								JOptionPane.WARNING_MESSAGE);
+						loadMenu();
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "El producto existe", "Error", JOptionPane.WARNING_MESSAGE);
 				}
-				int cuantity=0;
-				int priceCom=0;
-				int priceVent=0;
-				int capacity=0;
-				int i = 0;
-				try{
-					cuantity = Integer.parseInt(cuantityProdutTec.getText());
-					 priceCom = Integer.parseInt(pricesProducTec.getText());
-					 priceVent = Integer.parseInt(preciProdutTec.getText());
-					capacity = Integer.parseInt(capacityTec.getText());
-		    	}catch(NumberFormatException ex){
-		    		i=1;
-		        	System.out.println("Las cantidades deben ser números");
-		    	}
-				
-				if(i==0) {
-					tiendaMonarca.creatProductTech(name, priceCom, priceVent, cuantity, id, type, brand, capacity);	
-					JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones",
-							JOptionPane.WARNING_MESSAGE);
-					loadMenu();
-				}
-				
-				}else{JOptionPane.showMessageDialog(null, "El producto existe", "Error",
-						JOptionPane.WARNING_MESSAGE);
-				}
-				}else {
-				JOptionPane.showMessageDialog(null, "El proveedor no existe", "Error",
-						JOptionPane.WARNING_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, "El proveedor no existe", "Error", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 
@@ -254,18 +249,20 @@ public class TiendaMonarcaGUI {
 	/**
 	 * return product <br>
 	 * <b> pre: the products allowed created </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void returnProductTec(ActionEvent event) throws IOException {
-	loadMenu();
+		loadMenu();
 	}
 
 	// PARA PASAR A LA CREACION DE PRODUCTO TECNOLOGIA
 	/**
 	 * To go to the creation of product tecnology <br>
 	 * <b> pre: a new tecnology product </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -279,10 +276,10 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 		printProvedProductTech();
 	}
-	
+
 	/**
 	 * print in the screen the technology product provider <br>
-	 * <b> pre: a  tecnology product provider </b>
+	 * <b> pre: a tecnology product provider </b>
 	 */
 	public void printProvedProductTech() {
 		ObservableList<Provider> observableList;
@@ -295,8 +292,9 @@ public class TiendaMonarcaGUI {
 
 	// RETORNAR DE LA LISTA DE TECNOLOGIA
 	/**
-	 * return to the tecnological list  <br>
-	 * <b> pre: a  tecnology product provider </b>
+	 * return to the tecnological list <br>
+	 * <b> pre: a tecnology product provider </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -304,10 +302,10 @@ public class TiendaMonarcaGUI {
 	void returnListTec(ActionEvent event) throws IOException {
 		loadMenu();
 	}
-	
-	
+
 	/**
-	 * is the start button, it begins to load the threads  <br>
+	 * is the start button, it begins to load the threads <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 * @throws InterruptedException
@@ -320,8 +318,10 @@ public class TiendaMonarcaGUI {
 		pc.start();
 
 	}
+
 	/**
-	 * open the login window  <br>
+	 * open the login window <br>
+	 * 
 	 * @throws IOException
 	 */
 	public void loadLogin() throws IOException {
@@ -330,10 +330,10 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	
-	
+
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @throws IOException
 	 */
 	public void loadMenu() throws IOException {
@@ -352,10 +352,10 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login);
 	}
 
-	
 	/**
 	 * if the username and password are correct the program opens menu <br>
 	 * <b> pre: check if password and user are the same </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -376,11 +376,11 @@ public class TiendaMonarcaGUI {
 
 		}
 	}
-	
-	
+
 	/**
 	 * opens the window to add users <br>
 	 * <b> pre: not have a user account </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -391,11 +391,11 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	
-	
+
 	/**
 	 * create the users and save them <br>
 	 * <b> pre: not have a user account </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -427,9 +427,9 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
-	
 	/**
-	 * open the login window  <br>
+	 * open the login window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -440,10 +440,10 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	
-	
+
 	/**
 	 * open the pay window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -454,10 +454,10 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	
-	
+
 	/**
 	 * open the Type_Product window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -473,6 +473,7 @@ public class TiendaMonarcaGUI {
 	// metodo para ver lista de productos comestibles
 	/**
 	 * see list of grocery products <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -485,10 +486,10 @@ public class TiendaMonarcaGUI {
 		printProductComes();
 
 	}
-	
-	
+
 	/**
 	 * open technology product Window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -501,10 +502,10 @@ public class TiendaMonarcaGUI {
 		printProductTech();
 
 	}
-	
-	
+
 	/**
 	 * open edible products Window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -519,10 +520,10 @@ public class TiendaMonarcaGUI {
 		printProvedProduct();
 
 	}
-	
-	
+
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -535,9 +536,9 @@ public class TiendaMonarcaGUI {
 
 	}
 
-	
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -550,9 +551,9 @@ public class TiendaMonarcaGUI {
 
 	}
 
-	
 	/**
 	 * open the Type_Proovedores window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -564,9 +565,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
 	/**
 	 * open the Sale window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -578,9 +579,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
 	/**
 	 * open the Custumer window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -595,12 +596,11 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 		PrintClient();
 	}
-	
-	
-	
+
 	/**
 	 * to create a new customer <br>
 	 * <b> pre: that all processes and fields are filled correctly </b>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -611,28 +611,31 @@ public class TiendaMonarcaGUI {
 		String pho = phoneClient.getText();
 		String type = typeClient.getValue().toString();
 		String lastName = lastNamecli.getText();
-		if (nameC.equals("") || idCl.equals("") || pho.equals("")||lastName.equals("")) {
+		if (nameC.equals("") || idCl.equals("") || pho.equals("") || lastName.equals("")) {
 			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
 
 		} else {
-			if(tiendaMonarca.foundClient(idCl)==false) {
-			JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
-			tiendaMonarca.creatClient(nameC,lastName, idCl, pho, type);
-			tiendaMonarca.addClients(nameC,lastName, idCl, pho, type);
-			loadMenu();
-			}else {
-				JOptionPane.showMessageDialog(null, "Ya hay un cliente con ese id", "Error", JOptionPane.WARNING_MESSAGE);
+			if (tiendaMonarca.foundClient(idCl) == false) {
+				JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones",
+						JOptionPane.WARNING_MESSAGE);
+				tiendaMonarca.creatClient(nameC, lastName, idCl, pho, type);
+				tiendaMonarca.addClients(nameC, lastName, idCl, pho, type);
+				loadMenu();
+			} else {
+				JOptionPane.showMessageDialog(null, "Ya hay un cliente con ese id", "Error",
+						JOptionPane.WARNING_MESSAGE);
 				idClient.setText("");
 			}
 		}
 	}
-    @FXML
-    private TextField lastNamecli;
-	
-	
+
+	@FXML
+	private TextField lastNamecli;
+
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -652,10 +655,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login);
 	}
 
-	
-	
 	/**
 	 * open the Debtors window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -667,9 +669,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
 	/**
 	 * open the stocktaking window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -682,10 +684,9 @@ public class TiendaMonarcaGUI {
 		printInvent();
 	}
 
-	
-	
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -694,10 +695,9 @@ public class TiendaMonarcaGUI {
 		loadMenu();
 	}
 
-	
-	
 	/**
 	 * open the addProovedores_contado window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -709,9 +709,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
 	/**
 	 * open the addProovedores_credit window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -723,10 +723,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
-	
 	/**
 	 * open the menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -736,9 +735,9 @@ public class TiendaMonarcaGUI {
 	}
 
 	// LISTA PROVEDORES PRODUCTO
-	
+
 	/**
-	 *  provider product list<br>
+	 * provider product list<br>
 	 */
 	public void printProvedProduct() {
 		ObservableList<Provider> observableList;
@@ -750,9 +749,10 @@ public class TiendaMonarcaGUI {
 	}
 
 	// GUARDA PROVEDOR CONTADO
-	
+
 	/**
-	 * save  provider count <br>
+	 * save provider count <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -784,12 +784,10 @@ public class TiendaMonarcaGUI {
 			}
 		}
 	}
-	
-	
-	
-	
+
 	/**
 	 * open Type_Proovedores windows <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -805,9 +803,10 @@ public class TiendaMonarcaGUI {
 	private TextField idProvedCredi;
 
 	// METODO PARA AGREGAR PROVEDOR A CREDITO
-	
+
 	/**
 	 * Add suppliers on credit <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -840,9 +839,8 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
-	
 	/**
-	 * open Type_Proovedores window <br> 
+	 * open Type_Proovedores window <br>
 	 */
 	@FXML
 	void returnCredit(ActionEvent event) throws IOException {
@@ -874,9 +872,9 @@ public class TiendaMonarcaGUI {
 
 	}
 
-	
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -902,20 +900,20 @@ public class TiendaMonarcaGUI {
 	}
 
 	@FXML
-	
+
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	void returnStock(ActionEvent event) throws IOException {
 		loadMenu();
 	}
-	
-	
 
 	/**
-	 * open Type_sale window <br> 
+	 * open Type_sale window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -926,9 +924,10 @@ public class TiendaMonarcaGUI {
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
 	}
-	
+
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -937,9 +936,9 @@ public class TiendaMonarcaGUI {
 		loadMenu();
 	}
 
-	
 	/**
-	 * open AddVenta_credit Window <br> 
+	 * open AddVenta_credit Window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -951,9 +950,9 @@ public class TiendaMonarcaGUI {
 		pane.setCenter(login1);
 	}
 
-	
 	/**
-	 * open AddVenta_conta Window <br> 
+	 * open AddVenta_conta Window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -963,10 +962,13 @@ public class TiendaMonarcaGUI {
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
 		pane.setCenter(login1);
+		printProductConta();
+		
 	}
 
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -978,9 +980,9 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private Label labelCustomer112;
 
-	
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -989,9 +991,9 @@ public class TiendaMonarcaGUI {
 		loadMenu();
 	}
 
-	
 	/**
-	 * open menu window <br> 
+	 * open menu window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -1000,7 +1002,6 @@ public class TiendaMonarcaGUI {
 		loadMenu();
 	}
 
-	
 	/**
 	 * @return product
 	 */
@@ -1008,7 +1009,6 @@ public class TiendaMonarcaGUI {
 		return product;
 	}
 
-	
 	/**
 	 * @param product
 	 */
@@ -1046,12 +1046,9 @@ public class TiendaMonarcaGUI {
 
 	@FXML
 	private TableColumn<Clients, String> phoneClientTab;
-	
-	
-	
-	
+
 	/**
-	 * Print customer list <br> 
+	 * Print customer list <br>
 	 */
 	public void PrintClient() {
 		if (tiendaMonarca.validClient() == true) {
@@ -1068,9 +1065,9 @@ public class TiendaMonarcaGUI {
 		}
 	}
 
-	
 	/**
 	 * open addCustumer window <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -1093,99 +1090,95 @@ public class TiendaMonarcaGUI {
 	void cancelDebstor(ActionEvent event) throws IOException {
 		loadMenu();
 	}
-	
-	//BinarySearch Customer
 
-   /* @FXML
-    public void binarySearchCustomer(ActionEvent event) throws InterruptedException {
+	// BinarySearch Customer
 
-        long init = System.currentTimeMillis();
-         
-        Thread.sleep(2000);
-         
-        String [] name=nameCustomer.getText().split(" ");
-        orderCustomer=laCasaDorada.binarySearchCustomer(name[0], name[1]);
-        long end = System.currentTimeMillis();
-         
-        double tiempo = (double) (end - init);
+	/*
+	 * @FXML public void binarySearchCustomer(ActionEvent event) throws
+	 * InterruptedException {
+	 * 
+	 * long init = System.currentTimeMillis();
+	 * 
+	 * Thread.sleep(2000);
+	 * 
+	 * String [] name=nameCustomer.getText().split(" ");
+	 * orderCustomer=laCasaDorada.binarySearchCustomer(name[0], name[1]); long end =
+	 * System.currentTimeMillis();
+	 * 
+	 * double tiempo = (double) (end - init);
+	 * 
+	 * labelTimeBSCustomer.setText(tiempo +" Milisegundos");
+	 * 
+	 * if (orderCustomer!=null){ labelCustomer.setText(orderCustomer.toString()); }
+	 * 
+	 * }
+	 */
 
-        labelTimeBSCustomer.setText(tiempo +" Milisegundos");
-
-        if (orderCustomer!=null){
-            labelCustomer.setText(orderCustomer.toString());
-        }
-
-    }*/
-	
-	/*// Customer finder
-
-    @FXML
-    public void loadCustomerFinder(ActionEvent event) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CustomerFinder.fxml"));
-        fxmlLoader.setController(this);
-        Parent form = fxmlLoader.load();
-        // pane.getChildren().clear();
-        pane.setCenter(form);
-        initializeTableViewCustomers();
-
-        ObservableList<Customer> observableList;
-        observableList = FXCollections.observableArrayList(laCasaDorada.getCustomers())
-                .filtered(customer -> customer.isAvailability() == true);
-
-        // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Customer> filteredData = new FilteredList<>(observableList, b -> true);
-
-        // 2. Set the filter Predicate whenever the filter changes.
-        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(customer -> {
-                // If filter text is empty, display all persons.
-
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Compare first name and last name of every person with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (customer.getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches first name.
-                } else if (customer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name.
-                } else if (customer.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name.
-                } else if (String.valueOf(customer.getPhone()).indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false; // Does not match.
-            });
-        });
-
-        // 3. Wrap the FilteredList in a SortedList.
-        SortedList<Customer> sortedData = new SortedList<>(filteredData);
-
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // Otherwise, sorting the TableView would have no effect.
-        sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
-
-        // 5. Add sorted (and filtered) data to the table.
-        tableCustomers.setItems(sortedData);
-
-    }*/
+	/*
+	 * // Customer finder
+	 * 
+	 * @FXML public void loadCustomerFinder(ActionEvent event) throws IOException {
+	 * 
+	 * FXMLLoader fxmlLoader = new
+	 * FXMLLoader(getClass().getResource("CustomerFinder.fxml"));
+	 * fxmlLoader.setController(this); Parent form = fxmlLoader.load(); //
+	 * pane.getChildren().clear(); pane.setCenter(form);
+	 * initializeTableViewCustomers();
+	 * 
+	 * ObservableList<Customer> observableList; observableList =
+	 * FXCollections.observableArrayList(laCasaDorada.getCustomers())
+	 * .filtered(customer -> customer.isAvailability() == true);
+	 * 
+	 * // Wrap the ObservableList in a FilteredList (initially display all data).
+	 * FilteredList<Customer> filteredData = new FilteredList<>(observableList, b ->
+	 * true);
+	 * 
+	 * // 2. Set the filter Predicate whenever the filter changes.
+	 * filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+	 * filteredData.setPredicate(customer -> { // If filter text is empty, display
+	 * all persons.
+	 * 
+	 * if (newValue == null || newValue.isEmpty()) { return true; }
+	 * 
+	 * // Compare first name and last name of every person with filter text. String
+	 * lowerCaseFilter = newValue.toLowerCase();
+	 * 
+	 * if (customer.getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+	 * return true; // Filter matches first name. } else if
+	 * (customer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+	 * return true; // Filter matches last name. } else if
+	 * (customer.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) { return
+	 * true; // Filter matches last name. } else if
+	 * (String.valueOf(customer.getPhone()).indexOf(lowerCaseFilter) != -1) return
+	 * true; else return false; // Does not match. }); });
+	 * 
+	 * // 3. Wrap the FilteredList in a SortedList. SortedList<Customer> sortedData
+	 * = new SortedList<>(filteredData);
+	 * 
+	 * // 4. Bind the SortedList comparator to the TableView comparator. //
+	 * Otherwise, sorting the TableView would have no effect.
+	 * sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
+	 * 
+	 * // 5. Add sorted (and filtered) data to the table.
+	 * tableCustomers.setItems(sortedData);
+	 * 
+	 * }
+	 */
 	@FXML
 	private TextField priceComp;
 
 	// metodo para añadir productos
-	
+
 	/**
 	 * add products <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void addProducts(ActionEvent event) throws IOException {
 		String name = nameProd.getText();
-	
+
 		String id = idProovedor.getText();
 		if (nameProd.getText().equals("") || preciProdut.getText().equals("") || idProovedor.getText().equals("")
 				|| cuantityProdut.getText().equals("") || priceComp.getText().equals("")) {
@@ -1195,11 +1188,11 @@ public class TiendaMonarcaGUI {
 			int cuant = 0;
 			int priceCom = 0;
 			int i = 0;
-			int	 price = 0;
+			int price = 0;
 			try {
 				cuant = Integer.parseInt(cuantityProdut.getText());
 				priceCom = Integer.parseInt(priceComp.getText());
-				price = Integer.parseInt( preciProdut.getText());
+				price = Integer.parseInt(preciProdut.getText());
 			} catch (NumberFormatException ex) {
 				i = 1;
 				System.out.println("Las cantidades deben ser números");
@@ -1207,21 +1200,24 @@ public class TiendaMonarcaGUI {
 			if (i == 0) {
 				if (tiendaMonarca.existProvider(id)) {
 					String chos = choiseProducCos.getValue().toString();
-					if(tiendaMonarca.existProduct(name)) {
+					if (tiendaMonarca.existProduct(name)) {
 						JOptionPane.showMessageDialog(null, "El producto existe", "Error", JOptionPane.WARNING_MESSAGE);
-					}else {
-						if(chos=="BEBIDAS ALCOHOLICAS") {
-							chos ="ALCOHOLIC_DRINKS";
+					} else {
+						if (chos == "BEBIDAS ALCOHOLICAS") {
+							chos = "ALCOHOLIC_DRINKS";
 						}
-						if(chos == "DULCES" ) {
+						if (chos == "DULCES") {
 							chos = "CANDYS";
-						}if(chos == "GASEOSAS") {
+						}
+						if (chos == "GASEOSAS") {
 							chos = "SODAS";
-						}if(chos == "PRODUCTOS PARA EL HOGAR") {
+						}
+						if (chos == "PRODUCTOS PARA EL HOGAR") {
 							chos = "PRODUCTS_HOUSE";
 						}
 						tiendaMonarca.creatProductComes(name, priceCom, price, cuant, id, chos);
-						JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "El producto fue creado", "Felicitaciones",
+								JOptionPane.WARNING_MESSAGE);
 						loadMenu();
 					}
 				} else {
@@ -1232,151 +1228,213 @@ public class TiendaMonarcaGUI {
 			}
 		}
 	}
-	 @FXML
-	    private TableView<Product> tableProductComest;
 
-	    @FXML
-	    private TableColumn<Product, String> naemProductComes;
+	@FXML
+	private TableView<Product> tableProductComest;
 
-	    @FXML
-	    private TableColumn<Product, String> priceProductComes;
+	@FXML
+	private TableColumn<Product, String> naemProductComes;
 
-	    @FXML
-	    private TableColumn<Product, String> cuantityProdComes;
+	@FXML
+	private TableColumn<Product, String> priceProductComes;
 
-	    @FXML
-	    private TableColumn<Product, String> proviserProductComes;
-	    
-	    
-	    /**
-	     * Print edible  products list <br>
-	     */
-	    public void printProductComes() {
-			ObservableList<Product> observableList;
-			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+	@FXML
+	private TableColumn<Product, String> cuantityProdComes;
 
-			tableProductComest.setItems(observableList);
-			naemProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-			priceProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-			cuantityProdComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
-			proviserProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+	@FXML
+	private TableColumn<Product, String> proviserProductComes;
+
+	/**
+	 * Print edible products list <br>
+	 */
+	public void printProductComes() {
+		ObservableList<Product> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+		tableProductComest.setItems(observableList);
+		naemProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		priceProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		cuantityProdComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+		proviserProductComes.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+	}
+
+	@FXML
+	private TableView<Product> tableProdTech;
+
+	@FXML
+	private TableColumn<Product, String> tableProductTech;
+
+	@FXML
+	private TableColumn<Product, String> tableTechprice;
+
+	@FXML
+	private TableColumn<Product, String> cuantityTech;
+
+	@FXML
+	private TableColumn<Product, String> proveTech;
+
+	/**
+	 * Print tecnology products list <br>
+	 */
+	public void printProductTech() {
+		ObservableList<Product> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+		tableProdTech.setItems(observableList);
+		tableProductTech.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		tableTechprice.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		cuantityTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+		proveTech.setCellValueFactory(new PropertyValueFactory<Product, String>("pr"));
+	}
+
+	@FXML
+	private TableView<Product> inventTable;
+
+	@FXML
+	private TableColumn<Product, String> nameProdInvet;
+
+	@FXML
+	private TableColumn<Product, String> payCompInve;
+
+	@FXML
+	private TableColumn<Product, String> paySaleInv;
+
+	@FXML
+	private TableColumn<Product, String> cuantityProductInvent;
+
+	/**
+	 * Print stocktaking list <br>
+	 */
+	public void printInvent() {
+		ObservableList<Product> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+
+		inventTable.setItems(observableList);
+		nameProdInvet.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		payCompInve.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		paySaleInv.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		cuantityProductInvent.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+	}
+
+	@FXML
+	void ImportData(ActionEvent event) {
+
+	}
+
+	@FXML
+	void opengraf(ActionEvent event) throws IOException { // graff
+
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graff.fxml"));
+		fxmlLoader.setController(this);
+		Parent login1 = fxmlLoader.load();
+		pane.setCenter(login1);
+
+		startBarChart();
+
+	}
+
+	@FXML
+	private BarChart<Number, Number> barChart;
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void startBarChart() {
+		final String gaseosa = "enero";
+		final String papas = "febrero";
+		final String dulces = "marzo";
+
+		barChart.setTitle("Mas vendidos");
+		barChart.getXAxis().setLabel("productos");
+		barChart.getXAxis().setLabel("cantidad");
+
+		XYChart.Series series1 = new XYChart.Series();
+		series1.setName("papas");
+		series1.getData().add(new XYChart.Data(gaseosa, 50));
+		series1.getData().add(new XYChart.Data(papas, 20));
+		series1.getData().add(new XYChart.Data(dulces, 10));
+
+		XYChart.Series series2 = new XYChart.Series();
+		series2.setName("gaseosa");
+		series2.getData().add(new XYChart.Data(gaseosa, 57));
+		series2.getData().add(new XYChart.Data(papas, 41));
+		series2.getData().add(new XYChart.Data(dulces, 45));
+
+		XYChart.Series series3 = new XYChart.Series();
+		series3.setName("dulces");
+		series3.getData().add(new XYChart.Data(gaseosa, 45));
+		series3.getData().add(new XYChart.Data(papas, 44));
+		series3.getData().add(new XYChart.Data(dulces, 18));
+
+		barChart.getData().addAll(series1, series2, series3);
+	}
+
+	@FXML
+	void Closegraff(ActionEvent event) throws IOException {
+		loadMenu();
+	}
+
+	@FXML
+	private Label labelCustomer;
+	@FXML
+	private TextField nameCustomer;
+	// customer
+	private Clients orderCustomer;
+
+	@FXML
+	public void binarySearchClient(ActionEvent event) throws InterruptedException {
+		String[] name = nameCustomer.getText().split(" ");
+		orderCustomer = tiendaMonarca.binarySearchCustomer(name[0], name[1]);
+		if (orderCustomer != null) {
+			labelCustomer.setText(orderCustomer.getName());
 		}
-	    @FXML
-	    private TableView<Product> tableProdTech;
+		orderCustomer=null;
+	}
 
-	    @FXML
-	    private TableColumn<Product, String> tableProductTech;
-
-	    @FXML
-	    private TableColumn<Product, String> tableTechprice;
-
-	    @FXML
-	    private TableColumn<Product, String> cuantityTech;
-
-	    @FXML
-	    private TableColumn<Product, String> proveTech;
-	    
-	    
-	    /**
-	     * Print tecnology products list <br>
-	     */
-	    public void printProductTech() {
-			ObservableList<Product> observableList;
-			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
-
-			tableProdTech.setItems(observableList);
-			tableProductTech.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-			tableTechprice.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-			cuantityTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
-			proveTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
+	@FXML
+    private Label labelCredit;
+    @FXML
+    private TextField nameClientCreidt;
+    @FXML
+    void serchClientCredit(ActionEvent event) {
+    	String[] name = nameClientCreidt.getText().split(" ");
+		orderCustomer = tiendaMonarca.binarySearchCustomer(name[0], name[1]);
+		if (orderCustomer != null) {
+			labelCredit.setText(orderCustomer.getName());
 		}
+		orderCustomer = null;
+    }
+    @FXML
+    private TableView<Product> productsConta;
 
-	    @FXML
-	    private TableView<Product> inventTable;
+    @FXML
+    private TableColumn<Product, String> nameTableConta;
 
-	    @FXML
-	    private TableColumn<Product, String> nameProdInvet;
+    @FXML
+    private TableColumn<Product, String> tablePriceCont;
+    public void printProductConta() {
+		ObservableList<Product> observableList;
+		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
 
-	    @FXML
-	    private TableColumn<Product, String> payCompInve;
+		productsConta.setItems(observableList);
+		nameTableConta.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		tablePriceCont.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		
+	}
 
-	    @FXML
-	    private TableColumn<Product, String> paySaleInv;
+    @FXML
+    private TableView<Product> newProductventCont;
 
-	    @FXML
-	    private TableColumn<Product, String>cuantityProductInvent;
-	    
-	    /**
-	     * Print stocktaking list <br>
-	     */
-	    public void printInvent() {
-			ObservableList<Product> observableList;
-			observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
+    @FXML
+    private TableColumn<Product, String> nameNewVentPr;
 
-			inventTable.setItems(observableList);
-			nameProdInvet.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-			payCompInve.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-			paySaleInv.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-			cuantityProductInvent.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
-		}
-	    @FXML
-	    void ImportData(ActionEvent event) {
+    @FXML
+    private TableColumn<Product, String> priceNewVentPr;
+    public void printProductnNew() {
+		//ObservableList<Product> observableList;
+		//observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
 
-	    }
-	    
-	    
-	    @FXML
-	    void opengraf(ActionEvent event) throws IOException { //graff
-			
-	    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graff.fxml"));
-	    	fxmlLoader.setController(this);
-			Parent login1 = fxmlLoader.load();
-			pane.setCenter(login1);
-			
-			startBarChart();
-	    	
-	    }
-	    
-	    @FXML
-	    private BarChart<Number, Number> barChart;
-	    @SuppressWarnings({ "unchecked", "rawtypes" })
-	    public void startBarChart() {
-	        final String gaseosa = "enero";
-	        final String papas = "febrero";
-	        final String dulces = "marzo";
-	        
-
-	        barChart.setTitle("Mas vendidos");
-	        barChart.getXAxis().setLabel("productos");
-	        barChart.getXAxis().setLabel("cantidad");
-
-	        XYChart.Series series1 = new XYChart.Series();
-	        series1.setName("papas");
-	        series1.getData().add(new XYChart.Data(gaseosa, 50));
-	        series1.getData().add(new XYChart.Data(papas, 20));
-	        series1.getData().add(new XYChart.Data(dulces, 10));
-	        
-
-	        XYChart.Series series2 = new XYChart.Series();
-	        series2.setName("gaseosa");
-	        series2.getData().add(new XYChart.Data(gaseosa, 57));
-	        series2.getData().add(new XYChart.Data(papas, 41));
-	        series2.getData().add(new XYChart.Data(dulces, 45));
-	        
-
-	        XYChart.Series series3 = new XYChart.Series();
-	        series3.setName("dulces");
-	        series3.getData().add(new XYChart.Data(gaseosa, 45));
-	        series3.getData().add(new XYChart.Data(papas, 44));
-	        series3.getData().add(new XYChart.Data(dulces, 18));
-	        
-
-	        barChart.getData().addAll(series1, series2, series3);
-	    }
-	    
-	    @FXML
-	    void Closegraff(ActionEvent event) throws IOException {
-	    	loadMenu();
-	    }
-	    
+		//newProductventCont.setItems(observableList);
+		//nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		//priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
+		
+	}
 }

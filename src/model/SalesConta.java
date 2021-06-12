@@ -1,8 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SalesConta extends Sales implements ValueTotal {
+public class SalesConta extends Sales implements ValueTotal,Serializable {
+	private static final long serialVersionUID = 1L;
 	private TypePaymen typa;
 	private SalesConta left;
 	private SalesConta right;

@@ -17,7 +17,7 @@ public class TiendaMonarca {
 	public static final String Debstor_FILE_NAME = "data/debstor.bbd";
 	public static final String PRODUCTS_TEC_FILE_NAME = "data/productstec.bbd";
 	public static final String PROVIDER_FILE_NAME = "data/orders.bbd";
-	public static final String VENTS_CONTA = "data/vents.bbd";
+	public static final String VENTS_CONTA = "data/vents.txt";
 	// Listas enlazada = clients. product
 	// Arbol binario = producto . ventas contado
 	private EmployeUser first;
@@ -84,6 +84,8 @@ public class TiendaMonarca {
 			first = new EmployeUser("admin", "admin", "admin", "admin", "123");
 		}
 		loadData();
+		loadDataVents();
+		
 	}
 
 	/**
@@ -101,7 +103,6 @@ public class TiendaMonarca {
 		}
 		return out;
 	}
-
 	/**
 	 * create technology product <br>
 	 * 
@@ -755,7 +756,20 @@ public class TiendaMonarca {
 	public void setClientPro(Clients clientPro) {
 		this.clientPro = clientPro;
 	}
-
+	
+	
+	public void loadDataVents() throws FileNotFoundException, IOException, ClassNotFoundException {
+		File f = new File(VENTS_CONTA);
+		if (f.exists()) {
+			ObjectInputStream ob = new ObjectInputStream(new FileInputStream(f));
+			System.out.println("pasa");
+			salesConta = (SalesConta) ob.readObject();
+			System.out.println("COMPLETss");
+			ob.close();
+		}
+	}
+	
+	
 	/**
 	 * record sales <br>
 	 * 
@@ -764,15 +778,19 @@ public class TiendaMonarca {
 	 * @throws IOException
 	 */
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
+		boolean productAlcoholic = false;
 		String out = "";
 		for(int i =0;i<temporal.size();i++) {
 			out += temporal.get(i).getName()+"\n";
+			if(temporal.get(i) instanceof ProductEdible) {
+				
+			}
 		}
 		SalesConta sl = new SalesConta(clientPro,out, temporal, temporalNum, type);
-		System.out.println(sl.getPr() + " - productos");
 		if (salesConta == null) {
 
 			salesConta = sl;
+			
 
 		} else {
 			registerSaleContac(salesConta, sl);
@@ -857,9 +875,9 @@ public class TiendaMonarca {
 		oos.close();
 	}
 	public void saveDataVentsCont() throws IOException {
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(VENTS_CONTA));
-		oos.writeObject(salesConta);
-		oos.close();
+		ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(VENTS_CONTA));
+		ob.writeObject(salesConta);
+		ob.close();
 	}
 
 	public ArrayList<SalesCredit> getSalesCredit() {
@@ -906,7 +924,7 @@ public class TiendaMonarca {
 			ObjectInputStream prov = new ObjectInputStream(new FileInputStream(f));
 			providers = (ArrayList<Provider>) prov.readObject();
 			prov.close();
-		}
+		}/*
 		f = new File(VENTS_CONTA);
 
 		if (f.exists()) {
@@ -915,6 +933,6 @@ public class TiendaMonarca {
 			vents.close();
 
 		}
-
+*/
 	}
 }

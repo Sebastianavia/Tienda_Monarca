@@ -1,6 +1,8 @@
 package model;
 
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 class UserCreate {
@@ -10,7 +12,7 @@ class UserCreate {
 	private String id;
 	private String nameU;
 	private String password;
-	public void setupScenary1() {
+	public void setupScenary1() throws ClassNotFoundException, IOException {
 		td = new TiendaMonarca();
 		name= "andres";
 		lastName ="gutierrez";
@@ -19,7 +21,7 @@ class UserCreate {
 		password = "12345";
 	}
 	@Test
-	void test() {
+	void test() throws ClassNotFoundException, IOException {
 		setupScenary1();
 		td.creatUser(name, lastName, id, nameU, password);
 	}

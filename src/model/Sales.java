@@ -7,7 +7,7 @@ public abstract class Sales implements ValueTotal {
 	private ArrayList<Product> pr  ;
 	private double price;
 	private Clients client;
-	
+	private String products;
 	private ArrayList<Integer> num;
 	
 	/**
@@ -22,7 +22,9 @@ public abstract class Sales implements ValueTotal {
 		this.price = price;
 		num =nums;
 		setClient(cl);
+		products = "1";
 		calculeTotalPrice();
+		
 	}
 	
 	
@@ -105,4 +107,22 @@ public abstract class Sales implements ValueTotal {
 		}
 		return out;
 	}
+
+
+	public String getProducts() {
+		String out = "";
+		for(int i =0;i<pr.size();i++) {
+			out += pr.get(i).getName()+"\n";
+		}
+		products=out;
+		return products;
+	}
+
+
+	public void setProducts(String products) {
+		this.products = products;
+	}
+	
+
+	
 }

@@ -1,8 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,42 +13,45 @@ import java.util.Comparator;
 
 public class TiendaMonarca {
 
-	public static final String CUSTOMERS_FILE_NAME = "src/data/customers.bbd";
-	public static final String Debstor_FILE_NAME = "src/data/debstor.bbd";
-	public static final String PRODUCTS_TEC_FILE_NAME = "src/data/productstec.bbd";
-	public static final String PRODUCTS_HOG_FILE_NAME = "src/data/productshog.bbd";
-	public static final String PROVIDER_FILE_NAME = "src/data/orders.bbd";
+	public static final String CUSTOMERS_FILE_NAME = "data/customers.txt";
+	public static final String Debstor_FILE_NAME = "data/debstor.bbd";
+	public static final String PRODUCTS_TEC_FILE_NAME = "data/productstec.bbd";
+	public static final String PROVIDER_FILE_NAME = "data/orders.bbd";
 	// Listas enlazada = clients. product
-		// Arbol binario = producto . ventas contado
+	// Arbol binario = producto . ventas contado
 	private EmployeUser first;
 	private Clients firstC;
 	private Product product;
 	private Debtors debtors;
 	private SalesConta salesConta;
 	private ArrayList<Provider> providers;
-	private ArrayList<Product> temporal ;
-	private ArrayList<Integer> temporalNum ;
+	private ArrayList<Product> temporal;
+	private ArrayList<Integer> temporalNum;
+
 	public ArrayList<Product> getTemporal() {
 		return temporal;
 	}
+
 	public void resetTemporal() {
 		int cu = temporal.size();
-		while(cu>0) {
-			if(temporal.get(0)!= null) {
+		while (cu > 0) {
+			if (temporal.get(0) != null) {
 				temporal.remove(0);
 				cu--;
 			}
 		}
 	}
+
 	public void resetTemporalNums() {
 		int cu = temporalNum.size();
-		while(cu>0) {
-			if(temporalNum.get(0)!= null) {
+		while (cu > 0) {
+			if (temporalNum.get(0) != null) {
 				temporalNum.remove(0);
 				cu--;
 			}
 		}
 	}
+
 	public void setTemporal(ArrayList<Product> temporal) {
 		this.temporal = temporal;
 	}
@@ -66,16 +72,17 @@ public class TiendaMonarca {
 
 	private ArrayList<SalesCredit> salesCredit;
 
-	
-	public TiendaMonarca() {
-		temporalNum =  new ArrayList<>();
-		temporal =  new ArrayList<>();
+	public TiendaMonarca() throws ClassNotFoundException, IOException {
+		loadData();
+		temporalNum = new ArrayList<>();
+		temporal = new ArrayList<>();
 		providers = new ArrayList<>();
-		salesCredit = new ArrayList<>();
+		setSalesCredit(new ArrayList<>());
 		clients = new ArrayList<>();
 		if (first == null) {
 			first = new EmployeUser("admin", "admin", "admin", "admin", "123");
 		}
+		//loadData();
 	}
 
 	/**
@@ -364,8 +371,9 @@ public class TiendaMonarca {
 	 * @param idCl
 	 * @param pho
 	 * @param type
+	 * @throws IOException 
 	 */
-	public void creatClient(String nameC, String lst, String idCl, String pho, String type) {
+	public void creatClient(String nameC, String lst, String idCl, String pho, String type) throws IOException {
 		if (firstC == null) {
 
 			firstC = new Clients(nameC, lst, idCl, pho, type);
@@ -374,6 +382,7 @@ public class TiendaMonarca {
 			boolean found = false;
 			creatClient(firstC, nameC, lst, idCl, pho, type, found);
 		}
+		saveDataClients();
 	}
 
 	/**
@@ -605,49 +614,48 @@ public class TiendaMonarca {
 			getProductCom(current.getRight(), p);
 		}
 	}
-	private Clients clientPro ;
-	
-	
+
+	private Clients clientPro;
+
 	/**
 	 * search for customers using binary search <br>
+	 * 
 	 * @param firstName
 	 * @param lastName
 	 * @return
 	 */
 	public Clients binarySearchCustomer(String firstName, String lastName) {
 
-        Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
-            @Override
-            public int compare(Clients obj1, Clients obj2) {
-                String f1 = obj1.getName().toLowerCase();
-                String l1 = obj1.getLastName().toLowerCase();
-                String f2 = obj2.getName().toLowerCase();
-                String l2 = obj2.getLastName().toLowerCase();
+		Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
+			@Override
+			public int compare(Clients obj1, Clients obj2) {
+				String f1 = obj1.getName().toLowerCase();
+				String l1 = obj1.getLastName().toLowerCase();
+				String f2 = obj2.getName().toLowerCase();
+				String l2 = obj2.getLastName().toLowerCase();
 
-                if (l1.compareTo(l2) == 0) {
-                    return f2.compareTo(f1);
-                } else {
-                    return l2.compareTo(l1);
-                }
-            }
-        };
+				if (l1.compareTo(l2) == 0) {
+					return f2.compareTo(f1);
+				} else {
+					return l2.compareTo(l1);
+				}
+			}
+		};
 
-        Clients key=new Clients(firstName,lastName, "", "", "");
-        int index=Collections.binarySearch(clients, key,lastNameAndFirstName);
-        if (index <0){
-            key=null;
-        }else{
-            key=clients.get(index);
-        }
-        setClientPro(key);
-        return key;
-    }
-	
-	
-	
-	
+		Clients key = new Clients(firstName, lastName, "", "", "");
+		int index = Collections.binarySearch(clients, key, lastNameAndFirstName);
+		if (index < 0) {
+			key = null;
+		} else {
+			key = clients.get(index);
+		}
+		setClientPro(key);
+		return key;
+	}
+
 	/**
 	 * add costumer <br>
+	 * 
 	 * @param firstName
 	 * @param lastName
 	 * @param idCl
@@ -657,107 +665,112 @@ public class TiendaMonarca {
 	 */
 	public void addClients(String firstName, String lastName, String idCl, String pho, String type) throws IOException {
 
-        // Comparador por apellido y nombre
+		// Comparador por apellido y nombre
 
-        Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
-            @Override
-            public int compare(Clients obj1, Clients obj2) {
-                String f1 = obj1.getName().toLowerCase();
-                String l1 = obj1.getLastName().toLowerCase();
-                String f2 = obj2.getName().toLowerCase();
-                String l2 = obj2.getLastName().toLowerCase();
+		Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
+			@Override
+			public int compare(Clients obj1, Clients obj2) {
+				String f1 = obj1.getName().toLowerCase();
+				String l1 = obj1.getLastName().toLowerCase();
+				String f2 = obj2.getName().toLowerCase();
+				String l2 = obj2.getLastName().toLowerCase();
 
-                if (l1.compareTo(l2) == 0) {
+				if (l1.compareTo(l2) == 0) {
 
-                    return f1.compareTo(f2);
-                } else {
-                    return l1.compareTo(l2);
-                }
-            }
-        };
+					return f1.compareTo(f2);
+				} else {
+					return l1.compareTo(l2);
+				}
+			}
+		};
 
-        // Agregar de forma ordenada
-        Clients customer = new Clients(firstName, lastName, idCl, pho, type);
+		// Agregar de forma ordenada
+		Clients customer = new Clients(firstName, lastName, idCl, pho, type);
 
-        if (clients.isEmpty()) {
-            clients.add(customer);
-        } else {
-            int i = 0;
-            while (i < clients.size() && lastNameAndFirstName.compare(customer, clients.get(i)) < 0) {
-                i++;
-            }
-            clients.add(i, customer);
-        }
-        
-        //saveDataClients();
-    }
-	
-	
-	
+		if (clients.isEmpty()) {
+			clients.add(customer);
+		} else {
+			int i = 0;
+			while (i < clients.size() && lastNameAndFirstName.compare(customer, clients.get(i)) < 0) {
+				i++;
+			}
+			clients.add(i, customer);
+		}
+
+		
+	}
+
 	/**
 	 * save date about costumer <br>
+	 * 
 	 * @throws IOException
 	 */
 
-	 public void saveDataClients() throws IOException {
-	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE_NAME));
-	        oos.writeObject(clients);
-	        oos.close();
-	    }
-	 public void selectProduct(String name, int cuanty) {
-		 ArrayList<Product> m = getProductCom();
-		 for(int i = 0;i<m.size();i++) {
-			 if(m.get(i).getName().equals(name)) {
-				 temporal.add(m.get(i));
-				 temporalNum.add(cuanty);
-			 }
-		 }
-		 
-	 }
-	 
-	 
-	 
-	 /**
-	  * calculate the price of a certain number of products <br>
-	  * @return out
-	  */
+	public void saveDataClients() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CUSTOMERS_FILE_NAME));
+		oos.writeObject(firstC);
+		oos.close();
+	}
+
+	public void selectProduct(String name, int cuanty) {
+		ArrayList<Product> m = getProductCom();
+		for (int i = 0; i < m.size(); i++) {
+			if (m.get(i).getName().equals(name)) {
+				temporal.add(m.get(i));
+				temporalNum.add(cuanty);
+			}
+		}
+
+	}
+
+	/**
+	 * calculate the price of a certain number of products <br>
+	 * 
+	 * @return out
+	 */
 	public int calculePrice() {
-		int out =0;
-		for(int i = 0;i<temporal.size();i++) {
-			out+= temporal.get(i).getCuantity()*temporalNum.get(i);
+		int out = 0;
+		for (int i = 0; i < temporal.size(); i++) {
+			out += temporal.get(i).getCuantity() * temporalNum.get(i);
 		}
 		return out;
 	}
+
 	public Clients getClientPro() {
 		return clientPro;
 	}
+
 	public void setClientPro(Clients clientPro) {
 		this.clientPro = clientPro;
 	}
-	
+
 	/**
 	 * record sales <br>
+	 * 
 	 * @param type
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
-		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum,type);
+		System.out.println(temporal.get(0).getName() + "  producto");
+		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum, type);
+		System.out.println(sl.getPr() + " - productos");
 		if (salesConta == null) {
-			System.out.println("se crea");
+
 			salesConta = sl;
-			
+
 		} else {
-			registerSaleContac(salesConta ,sl);
+			registerSaleContac(salesConta, sl);
 		}
 	}
+
 	public void setClientp() {
-		//clientPro = null;
+		clientPro = null;
 	}
-	
-	
+
 	/**
 	 * record sales <br>
+	 * 
 	 * @param player1
 	 * @param newPlayer
 	 */
@@ -765,7 +778,7 @@ public class TiendaMonarca {
 
 		if (newPlayer.getPrice() >= player1.getPrice()) {
 			if (player1.getLeft() == null) {
-				
+
 				player1.setLeft(newPlayer);
 			} else {
 				registerSaleContac(player1.getLeft(), newPlayer);
@@ -773,45 +786,95 @@ public class TiendaMonarca {
 
 		} else {
 			if (player1.getRight() == null) {
-				
+
 				player1.setRight(newPlayer);
 			} else {
 				registerSaleContac(player1.getRight(), newPlayer);
 			}
 		}
 	}
+
 	public ArrayList<SalesConta> getVents() {
 		ArrayList<SalesConta> p = new ArrayList<>();
-		System.out.println("entra"+p.size());
-		getVents(salesConta,p);
+		getVents(salesConta, p);
 		return p;
 	}
+
 	public boolean usedSalesC() {
 		boolean out = false;
-		if(salesConta!=null) {
+		if (salesConta != null) {
 			out = true;
 		}
 		return out;
 	}
-	
+
 	public SalesConta getSalesConta() {
 		return salesConta;
 	}
+
 	public void setSalesConta(SalesConta salesConta) {
 		this.salesConta = salesConta;
 	}
+
 	/**
 	 * returns sales <br>
+	 * 
 	 * @param current
 	 * @param p
 	 */
 	private void getVents(SalesConta current, ArrayList<SalesConta> p) {
-		
-		if(current != null) {
-			getVents(current.getLeft(),p);
+
+		if (current != null) {
+			getVents(current.getLeft(), p);
 			p.add(current);
-			System.out.println(p.get(0).getPr() + "  asas");
-			getVents(current.getRight(),p);
+			getVents(current.getRight(), p);
 		}
+	}
+
+	public ArrayList<SalesCredit> getSalesCredit() {
+		return salesCredit;
+	}
+
+	public void setSalesCredit(ArrayList<SalesCredit> salesCredit) {
+		this.salesCredit = salesCredit;
+	}
+
+	public Debtors getDebtors() {
+		return debtors;
+	}
+
+	public void setDebtors(Debtors debtors) {
+		this.debtors = debtors;
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public void loadData() throws IOException, ClassNotFoundException {
+
+		File f = new File(CUSTOMERS_FILE_NAME);
+
+		if (f.exists()) {
+			ObjectInputStream ob = new ObjectInputStream(new FileInputStream(f));
+			firstC = (Clients) ob.readObject();
+			ob.close();
+		}
+
+		f = new File(PRODUCTS_TEC_FILE_NAME);
+
+		if (f.exists()) {
+			ObjectInputStream ob = new ObjectInputStream(new FileInputStream(f));
+			product = (Product) ob.readObject();
+			ob.close();
+
+		}
+
+		f = new File(PROVIDER_FILE_NAME);
+
+		if (f.exists()) {
+			ObjectInputStream prov = new ObjectInputStream(new FileInputStream(f));
+			providers = (ArrayList<Provider>) prov.readObject();
+			prov.close();
+		}
+
 	}
 }

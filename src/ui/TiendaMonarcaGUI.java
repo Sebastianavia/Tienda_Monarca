@@ -31,7 +31,7 @@ import model.Clients;
 import model.Debtors;
 import model.Product;
 import model.Provider;
-import model.SalesConta;
+import model.Sales;
 import model.TiendaMonarca;
 import threads.Clock;
 import threads.Loading;
@@ -173,7 +173,7 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private PasswordField createUserPA;
 
-	public TiendaMonarcaGUI() {
+	public TiendaMonarcaGUI() throws ClassNotFoundException, IOException {
 		tiendaMonarca = new TiendaMonarca();
 
 	}
@@ -1541,24 +1541,25 @@ public class TiendaMonarcaGUI {
 	}
 
 	@FXML
-	private TableView<SalesConta> tableVents;
+	private TableView<Sales> tableVents;
 
 	@FXML
-	private TableColumn<SalesConta, String> productsTableVents;
+	private TableColumn<Sales, String> productsTableVents;
 
 	@FXML
-	private TableColumn<SalesConta, String> paysVents;
+	private TableColumn<Sales, String> paysVents;
 
 	/**
 	 * print vents list <br>
 	 */
 	public void printVents() {
 			if(tiendaMonarca.usedSalesC()) {
-			ObservableList<SalesConta> observableList;
+			ObservableList<Sales> observableList;
 			observableList = FXCollections.observableArrayList(tiendaMonarca.getVents());
 			tableVents.setItems(observableList);
-			productsTableVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("pr"));
-			paysVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("ganancy"));
+			productsTableVents.setCellValueFactory(new PropertyValueFactory<Sales, String>("pro"));
+			paysVents.setCellValueFactory(new PropertyValueFactory<Sales, String>("ganancy"));
+			
 			}
 	}
 

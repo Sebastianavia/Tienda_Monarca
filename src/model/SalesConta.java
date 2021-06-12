@@ -7,6 +7,7 @@ public class SalesConta extends Sales implements ValueTotal {
 	private SalesConta left;
 	private SalesConta right;
 	private double ganancy;
+	private String pro;
 	
 	/**
 	 * constructor method <br>
@@ -20,6 +21,7 @@ public class SalesConta extends Sales implements ValueTotal {
 		super(client, pr, nums,0);
 		setTypa(TypePaymen.valueOf(ty));
 		ganancy =0;
+		setPro("1");
 		setGanancy();
 	}
 	
@@ -106,7 +108,13 @@ public class SalesConta extends Sales implements ValueTotal {
 	}
 
 
-	public double getGanancy() {
+	public String  getGanancy() {
+		String out = ganancy+"";
+		return out;
+	}
+
+
+	public void setGanancy() {
 		double out =0;
 		double out2 = 0;
 		ArrayList<Product> n = getPr2();
@@ -118,11 +126,24 @@ public class SalesConta extends Sales implements ValueTotal {
 			out2+= n.get(i).getsetvaluepay()*nm.get(i);
 		}
 		out = out-out2;
-		return out;
+		ganancy += out;
 	}
 
 
-	public void setGanancy() {
+	public String getPro() {
+		ArrayList<Product> p = getPr2();
+		for(int i =0;i<p.size();i++) {
+			pro+= p.get(i).getName()+"\n";
+		}
+		return pro;
+	}
+
+
+	public void setPro(String pro) {
+		ArrayList<Product> p = getPr2();
+		for(int i =0;i<p.size();i++) {
+			pro+= p.get(i).getName()+"\n";
+		}
 		
 	}
 

@@ -700,19 +700,22 @@ public class TiendaMonarca {
 		this.clientPro = clientPro;
 	}
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
-		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum, type);
+		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum,type);
 		if (salesConta == null) {
 			salesConta = sl;
+			
 		} else {
 			registerSaleContac(salesConta ,sl);
 		}
 	}
-	
+	public void setClientp() {
+		clientPro = null;
+	}
 	private void registerSaleContac(SalesConta player1, SalesConta newPlayer) {
 
 		if (newPlayer.getPrice() >= player1.getPrice()) {
 			if (player1.getLeft() == null) {
-
+				
 				player1.setLeft(newPlayer);
 			} else {
 				registerSaleContac(player1.getLeft(), newPlayer);
@@ -720,7 +723,7 @@ public class TiendaMonarca {
 
 		} else {
 			if (player1.getRight() == null) {
-
+				
 				player1.setRight(newPlayer);
 			} else {
 				registerSaleContac(player1.getRight(), newPlayer);

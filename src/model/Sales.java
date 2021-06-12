@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Sales implements ValueTotal {
 	private ArrayList<Product> pr  ;
-	private int price;
+	private double price;
 	private Clients client;
 	
 	private ArrayList<Integer> num;
@@ -17,7 +17,7 @@ public abstract class Sales implements ValueTotal {
 	 * @param pr
 	 * @param price
 	 */
-	public Sales(Clients cl,ArrayList<Product> pr,ArrayList<Integer>nums ,int price) {
+	public Sales(Clients cl,ArrayList<Product> pr,ArrayList<Integer>nums ,double price) {
 		this.pr = pr;
 		this.price = price;
 		setNum(nums);
@@ -50,7 +50,7 @@ public abstract class Sales implements ValueTotal {
 	 * <b> pre: constructor method </b>
 	 * @return price 
 	 */
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 	
@@ -58,10 +58,10 @@ public abstract class Sales implements ValueTotal {
 	/**
 	 * set method <br>
 	 * <b> pre: constructor method </b>
-	 * @param price
+	 * @param out
 	 */
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double out) {
+		this.price = out;
 	}
 	
 	/**

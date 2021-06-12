@@ -1,5 +1,6 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -1467,13 +1468,13 @@ public class TiendaMonarcaGUI {
 	} 
     
     @FXML
-    void creatVentCont(ActionEvent event) {
+    void creatVentCont(ActionEvent event) throws FileNotFoundException, IOException  {
     	
     	if(labelMount.getText().equals("")) {
     		JOptionPane.showMessageDialog(null, "Debe Seleccionar un PRODUCTO", "Error",
 					JOptionPane.WARNING_MESSAGE);
     	}else {
-    		int out =Integer.parseInt(labelMount.getText()) ;
+    		//int out =Integer.parseInt(labelMount.getText()) ;
     		String type = tipoPayConta.getValue().toString();
         	if(tiendaMonarca.getClientPro()!=null) {
         		if(type.equals("EFECTIVO")) {
@@ -1481,7 +1482,14 @@ public class TiendaMonarcaGUI {
         		}
         		if(type.equals("TARJETA")) {
         			type="CARD";
+        			
         		}
+        		
+    			tiendaMonarca.registerSaleContac(type);
+    			JOptionPane.showMessageDialog(null, "Se creo una venta", "Felicitacion",
+    					JOptionPane.WARNING_MESSAGE);
+    			tiendaMonarca.setClientp();
+    			loadMenu();
         	}else{
         		JOptionPane.showMessageDialog(null, "Debe Seleccionar un cliente", "Error",
     					JOptionPane.WARNING_MESSAGE);

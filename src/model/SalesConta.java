@@ -82,7 +82,25 @@ public class SalesConta extends Sales implements ValueTotal {
 
 	@Override
 	public void calculeTotalPrice() {
-		
+		double out = 0;
+		double value =0;
+		if(typa== TypePaymen.CARD) {
+			ArrayList<Product> n = getPr();
+			ArrayList<Integer> nm = getNum();
+			for(int i=0;i<n.size();i++ ) {
+				out+= n.get(i).getCuantity()*nm.get(i);
+			}
+			value = out* 0.15;
+			out = out+value;
+			setPrice(out);
+		}else {
+			ArrayList<Product> n = getPr();
+			ArrayList<Integer> nm = getNum();
+			for(int i=0;i<n.size();i++ ) {
+				out+= n.get(i).getCuantity()*nm.get(i);
+			}
+			setPrice(out);
+		}
 	}
 
 }

@@ -84,4 +84,10 @@ public class ProductTechnology extends Product {
 		this.typ = typ;
 	}
 
+	@Override
+	public String returnType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

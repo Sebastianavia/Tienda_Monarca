@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import exceptions.BuysProhibitExceptions;
+
 public class TiendaMonarca {
 
 	public static final String CUSTOMERS_FILE_NAME = "data/customers.txt";
@@ -423,8 +425,16 @@ public class TiendaMonarca {
 	public ArrayList<Clients> getClients() {
 		ArrayList<Clients> p = new ArrayList<Clients>();
 		p = getClients(firstC, p);
-		clients=p;
+		System.out.println(p.size());
+		setClients(p);
+		clients =p;
+		
+		
 		return p;
+	}
+
+	public void setClients(ArrayList<Clients> clients) {
+		this.clients = clients;
 	}
 
 	/**
@@ -638,7 +648,7 @@ public class TiendaMonarca {
 	 * @return
 	 */
 	public Clients binarySearchCustomer(String firstName, String lastName) {
-
+		getClients();
 		Comparator<Clients> lastNameAndFirstName = new Comparator<Clients>() {
 			@Override
 			public int compare(Clients obj1, Clients obj2) {
@@ -661,6 +671,7 @@ public class TiendaMonarca {
 			key = null;
 		} else {
 			key = clients.get(index);
+			getClients();
 		}
 		setClientPro(key);
 		return key;
@@ -762,9 +773,9 @@ public class TiendaMonarca {
 		File f = new File(VENTS_CONTA);
 		if (f.exists()) {
 			ObjectInputStream ob = new ObjectInputStream(new FileInputStream(f));
-			System.out.println("pasa");
+			
 			salesConta = (SalesConta) ob.readObject();
-			System.out.println("COMPLETss");
+			
 			ob.close();
 		}
 	}
@@ -776,16 +787,25 @@ public class TiendaMonarca {
 	 * @param type
 	 * @throws FileNotFoundException
 	 * @throws IOException
+	 * @throws BuysProhibitExceptions 
 	 */
-	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
+	public void registerSaleContac(String type) throws FileNotFoundException, IOException, BuysProhibitExceptions {
 		boolean productAlcoholic = false;
 		String out = "";
 		for(int i =0;i<temporal.size();i++) {
 			out += temporal.get(i).getName()+"\n";
 			if(temporal.get(i) instanceof ProductEdible) {
-				
+				if(temporal.get(i).returnType().equals("ALCOHOLIC_DRINKS")) {
+					
+					productAlcoholic = true;
+				}
 			}
 		}
+		if(productAlcoholic==true) {
+			if(clientPro.getDocumentType().equals("TI")) {
+				throw new BuysProhibitExceptions();
+			}
+		}else {
 		SalesConta sl = new SalesConta(clientPro,out, temporal, temporalNum, type);
 		if (salesConta == null) {
 
@@ -796,7 +816,8 @@ public class TiendaMonarca {
 			registerSaleContac(salesConta, sl);
 		}
 		saveDataVentsCont();
-	}
+		}
+		}
 
 	public void setClientp() {
 		clientPro = null;

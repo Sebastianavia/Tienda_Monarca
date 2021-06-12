@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class Product implements Serializable {
+public abstract class Product implements Serializable,ReturnTypes {
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private int cuantity;
@@ -171,6 +171,10 @@ public abstract class Product implements Serializable {
 		String out = pr.getName();
 		return out;
 	}
-
+	@Override
+	public String returnType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }

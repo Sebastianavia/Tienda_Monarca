@@ -26,8 +26,8 @@ public class ProductEdible extends Product {
 	 * <b> pre: constructor method </b>
 	 * @return typr
 	 */
-	public TypeProduct getTypr() {
-		return typr;
+	public String getTypr() {
+		return typr.toString();
 	}
 
 	
@@ -38,6 +38,13 @@ public class ProductEdible extends Product {
 	 */
 	public void setTypr(TypeProduct typr) {
 		this.typr = typr;
+	}
+
+
+	@Override
+	public String returnType() {
+		String out = typr.toString();
+		return out;
 	}
 
 	

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
+import exceptions.BuysProhibitExceptions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -355,7 +356,7 @@ public class TiendaMonarcaGUI {
 		date.setText(f);
 		pane.setCenter(login);
 	}
-
+	
 	/**
 	 * if the username and password are correct the program opens menu <br>
 	 * <b> pre: check if password and user are the same </b>
@@ -624,8 +625,8 @@ public class TiendaMonarcaGUI {
 			if (tiendaMonarca.foundClient(idCl) == false) {
 				JOptionPane.showMessageDialog(null, "Ha creado un cliente", "Felicitaciones",
 						JOptionPane.WARNING_MESSAGE);
-				tiendaMonarca.creatClient(nameC, lastName, idCl, pho, type);
-				tiendaMonarca.addClients(nameC, lastName, idCl, pho, type);
+				tiendaMonarca.creatClient(nameC, lastName, type, idCl, pho);
+				tiendaMonarca.addClients(nameC, lastName, type, idCl, pho);
 				loadMenu();
 			} else {
 				JOptionPane.showMessageDialog(null, "Ya hay un cliente con ese id", "Error",
@@ -1087,8 +1088,8 @@ public class TiendaMonarcaGUI {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addCustumer.fxml"));
 		fxmlLoader.setController(this);
 		Parent login1 = fxmlLoader.load();
-		typeClient.getItems().addAll("Ti", "CC", "Pasaporte");
-		typeClient.setValue("Ti");
+		typeClient.getItems().addAll("TI", "CC", "Pasaporte");
+		typeClient.setValue("TI");
 		pane.setCenter(login1);
 	}
 
@@ -1102,79 +1103,6 @@ public class TiendaMonarcaGUI {
 		loadMenu();
 	}
 
-	// BinarySearch Customer
-
-	/*
-	 * @FXML public void binarySearchCustomer(ActionEvent event) throws
-	 * InterruptedException {
-	 * 
-	 * long init = System.currentTimeMillis();
-	 * 
-	 * Thread.sleep(2000);
-	 * 
-	 * String [] name=nameCustomer.getText().split(" ");
-	 * orderCustomer=laCasaDorada.binarySearchCustomer(name[0], name[1]); long end =
-	 * System.currentTimeMillis();
-	 * 
-	 * double tiempo = (double) (end - init);
-	 * 
-	 * labelTimeBSCustomer.setText(tiempo +" Milisegundos");
-	 * 
-	 * if (orderCustomer!=null){ labelCustomer.setText(orderCustomer.toString()); }
-	 * 
-	 * }
-	 */
-
-	/*
-	 * // Customer finder
-	 * 
-	 * @FXML public void loadCustomerFinder(ActionEvent event) throws IOException {
-	 * 
-	 * FXMLLoader fxmlLoader = new
-	 * FXMLLoader(getClass().getResource("CustomerFinder.fxml"));
-	 * fxmlLoader.setController(this); Parent form = fxmlLoader.load(); //
-	 * pane.getChildren().clear(); pane.setCenter(form);
-	 * initializeTableViewCustomers();
-	 * 
-	 * ObservableList<Customer> observableList; observableList =
-	 * FXCollections.observableArrayList(laCasaDorada.getCustomers())
-	 * .filtered(customer -> customer.isAvailability() == true);
-	 * 
-	 * // Wrap the ObservableList in a FilteredList (initially display all data).
-	 * FilteredList<Customer> filteredData = new FilteredList<>(observableList, b ->
-	 * true);
-	 * 
-	 * // 2. Set the filter Predicate whenever the filter changes.
-	 * filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-	 * filteredData.setPredicate(customer -> { // If filter text is empty, display
-	 * all persons.
-	 * 
-	 * if (newValue == null || newValue.isEmpty()) { return true; }
-	 * 
-	 * // Compare first name and last name of every person with filter text. String
-	 * lowerCaseFilter = newValue.toLowerCase();
-	 * 
-	 * if (customer.getFirstName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-	 * return true; // Filter matches first name. } else if
-	 * (customer.getLastName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-	 * return true; // Filter matches last name. } else if
-	 * (customer.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) { return
-	 * true; // Filter matches last name. } else if
-	 * (String.valueOf(customer.getPhone()).indexOf(lowerCaseFilter) != -1) return
-	 * true; else return false; // Does not match. }); });
-	 * 
-	 * // 3. Wrap the FilteredList in a SortedList. SortedList<Customer> sortedData
-	 * = new SortedList<>(filteredData);
-	 * 
-	 * // 4. Bind the SortedList comparator to the TableView comparator. //
-	 * Otherwise, sorting the TableView would have no effect.
-	 * sortedData.comparatorProperty().bind(tableCustomers.comparatorProperty());
-	 * 
-	 * // 5. Add sorted (and filtered) data to the table.
-	 * tableCustomers.setItems(sortedData);
-	 * 
-	 * }
-	 */
 	@FXML
 	private TextField priceComp;
 
@@ -1297,7 +1225,6 @@ public class TiendaMonarcaGUI {
 		cuantityTech.setCellValueFactory(new PropertyValueFactory<Product, String>("cuantity"));
 		proveTech.setCellValueFactory(new PropertyValueFactory<Product, String>("pr"));
 	}
-
 	@FXML
 	private TableView<Product> inventTable;
 
@@ -1407,6 +1334,7 @@ public class TiendaMonarcaGUI {
 		String[] name = nameCustomer.getText().split(" ");
 		orderCustomer = tiendaMonarca.binarySearchCustomer(name[0], name[1]);
 		if (orderCustomer != null) {
+			System.out.println("entra para imprimir");
 			labelCustomer.setText(orderCustomer.getName());
 		}
 		orderCustomer = null;
@@ -1526,9 +1454,19 @@ public class TiendaMonarcaGUI {
 					type = "CARD";
 
 				}
-
-				tiendaMonarca.registerSaleContac(type);
-				JOptionPane.showMessageDialog(null, "Se creo una venta", "Felicitacion", JOptionPane.WARNING_MESSAGE);
+				int i =0;
+				try {
+					tiendaMonarca.registerSaleContac(type);
+				} catch (BuysProhibitExceptions e) {
+				      System.err.println("No puede comprar bebidas alcoholicas");
+				    i = 1;
+				} 
+				
+				if(i==0) {
+					JOptionPane.showMessageDialog(null, "Se creo una venta", "Felicitacion", JOptionPane.WARNING_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "MENOR DE EDAD COMPRANDO LICOR", "ERROR", JOptionPane.WARNING_MESSAGE);
+				}
 				tiendaMonarca.setClientp();
 				tiendaMonarca.resetTemporal();
 				tiendaMonarca.resetTemporalNums();

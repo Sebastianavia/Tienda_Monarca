@@ -11,8 +11,8 @@ Snake_and_Ladders
 *Lenguage: Java 8
 *Operating system:Windoes 10
 *Project carried out by:
-	https://github.com/Sebastianavia
-	https://github.com/G20-00
+	https://github.com/Sebastianavia A00369840 Sebastian Navia
+	https://github.com/G20-00 	A00362358 Gianni Benavides
 
 Enlace: https://github.com/Sebastianavia/Tienda_Monarca/tree/main/docs
 -CHANGELOG_1

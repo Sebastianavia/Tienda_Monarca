@@ -28,3 +28,9 @@ add....
 6. Class Diagram of Unit Tests.
 
 NOTE: The images of the diagrams are at the end of the pdf document, as well as the non-functional requirements
+
+The explicative video:
+
+link;
+
+https://youtu.be/SHmK0KEPm-Y

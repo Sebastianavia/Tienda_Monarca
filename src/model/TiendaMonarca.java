@@ -744,6 +744,7 @@ public class TiendaMonarca {
 	public void registerSaleContac(String type) throws FileNotFoundException, IOException {
 		SalesConta sl = new SalesConta(clientPro, temporal, temporalNum,type);
 		if (salesConta == null) {
+			System.out.println("se crea");
 			salesConta = sl;
 			
 		} else {
@@ -751,7 +752,7 @@ public class TiendaMonarca {
 		}
 	}
 	public void setClientp() {
-		clientPro = null;
+		//clientPro = null;
 	}
 	
 	
@@ -781,10 +782,24 @@ public class TiendaMonarca {
 	}
 	public ArrayList<SalesConta> getVents() {
 		ArrayList<SalesConta> p = new ArrayList<>();
+		System.out.println("entra"+p.size());
 		getVents(salesConta,p);
 		return p;
 	}
+	public boolean usedSalesC() {
+		boolean out = false;
+		if(salesConta!=null) {
+			out = true;
+		}
+		return out;
+	}
 	
+	public SalesConta getSalesConta() {
+		return salesConta;
+	}
+	public void setSalesConta(SalesConta salesConta) {
+		this.salesConta = salesConta;
+	}
 	/**
 	 * returns sales <br>
 	 * @param current
@@ -793,9 +808,9 @@ public class TiendaMonarca {
 	private void getVents(SalesConta current, ArrayList<SalesConta> p) {
 		
 		if(current != null) {
-			
 			getVents(current.getLeft(),p);
 			p.add(current);
+			System.out.println(p.get(0).getPr() + "  asas");
 			getVents(current.getRight(),p);
 		}
 	}

@@ -20,7 +20,7 @@ public abstract class Sales implements ValueTotal {
 	public Sales(Clients cl,ArrayList<Product> pr,ArrayList<Integer>nums ,double price) {
 		this.pr = pr;
 		this.price = price;
-		setNum(nums);
+		num =nums;
 		setClient(cl);
 		calculeTotalPrice();
 	}
@@ -31,7 +31,7 @@ public abstract class Sales implements ValueTotal {
 	 * <b> pre: constructor method </b>
 	 * @return pr
 	 */
-	public ArrayList<Product> getPr() {
+	public ArrayList<Product> getPr2() {
 		return pr;
 	}
 	
@@ -44,6 +44,7 @@ public abstract class Sales implements ValueTotal {
 	public void setPr(ArrayList<Product> pr) {
 		this.pr = pr;
 	}
+	
 	
 	/**
 	 * get method <br>
@@ -94,5 +95,14 @@ public abstract class Sales implements ValueTotal {
 	@Override
 	public void calculeTotalPrice() {
 		
+	}
+
+
+	public String getPr() {
+		String out = "";
+		for(int i =0;i<pr.size();i++) {
+			out += pr.get(i).getName()+"\n";
+		}
+		return out;
 	}
 }

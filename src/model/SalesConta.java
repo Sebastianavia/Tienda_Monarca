@@ -87,7 +87,7 @@ public class SalesConta extends Sales implements ValueTotal {
 		double out = 0;
 		double value =0;
 		if(typa== TypePaymen.CARD) {
-			ArrayList<Product> n = getPr();
+			ArrayList<Product> n = getPr2();
 			ArrayList<Integer> nm = getNum();
 			for(int i=0;i<n.size();i++ ) {
 				out+= n.get(i).getvaluesale()*nm.get(i);
@@ -96,7 +96,7 @@ public class SalesConta extends Sales implements ValueTotal {
 			out = out+value;
 			setPrice(out);
 		}else {
-			ArrayList<Product> n = getPr();
+			ArrayList<Product> n = getPr2();
 			ArrayList<Integer> nm = getNum();
 			for(int i=0;i<n.size();i++ ) {
 				out+= n.get(i).getvaluesale()*nm.get(i);
@@ -107,14 +107,9 @@ public class SalesConta extends Sales implements ValueTotal {
 
 
 	public double getGanancy() {
-		return ganancy;
-	}
-
-
-	public void setGanancy() {
 		double out =0;
 		double out2 = 0;
-		ArrayList<Product> n = getPr();
+		ArrayList<Product> n = getPr2();
 		ArrayList<Integer> nm = getNum();
 		for(int i=0;i<n.size();i++ ) {
 			out+= n.get(i).getvaluesale()*nm.get(i);
@@ -123,7 +118,12 @@ public class SalesConta extends Sales implements ValueTotal {
 			out2+= n.get(i).getsetvaluepay()*nm.get(i);
 		}
 		out = out-out2;
-		ganancy=out;
+		return out;
+	}
+
+
+	public void setGanancy() {
+		
 	}
 
 }

@@ -183,7 +183,7 @@ public class TiendaMonarcaGUI {
 	@FXML
 	private TextField userTxt;
 	@FXML
-    private ComboBox<String> tipoPayConta;
+	private ComboBox<String> tipoPayConta;
 
 	// CREA UN PRODUCTO PRODUCTO DE TIPO TECNOLOGIA
 
@@ -970,9 +970,8 @@ public class TiendaMonarcaGUI {
 		tipoPayConta.setValue("EFECTIVO");
 		pane.setCenter(login1);
 		printProductConta();
-		
+
 	}
-	
 
 	/**
 	 * open menu window <br>
@@ -1379,11 +1378,9 @@ public class TiendaMonarcaGUI {
 		barChart.getData().addAll(series1, series2, series3);
 	}
 
-	
-	
-	
 	/**
 	 * open menu windowa <br>
+	 * 
 	 * @param event
 	 * @throws IOException
 	 */
@@ -1399,10 +1396,9 @@ public class TiendaMonarcaGUI {
 	// customer
 	private Clients orderCustomer;
 
-	
-	
 	/**
 	 * search for a customer using binary search <br>
+	 * 
 	 * @param event
 	 * @throws InterruptedException
 	 */
@@ -1413,159 +1409,157 @@ public class TiendaMonarcaGUI {
 		if (orderCustomer != null) {
 			labelCustomer.setText(orderCustomer.getName());
 		}
-		orderCustomer=null;
+		orderCustomer = null;
 	}
 
 	@FXML
-    private Label labelCredit;
-    @FXML
-    private TextField nameClientCreidt;
-    
-    
-    /**
-     * look for a customer on credit<br>
-     * @param event
-     */
-    @FXML
-    void serchClientCredit(ActionEvent event) {
-    	String[] name = nameClientCreidt.getText().split(" ");
+	private Label labelCredit;
+	@FXML
+	private TextField nameClientCreidt;
+
+	/**
+	 * look for a customer on credit<br>
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void serchClientCredit(ActionEvent event) {
+		String[] name = nameClientCreidt.getText().split(" ");
 		orderCustomer = tiendaMonarca.binarySearchCustomer(name[0], name[1]);
 		if (orderCustomer != null) {
 			labelCredit.setText(orderCustomer.getName());
 		}
 		orderCustomer = null;
-    }
-    @FXML
-    private TableView<Product> productsConta;
+	}
 
-    @FXML
-    private TableColumn<Product, String> nameTableConta;
-    @FXML
-    private TableColumn<Product, String> tablePriceCont;
-    
-    
-    /**
-     * print product list<br>
-     */
-    public void printProductConta() {
+	@FXML
+	private TableView<Product> productsConta;
+
+	@FXML
+	private TableColumn<Product, String> nameTableConta;
+	@FXML
+	private TableColumn<Product, String> tablePriceCont;
+
+	/**
+	 * print product list<br>
+	 */
+	public void printProductConta() {
 		ObservableList<Product> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getProductCom());
 
 		productsConta.setItems(observableList);
 		nameTableConta.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		tablePriceCont.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-		
+
 	}
-    @FXML
-    private TextField nameVentCont;
-    @FXML
-    private TextField cuantiVentCont;
-    @FXML
-    private Label labelMount;
-    
-    
-    
-    
-    
-    /**
-     * add a product to the list <br>
-     * @param event
-     */
-    @FXML
-    void addProductListConta(ActionEvent event) {
-    	String name = nameVentCont.getText();
-    	if(nameVentCont.getText().equals("")||cuantiVentCont.getText().equals("")) {
-    		JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
+
+	@FXML
+	private TextField nameVentCont;
+	@FXML
+	private TextField cuantiVentCont;
+	@FXML
+	private Label labelMount;
+
+	/**
+	 * add a product to the list <br>
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void addProductListConta(ActionEvent event) {
+		String name = nameVentCont.getText();
+		if (nameVentCont.getText().equals("") || cuantiVentCont.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe llenar los datos solicitados", "Error",
 					JOptionPane.WARNING_MESSAGE);
-    	}else {
-    		int cuantity = Integer.parseInt(cuantiVentCont.getText());
-    		if(tiendaMonarca.existProduct(name)) {
-    			tiendaMonarca.selectProduct(name, cuantity);
-    			String out =tiendaMonarca.calculePrice()+"";
-    			labelMount.setText(out);
-    			printProductnNew();
-    		}
-    	}
-    }
-    @FXML
-    private TableView<Product> newProductventCont;
+		} else {
+			int cuantity = Integer.parseInt(cuantiVentCont.getText());
+			if (tiendaMonarca.existProduct(name)) {
+				tiendaMonarca.selectProduct(name, cuantity);
+				String out = tiendaMonarca.calculePrice() + "";
+				labelMount.setText(out);
+				printProductnNew();
+			}
+		}
+	}
 
-    @FXML
-    private TableColumn<Product, String> nameNewVentPr;
+	@FXML
+	private TableView<Product> newProductventCont;
 
-    @FXML
-    private TableColumn<Product, String> priceNewVentPr;
-    
-    
-    
-    /**
-     * print product <br>
-     */
-    public void printProductnNew() {
+	@FXML
+	private TableColumn<Product, String> nameNewVentPr;
+
+	@FXML
+	private TableColumn<Product, String> priceNewVentPr;
+
+	/**
+	 * print product <br>
+	 */
+	public void printProductnNew() {
 		ObservableList<Product> observableList;
 		observableList = FXCollections.observableArrayList(tiendaMonarca.getTemporal());
 		newProductventCont.setItems(observableList);
 		nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
-		
-	} 
-    
-    
-    
-    /**
-     *  create sales <br>
-     * @param event
-     * @throws FileNotFoundException
-     * @throws IOException
-     */
-    @FXML
-    void creatVentCont(ActionEvent event) throws FileNotFoundException, IOException  {
-    	
-    	if(labelMount.getText().equals("")) {
-    		JOptionPane.showMessageDialog(null, "Debe Seleccionar un PRODUCTO", "Error",
-					JOptionPane.WARNING_MESSAGE);
-    	}else {
-    		//int out =Integer.parseInt(labelMount.getText()) ;
-    		String type = tipoPayConta.getValue().toString();
-        	if(tiendaMonarca.getClientPro()!=null) {
-        		if(type.equals("EFECTIVO")) {
-        			type="CASH";
-        		}
-        		if(type.equals("TARJETA")) {
-        			type="CARD";
-        			
-        		}
-        		
-    			tiendaMonarca.registerSaleContac(type);
-    			JOptionPane.showMessageDialog(null, "Se creo una venta", "Felicitacion",
-    					JOptionPane.WARNING_MESSAGE);
-    			tiendaMonarca.setClientp();
-    			loadMenu();
-        	}else{
-        		JOptionPane.showMessageDialog(null, "Debe Seleccionar un cliente", "Error",
-    					JOptionPane.WARNING_MESSAGE);
-        	}
-    	}
-    }
-    @FXML
-    private TableView<SalesConta> tableVents;
 
-    @FXML
-    private TableColumn<SalesConta,String> productsTableVents;
-
-    @FXML
-    private TableColumn<SalesConta, String> paysVents;
-    
-    
-    /**
-     * print vents list <br>
-     */
-    public void printVents() {
-		ObservableList<SalesConta> observableList;
-		observableList = FXCollections.observableArrayList(tiendaMonarca.getVents());
-
-		tableVents.setItems(observableList);
-		productsTableVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("id"));
-		paysVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("ganancy"));
 	}
+
+	/**
+	 * create sales <br>
+	 * 
+	 * @param event
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	@FXML
+	void creatVentCont(ActionEvent event) throws FileNotFoundException, IOException {
+
+		if (labelMount.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Debe Seleccionar un PRODUCTO", "Error", JOptionPane.WARNING_MESSAGE);
+		} else {
+			// int out =Integer.parseInt(labelMount.getText()) ;
+			String type = tipoPayConta.getValue().toString();
+			if (tiendaMonarca.getClientPro() != null) {
+				if (type.equals("EFECTIVO")) {
+					type = "CASH";
+				}
+				if (type.equals("TARJETA")) {
+					type = "CARD";
+
+				}
+
+				tiendaMonarca.registerSaleContac(type);
+				JOptionPane.showMessageDialog(null, "Se creo una venta", "Felicitacion", JOptionPane.WARNING_MESSAGE);
+				tiendaMonarca.setClientp();
+				tiendaMonarca.resetTemporal();
+				tiendaMonarca.resetTemporalNums();
+				loadMenu();
+			} else {
+				JOptionPane.showMessageDialog(null, "Debe Seleccionar un cliente", "Error",
+						JOptionPane.WARNING_MESSAGE);
+			}
+		}
+	}
+
+	@FXML
+	private TableView<SalesConta> tableVents;
+
+	@FXML
+	private TableColumn<SalesConta, String> productsTableVents;
+
+	@FXML
+	private TableColumn<SalesConta, String> paysVents;
+
+	/**
+	 * print vents list <br>
+	 */
+	public void printVents() {
+			if(tiendaMonarca.usedSalesC()) {
+			ObservableList<SalesConta> observableList;
+			observableList = FXCollections.observableArrayList(tiendaMonarca.getVents());
+			tableVents.setItems(observableList);
+			productsTableVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("pr"));
+			paysVents.setCellValueFactory(new PropertyValueFactory<SalesConta, String>("ganancy"));
+			}
+	}
+
 }

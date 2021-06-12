@@ -73,7 +73,7 @@ public class TiendaMonarca {
 	private ArrayList<SalesCredit> salesCredit;
 
 	public TiendaMonarca() throws ClassNotFoundException, IOException {
-		loadData();
+		
 		temporalNum = new ArrayList<>();
 		temporal = new ArrayList<>();
 		providers = new ArrayList<>();
@@ -82,7 +82,7 @@ public class TiendaMonarca {
 		if (first == null) {
 			first = new EmployeUser("admin", "admin", "admin", "admin", "123");
 		}
-		//loadData();
+		loadData();
 	}
 
 	/**
@@ -112,9 +112,11 @@ public class TiendaMonarca {
 	 * @param ty
 	 * @param br
 	 * @param cap
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
 	public void creatProductTech(String name, int valuepay, int valuesale, int cuantity, String pr, String ty,
-			String br, int cap) {
+			String br, int cap) throws FileNotFoundException, IOException {
 		int pos = 0;
 		for (int i = 0; i < providers.size(); i++) {
 			if (providers.get(i).getName().equals(pr)) {
@@ -132,6 +134,7 @@ public class TiendaMonarca {
 
 			creatProductTech(product, p);
 		}
+		saveDataProduct();
 	}
 
 	/**
@@ -169,8 +172,9 @@ public class TiendaMonarca {
 	 * @param id
 	 * @param numAcount
 	 * @return
+	 * @throws IOException 
 	 */
-	public boolean addProovider(String name, String phone, String address, String id, String numAcount) {
+	public boolean addProovider(String name, String phone, String address, String id, String numAcount) throws IOException {
 		boolean out = false;
 		Provider pro = new ProviderConta(name, phone, address, id, numAcount);
 		if (providers.isEmpty()) {
@@ -182,6 +186,7 @@ public class TiendaMonarca {
 			}
 			providers.add(i, pro);
 		}
+		saveDataProviders();
 		return out;
 	}
 
@@ -194,8 +199,9 @@ public class TiendaMonarca {
 	 * @param id
 	 * @param term
 	 * @return
+	 * @throws IOException 
 	 */
-	public boolean addProovider(String name, String phone, String address, String id, int term) {
+	public boolean addProovider(String name, String phone, String address, String id, int term) throws IOException {
 		boolean out = false;
 		Provider pro = new ProviderCredit(name, phone, address, id, term);
 		if (providers.isEmpty()) {
@@ -207,6 +213,7 @@ public class TiendaMonarca {
 			}
 			providers.add(i, pro);
 		}
+		saveDataProviders();
 		return out;
 	}
 
@@ -799,7 +806,12 @@ public class TiendaMonarca {
 		getVents(salesConta, p);
 		return p;
 	}
-
+	
+	public void saveDataProduct() throws FileNotFoundException, IOException {
+		ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(PRODUCTS_TEC_FILE_NAME));
+		ob.writeObject(product);
+		ob.close();
+	}
 	public boolean usedSalesC() {
 		boolean out = false;
 		if (salesConta != null) {
@@ -829,6 +841,11 @@ public class TiendaMonarca {
 			p.add(current);
 			getVents(current.getRight(), p);
 		}
+	}
+	public void saveDataProviders() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PROVIDER_FILE_NAME));
+		oos.writeObject(providers);
+		oos.close();
 	}
 
 	public ArrayList<SalesCredit> getSalesCredit() {

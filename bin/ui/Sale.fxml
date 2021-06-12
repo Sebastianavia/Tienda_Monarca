@@ -30,10 +30,10 @@
    <bottom>
       <AnchorPane prefHeight="465.0" prefWidth="763.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="257.0" layoutY="57.0" prefHeight="200.0" prefWidth="249.0">
+            <TableView fx:id="tableVents" layoutX="257.0" layoutY="57.0" prefHeight="200.0" prefWidth="249.0">
               <columns>
-                <TableColumn prefWidth="142.0" text="productos" />
-                <TableColumn prefWidth="119.0" text="ganancia" />
+                <TableColumn fx:id="productsTableVents" prefWidth="142.0" text="productos" />
+                <TableColumn fx:id="paysVents" prefWidth="119.0" text="ganancia" />
               </columns>
             </TableView>
             <Button layoutX="569.0" layoutY="289.0" mnemonicParsing="false" onAction="#returnVen" style="-fx-background-color: FFF8B8;" text="Salir" />

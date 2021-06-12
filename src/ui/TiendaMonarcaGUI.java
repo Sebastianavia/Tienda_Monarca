@@ -990,6 +990,7 @@ public class TiendaMonarcaGUI {
 	 */
 	@FXML
 	void returnventCred(ActionEvent event) throws IOException {
+		tiendaMonarca.resetTemporal();
 		loadMenu();
 	}
 
@@ -1454,5 +1455,8 @@ public class TiendaMonarcaGUI {
 		nameNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		priceNewVentPr.setCellValueFactory(new PropertyValueFactory<Product, String>("valuesale"));
 		
-	}
+	} @FXML
+    void returnventCred(ActionEvent event) {
+
+    }
 }

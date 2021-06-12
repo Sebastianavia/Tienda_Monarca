@@ -25,7 +25,9 @@ public class TiendaMonarca {
 	public ArrayList<Product> getTemporal() {
 		return temporal;
 	}
-
+	public void resetTemporal() {
+		temporal=null;
+	}
 	public void setTemporal(ArrayList<Product> temporal) {
 		this.temporal = temporal;
 	}
